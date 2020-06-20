@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const fileUpload = require('express-fileupload')
 const router = require('./router')
 const mongoose = require('mongoose')
 mongoose.connect(
@@ -15,6 +16,7 @@ const expressServer = express()
 
 
 expressServer.use(bodyParser.json())
+expressServer.use(fileUpload())
 
 
 expressServer.use((req, res, next) => {
