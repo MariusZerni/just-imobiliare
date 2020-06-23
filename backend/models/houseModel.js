@@ -1,24 +1,20 @@
 const mongoose = require('mongoose')
 
-const images = new mongoose.Schema({
-  image: { type: String }
-
+const annexes = new mongoose.Schema({
+  numberOfRooms: { type: Number },
+  bedroom: { type: Number },
+  kitchen: { type: Number },
+  bathrooms: { type: Number },
+  bathroomWindow: { type: Boolean },
+  balcony: { type: Number },
+  terrace: { type: Number },
+  garage: { type: Number },
+  parkingSpace: { type: Number }
 })
 
-const characteristics = new mongoose.Schema({
-  buildingType: { type: String },
-  constructionYear: { type: Number },
-  constructionStage: { type: String },
-  constructionType: { type: String },
-  seismicRisk: { type: Boolean },
-  historicalMonument: { type: Boolean },
-  thermalRehabilitation: { type: Boolean },
-  consolidatedBuilding: { type: Boolean },
-  numberOfFloors: { type: Number },
-  lowerGroundFloor: { type: Number },
-  attic: { type: Boolean },
-  description: { type: String, maxLength: 300 },
-  title: { type: String, maxLength: 80 }
+const descriptionAndTitle = new mongoose.Schema({
+  title: { type: String, maxLength: 80 },
+  description: { type: String, maxLength: 300 }
 })
 
 const facilities = new mongoose.Schema({
@@ -40,7 +36,8 @@ const facilities = new mongoose.Schema({
   meters: { type: [String] },
   view: { type: [String] }
 })
-// Schema for price
+
+// Schema Price
 const commissionFromLanlordOnSale = new mongoose.Schema({
   servicesOnContractForSale: { type: String },
   exclusive: { type: Boolean },
@@ -94,36 +91,32 @@ const priceForRenting = new mongoose.Schema({
 
 const schema = new mongoose.Schema({
   transactionType: { type: String, required: true },
-  propertyType: { type: String, required: true },
+  useFor: { type: String },
   availability: { type: String },
-  apartmentType: { type: String },
-  compartments: { type: String },
-  facingDirection: { type: String },
-  floor: { type: Number },
-  comfortType: { type: Number },
+  houseType: { type: String },
   interiorState: { type: String },
   year: { type: Number },
-  squareMeters: { type: Number },
   builtArea: { type: Number },
+  squareMeter: { type: Number },
+  landSquareMeter: { type: Number },
+  gardenSquareMeter: { type: Number },
   terrace: { type: Number },
-  balcony: { type: Number },
-  garden: { type: Number },
-  numberOfRooms: { type: Number },
-  bedrooms: { type: Number },
-  kitchen: { type: Number },
-  bathrooms: { type: Number },
-  bathroomWindow: { type: Boolean },
-  garage: { type: Number },
-  parkingSpace: { type: Number },
-  date: { type: Date, default: Date.now },
-  characteristics: characteristics,
-  facilities: facilities,
+  roof: { type: String },
+  cnstructionStage: { type: String },
+  constructionType: { type: String },
+  seismicRisk: { type: String },
+  historicalMonument: { type: Boolean },
+  consolidatedBuilding: { type: Boolean },
+  thermalRehabilitation: { type: Boolean },
+  lowerGroundFloor: { type: Number },
+  numberOfFloors: { type: Number },
+  attic: { type: Boolean },
+  annexes: annexes,
+  descriptionAndTitle: descriptionAndTitle,
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
-  images: images
+  facilities: facilities
 })
 
 
-
-
-module.exports = mongoose.model('Apartment', schema)
+module.exports = mongoose.model('House', schema)
