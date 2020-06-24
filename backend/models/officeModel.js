@@ -1,5 +1,9 @@
 const mongoose = require('mongoose')
 
+const images = new mongoose.Schema({
+  image: { type: String }
+})
+
 const buildingCharacteristics = new mongoose.Schema({
   year: { type: Number },
   numberOfFloors: { type: Number }
@@ -76,6 +80,7 @@ const priceForRenting = new mongoose.Schema({
 
 const schema = new mongoose.Schema({
   transactionType: { type: String, required: true },
+  propertyType: { type: String, required: true },
   officeType: { type: String },
   bathrooms: { type: Number },
   terrace: { type: Number },
@@ -91,7 +96,8 @@ const schema = new mongoose.Schema({
   priceForRenting: priceForRenting,
   buildingCharacteristics: buildingCharacteristics,
   description: description,
-  technicalParameters: technicalParameters
+  technicalParameters: technicalParameters,
+  images: images
 })
 
 

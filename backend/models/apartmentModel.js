@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 
 const images = new mongoose.Schema({
   image: { type: String }
-
 })
 
 const characteristics = new mongoose.Schema({
@@ -120,7 +119,8 @@ const schema = new mongoose.Schema({
   facilities: facilities,
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
-  images: images
+  images: images,
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 })
 
 

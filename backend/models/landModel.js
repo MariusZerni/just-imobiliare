@@ -1,5 +1,9 @@
 const mongoose = require('mongoose')
 
+const images = new mongoose.Schema({
+  image: { type: String }
+})
+
 const townPlanning = new mongoose.Schema({
   CUT: { type: String },
   constructionAuthorization: { type: Boolean },
@@ -75,8 +79,9 @@ const priceForRenting = new mongoose.Schema({
 })
 
 const schema = new mongoose.Schema({
+  transactionType: { type: String, required: true },
+  propertyType: { type: String, required: true },
   type: { type: String },
-  transactionType: { type: String },
   squareMeter: { type: Number },
   streetFront: { type: Number },
   access: { type: String },
@@ -93,7 +98,8 @@ const schema = new mongoose.Schema({
   priceForRenting: priceForRenting,
   townPlanning: townPlanning,
   description: description,
-  additionalFeature: additionalFeature
+  additionalFeature: additionalFeature,
+  images: images
 })
 
 

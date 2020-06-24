@@ -1,5 +1,9 @@
 const mongoose = require('mongoose')
 
+const images = new mongoose.Schema({
+  image: { type: String }
+})
+
 const buidingCharacteristics = new mongoose.Schema({
   year: { type: Number },
   numberOfFloors: { type: Number },
@@ -75,6 +79,8 @@ const priceForRenting = new mongoose.Schema({
 })
 
 const schema = new mongoose.Schema({
+  transactionType: { type: String, required: true },
+  propertyType: { type: String, required: true },
   pedestrianTraffic: { type: String },
   numberOfFloors: { type: Number },
   bathroom: { type: Number },
@@ -92,7 +98,8 @@ const schema = new mongoose.Schema({
   priceForRenting: priceForRenting,
   buidingCharacteristics: buidingCharacteristics,
   description: description,
-  additionalFeatures: additionalFeatures
+  additionalFeatures: additionalFeatures,
+  images: images
 })
 
 module.exports = mongoose.model('ComercialSpace', schema)

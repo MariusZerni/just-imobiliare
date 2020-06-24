@@ -1,5 +1,9 @@
 const mongoose = require('mongoose')
 
+const images = new mongoose.Schema({
+  image: { type: String }
+})
+
 const description = new mongoose.Schema({
   title: { type: String, maxLength: 80 },
   description: { type: String, maxLength: 300 }
@@ -64,7 +68,8 @@ const priceForRenting = new mongoose.Schema({
 })
 
 const schema = new mongoose.Schema({
-  transactionType: { type: String },
+  transactionType: { type: String, required: true },
+  propertyType: { type: String, required: true },
   useFor: { type: String },
   officeType: { type: String },
   bathrooms: { type: Number },
@@ -83,7 +88,8 @@ const schema = new mongoose.Schema({
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
   description: description,
-  additionalCharacteristics: additionalCharacteristics
+  additionalCharacteristics: additionalCharacteristics,
+  images: images
 })
 
 module.exports = mongoose.model('IndustrialSpace', schema)

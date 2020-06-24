@@ -14,7 +14,6 @@ function register(req, res) {
 }
 
 function login(req, res) {
-  console.log(req.body)
 
   User 
     .findOne({ email: req.body.email })

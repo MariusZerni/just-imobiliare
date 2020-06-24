@@ -3,6 +3,7 @@ const { secret } = require('../config/environment')
 const jwt = require('jsonwebtoken')
 
 function secureRoute(req, res, next) {
+  console.log('secure route')
   const authToken = req.headers.authorization
   if (!authToken || !authToken.startsWith('Bearer')) {
     return res.status(401).send({ message: 'Unauthorized, invalid login' })
