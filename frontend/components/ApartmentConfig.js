@@ -38,7 +38,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
             <h4>Caracteristici apartament</h4>
             <div className="field">
               <h6>Tip tranzactie</h6>
-              <select datacontainer="characteristics"
+              <select 
                 name="transactionType" >
                 <option value="apartament">Inchiriere</option>
                 <option value="casa">Vanzare</option>
@@ -46,14 +46,14 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
             </div>
             <div className="field">
               <h6>Tip proprietate</h6>
-              <select  datacontainer="characteristics" name="propertyType" >
+              <select   name="propertyType" >
                 <option value="apartament">Apartament</option>
                 <option value="casa">Casa</option>
               </select>
             </div>
             <div className="field">
               <h6>Tip apartament</h6>
-              <select datacontainer="characteristics" name="apartmentType" >
+              <select name="apartmentType" >
                 {configs.apartmentType.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
                 })}
@@ -160,11 +160,14 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               <input type="text" name="parkingSpace" />
             </div>
           </div>
+
+          {/* Characteristics key */}
           <div className="characteristics-content">
             <h4>Caracteristici imobil</h4>
             <div className="field">
               <h6>Imobil</h6>
-              <select name="buildingType" >
+              <select datacontainer="characteristics"
+                name="buildingType" >
                 {configs.buildingType.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
                 })}
@@ -172,11 +175,13 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
             </div>
             <div className="field">
               <h6>An. constructie</h6>
-              <input type="text" name="constructionYear" />
+              <input datacontainer="characteristics"
+                type="text" name="constructionYear" />
             </div>
             <div className="field">
               <h6>Stadiu constructie</h6>
-              <select name="constructionStage" >
+              <select datacontainer="characteristics"
+                name="constructionStage" >
                 {configs.constructionStage.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
                 })}
@@ -184,7 +189,8 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
             </div>
             <div className="field">
               <h6>Tip constructie</h6>
-              <select name="constructionType" >
+              <select datacontainer="characteristics"
+                name="constructionType" >
                 {configs.constructionType.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
                 })}
@@ -192,7 +198,8 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
             </div>
             <div className="field">
               <h6>Risc seismic</h6>
-              <select name="seismicRisk" >
+              <select datacontainer="characteristics"
+                name="seismicRisk" >
                 {configs.seismicRisk.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
                 })}
@@ -201,33 +208,39 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
 
             <div className="field">
               <h6>Nr. etaje imobil</h6>
-              <input type="text" name="numberOfFloors" />
+              <input datacontainer="characteristics"
+                type="text" name="numberOfFloors" />
             </div>
             <div className="field">
               <h6>Nr. subsoluri</h6>
-              <input type="text" name="lowerGroundFloor" />
+              <input datacontainer="characteristics"
+                type="text" name="lowerGroundFloor" />
             </div>
             <div className="checkbox">
-              <input type="checkbox" name="historicalMonument" />
+              <input datacontainer="characteristics"
+                type="checkbox" name="historicalMonument" />
               <h6>Monument istoric</h6>
             </div>
             <div className="checkbox">
-              <input type="checkbox" name="thermalRehabilitation" />
+              <input datacontainer="characteristics"
+                type="checkbox" name="thermalRehabilitation" />
               <h6>Reabilitare termic</h6>
             </div>
             <div className="checkbox">
-              <input type="checkbox" name="consolidatedBuilding" />
+              <input datacontainer="characteristics"
+                type="checkbox" name="consolidatedBuilding" />
               <h6>Imobil consolidatc</h6>
             </div>
             <div className="checkbox">
-              <input type="checkbox" name="attic" />
+              <input datacontainer="characteristics"
+                type="checkbox" name="attic" value="attic" />
               <h6>Pod</h6>
             </div>
           </div>
         </div>
+        {/* End of Characteristics */}
 
-
-
+        {/* Facilities key */}
         <div className="features">
           <h4>Dotari si utilitati</h4>
           <div className="features-container">
@@ -235,7 +248,8 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               <h5>Dotari</h5>
               {configs.features.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="features" value={elem} />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="features" value={elem} />
                   <h6>{elem}</h6>
 
                 </div>
@@ -244,21 +258,24 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               <h5>Amenajare strazi</h5>
               {configs.streetFacilities.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="streetFacilities" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="streetFacilities" />
                   <h6>{elem}</h6>
                 </div>
               })}
               <h5>Utilitati generale</h5>
               {configs.generalUtilities.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="generalUtilities" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="generalUtilities" />
                   <h6>{elem}</h6>
                 </div>
               })}
               <h5>Izolatii termice</h5>
               {configs.insulation.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="insulation" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="insulation" />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -267,21 +284,24 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               <h5>Dotari imobil</h5>
               {configs.realEstateFacilities.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="realEstateFacilities" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="realEstateFacilities" />
                   <h6>{elem}</h6>
                 </div>
               })}
               <h5>Parcare</h5>
               {configs.parking.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="parking" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="parking" />
                   <h6>{elem}</h6>
                 </div>
               })}
               <h5>Sistem incalzire</h5>
               {configs.heatingSystem.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="heatingSystem" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="heatingSystem" />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -291,42 +311,48 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               <h5>Usa intrare</h5>
               {configs.doorEntry.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="doorEntry" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="doorEntry" />
                   <h6>{elem}</h6>
                 </div>
               })}
               <h5>Pereti</h5>
               {configs.walls.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="walls" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="walls" />
                   <h6>{elem}</h6>
                 </div>
               })}
               <h5>Mobilat</h5>
               {configs.furnished.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="furnished" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="furnished" />
                   <h6>{elem}</h6>
                 </div>
               })}
               <h5>Bucatarie</h5>
               {configs.kitchenType.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="kitchenType" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="kitchenType" />
                   <h6>{elem}</h6>
                 </div>
               })}
               <h5>Ferestre</h5>
               {configs.windows.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="windows" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="windows" />
                   <h6>{elem}</h6>
                 </div>
               })}
               <h5>Contorizare</h5>
               {configs.meters.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="meters" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="meters" />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -335,28 +361,32 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               <h5>Usa interior</h5>
               {configs.interiorDoors.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="interiorDoors" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="interiorDoors" />
                   <h6>{elem}</h6>
                 </div>
               })}
               <h5>Podele</h5>
               {configs.floorType.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="floorType" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="floorType" />
                   <h6>{elem}</h6>
                 </div>
               })}
               <h5>Alte spatii</h5>
               {configs.otherSpaces.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="otherSpaces" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="otherSpaces" />
                   <h6>{elem}</h6>
                 </div>
               })}
               <h5>Priveliste</h5>
               {configs.view.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input type="checkbox" name="view" />
+                  <input datacontainer="facilities"
+                    type="checkbox" name="view" />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -364,13 +394,15 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
           </div>
         </div>
       </div>
+
+      {/* Characteristics key */}
       <div className="description-container">
         <div className="title">
           <h5>Title</h5>
           <textarea name="title" rows="2"></textarea>
         </div>
         <div className="description">
-          <h5>Title</h5>
+          <h5>Description</h5>
           <textarea name="description" rows="10"></textarea>
         </div>
       </div>

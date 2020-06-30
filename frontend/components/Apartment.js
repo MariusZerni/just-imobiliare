@@ -1,46 +1,42 @@
 import React, { useState, useEffect } from 'react'
-// import { useBetween } from 'use-between'
-// import Axios from 'axios'
 
 import Header from './Header'
 import ApartmentConfig from './ApartmentConfig'
 import Axios from 'axios'
-// import Home from './Home'
 
 
 const Apartment = (props) => {
 
   const [state, setState] = useState({
-    features: [],
-    doorEntry: [],
-    interiorDoors: [],
-    walls: [],
-    floorType: [],
-    furnished: [],
-    streetFacilities: [],
-    kitchenType: [],
-    otherSpaces: [],
-    parking: [],
-    windows: [],
-    generalUtilities: [],
-    heatingSystem: [],
-    insulation: [],
-    meters: [],
-    view: [],
-    realEstateFacilities: [],
+   
     characteristics: {},
-    facilities: {},
+    facilities: {
+      features: [],
+      doorEntry: [],
+      interiorDoors: [],
+      walls: [],
+      floorType: [],
+      furnished: [],
+      streetFacilities: [],
+      kitchenType: [],
+      otherSpaces: [],
+      parking: [],
+      windows: [],
+      generalUtilities: [],
+      heatingSystem: [],
+      insulation: [],
+      meters: [],
+      view: [],
+      realEstateFacilities: [] 
+    },
     priceForSale: {},
     priceForRenting: {},
     images: {},
-    // user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+    // user: {},
     address: {}
   })
-  // const { propertyTypeId,setPropertyTypeId} = useBetween(Home)
 
-  //console.log(state)
-  // console.log('propertyId')
-  // console.log(props)
+
   useEffect(() => {
     console.log(state)
   })
@@ -48,25 +44,36 @@ const Apartment = (props) => {
 
   const handleChange = (event) => {
     console.log(event.target)
-    const { name, value, type } = event.target
+    const { name, value, type, checked } = event.target
     const objKey = event.target.getAttribute('datacontainer')
 
-    console.log('type' + type)
-    console.log(event.target.getAttribute('datacontainer'))
-
-
-    if (type === 'checkbox') {
-      console.log('my check')
+    if (!objKey && type === 'checkbox') {
+      console.log('not object')
       setState(prevState => ({
         ...prevState,
-        [name]: [...prevState[name], value] 
+        [name]: checked      
+      })) 
+    } else if (objKey === 'characteristics') {
+      setState(prevState => ({
+        ...prevState,
+        characteristics: type === 'checkbox' ?  { ...prevState.characteristics, [name]: checked } : { ...prevState.characteristics, [name]: value } 
+      }))
+    } else if (type === 'checkbox') {
+      console.log('my check2')
+      setState(prevState => ({
+        ...prevState,
+        [objKey]: { ...prevState[objKey],[name]: [...prevState[objKey][name], value] }
         
       }))
-    } else {
-      // console.log(objKey)
+    } else if (objKey) {
       setState(prevState => ({
         ...prevState,
         [objKey]: { [name]: value }
+      }))
+    } else {
+      setState(prevState => ({
+        ...prevState,
+        [name]: value 
       }))
     }
   }
