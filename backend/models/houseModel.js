@@ -22,8 +22,8 @@ const descriptionAndTitle = new mongoose.Schema({
 })
 
 const facilities = new mongoose.Schema({
-  transactionType: { type: String, required: true },
-  propertyType: { type: String, required: true },
+  transactionType: { type: String },
+  propertyType: { type: String },
   features: { type: [String] },
   realEstateFacilities: { type: [String] },
   doorEntry: { type: [String] },
@@ -96,7 +96,7 @@ const priceForRenting = new mongoose.Schema({
 })
 
 const schema = new mongoose.Schema({
-  transactionType: { type: String, required: true },
+  transactionType: { type: String },
   useFor: { type: String },
   availability: { type: String },
   houseType: { type: String },

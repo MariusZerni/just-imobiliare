@@ -54,8 +54,8 @@ const Home = (props) => {
             <i style={{ pointerEvents: 'none' }} className="fas fa-building fa-3x"></i>
             <h5 style={{ pointerEvents: 'none' }} >Apartament</h5>
           </div>
-          <div id="casa-vila"
-            className={propertyTypeId === 'casa-vila' ? 'font-awesome clicked' : 'font-awesome'}
+          <div id="house"
+            className={propertyTypeId === 'house' ? 'font-awesome clicked' : 'font-awesome'}
             onClick={() => 
               setPropertyTypeId(event.target.id)
 
@@ -75,8 +75,8 @@ const Home = (props) => {
           </div>
 
 
-          <div id="birou"
-            className={propertyTypeId === 'birou' ? 'font-awesome clicked' : 'font-awesome'}
+          <div id="office"
+            className={propertyTypeId === 'office' ? 'font-awesome clicked' : 'font-awesome'}
             onClick={(event) => setPropertyTypeId(event.target.id)}
           >
             <i style={{ pointerEvents: 'none' }} className="fas fa-city fa-3x"></i>

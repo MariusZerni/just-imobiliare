@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 
-const ApartmentConfig = ({ handleChange, handleSubmit }) => {
+const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
   const [configs, setConfigs] = useState(null)
 
 
@@ -259,7 +259,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.streetFacilities.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="streetFacilities" />
+                    type="checkbox" name="streetFacilities" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -267,7 +267,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.generalUtilities.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="generalUtilities" />
+                    type="checkbox" name="generalUtilities" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -275,7 +275,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.insulation.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="insulation" />
+                    type="checkbox" name="insulation" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -285,7 +285,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.realEstateFacilities.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="realEstateFacilities" />
+                    type="checkbox" name="realEstateFacilities" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -293,7 +293,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.parking.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="parking" />
+                    type="checkbox" name="parking" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -301,7 +301,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.heatingSystem.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="heatingSystem" />
+                    type="checkbox" name="heatingSystem" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -312,7 +312,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.doorEntry.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="doorEntry" />
+                    type="checkbox" name="doorEntry" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -320,7 +320,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.walls.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="walls" />
+                    type="checkbox" name="walls" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -328,7 +328,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.furnished.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="furnished" />
+                    type="checkbox" name="furnished" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -336,7 +336,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.kitchenType.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="kitchenType" />
+                    type="checkbox" name="kitchenType" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -344,7 +344,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.windows.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="windows" />
+                    type="checkbox" name="windows" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -352,7 +352,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.meters.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="meters" />
+                    type="checkbox" name="meters" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -362,7 +362,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.interiorDoors.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="interiorDoors" />
+                    type="checkbox" name="interiorDoors" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -370,7 +370,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.floorType.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="floorType" />
+                    type="checkbox" name="floorType" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -378,7 +378,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.otherSpaces.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="otherSpaces" />
+                    type="checkbox" name="otherSpaces" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -386,7 +386,7 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
               {configs.view.map((elem) => {
                 return <div key={elem._id} className="checkbox">
                   <input datacontainer="facilities"
-                    type="checkbox" name="view" />
+                    type="checkbox" name="view" value={elem} />
                   <h6>{elem}</h6>
                 </div>
               })}
@@ -413,4 +413,4 @@ const ApartmentConfig = ({ handleChange, handleSubmit }) => {
 
 
 
-export default ApartmentConfig
+export default ApartmentCharacteristics

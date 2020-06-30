@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react'
+import Axios from 'axios'
 
 import Header from './Header'
-import ApartmentConfig from './ApartmentConfig'
-import Axios from 'axios'
+import ApartmentCharacteristics from './ApartmentCharacteristics'
+import ApartmentLocation from './ApartmentLocation'
+import ApartmentPrice from './ApartmentPrice'
+import ApartmentImages from './ApartmentImages'
+
 
 
 const Apartment = (props) => {
 
   const [state, setState] = useState({
-   
     characteristics: {},
     facilities: {
       features: [],
@@ -36,10 +39,33 @@ const Apartment = (props) => {
     address: {}
   })
 
+  const [currentSelection, setCurrentSelection] = useState('Location')
+
+
 
   useEffect(() => {
-    console.log(state)
+
+
+    console.log(currentSelection)
   })
+
+  const handleLocation = () => {
+    setCurrentSelection('Location')
+  }
+
+  const handleCharacteristics = () => {
+    console.log('characteristics')
+    setCurrentSelection('Characteristics')
+  }
+
+  const handlePrice = () => {
+    setCurrentSelection('Price')
+  }
+
+  const handleImages = () => {
+    setCurrentSelection('Images')
+  }
+
 
 
   const handleChange = (event) => {
@@ -83,12 +109,7 @@ const Apartment = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log('event')
-    console.log(event.type)
     const { propertyType, propertyId } = props.history.location.state
-
-    console.log(state)
-
     Axios.put(`/api/property/${propertyType}/${propertyId}`, state)
       .then(res => console.log(res))
       .catch(error => console.log(error))
@@ -96,19 +117,26 @@ const Apartment = (props) => {
 
 
 
+
+
+
   return <div className="property-container">
     <Header />
     <div className="fields-container">
-      <div className="content">
+      <div onClick={() => handleLocation()}
+        className="content">
         <h4>Localizare</h4>
       </div>
-      <div className="content">
+      <div onClick={() => handleCharacteristics()}
+        className="content">
         <h4>Caracteristici</h4>
       </div>
-      <div className="content">
+      <div onClick={() => handlePrice()}
+        className="content">
         <h4>Pret</h4>
       </div>
-      <div className="content">
+      <div onClick={() => handleImages()}
+        className="content">
         <h4>Imagini</h4>
       </div>
       <div className="content">
@@ -117,10 +145,23 @@ const Apartment = (props) => {
         >Adauga</button>
       </div>
     </div>
-    <ApartmentConfig
+    {currentSelection === 'Characteristics' && <ApartmentCharacteristics
       handleSubmit={event => handleSubmit(event)}
       handleChange={event => handleChange(event)}
-    />
+    />} 
+    {currentSelection === 'Location' && <ApartmentLocation
+      handleSubmit={event => handleSubmit(event)}
+      handleChange={event => handleChange(event)}
+    />}
+    {currentSelection === 'Price' && <ApartmentPrice
+      handleSubmit={event => handleSubmit(event)}
+      handleChange={event => handleChange(event)}
+    />}
+    {currentSelection === 'Images' && <ApartmentImages
+      handleSubmit={event => handleSubmit(event)}
+      handleChange={event => handleChange(event)}
+    />}
+    
   </div>
 
 }
