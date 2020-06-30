@@ -12,4 +12,4 @@ const schema = new mongoose.Schema({
   landFacilities: { type: [String] }
 })
 
-module.exports = mongoose.model('IndustrialSpace', schema)
+module.exports = mongoose.model('IndustrialSpaceConfig', schema)

@@ -16,4 +16,4 @@ const schema = new mongoose.Schema({
   view: { type: [String] }
 })
 
-module.exports = mongoose.model('Office', schema)
+module.exports = mongoose.model('OfficeConfig', schema)

@@ -1,5 +1,12 @@
 const mongoose = require('mongoose')
 
+const address = new mongoose.Schema({
+  county: { type: String },
+  town: { type: String },
+  street: { type: String },
+  streetNumber: { type: Number }
+})
+
 const images = new mongoose.Schema({
   image: { type: String }
 })
@@ -92,8 +99,8 @@ const priceForRenting = new mongoose.Schema({
 })
 
 const schema = new mongoose.Schema({
-  transactionType: { type: String, required: true },
-  propertyType: { type: String, required: true },
+  transactionType: { type: String },
+  propertyType: { type: String },
   availability: { type: String },
   apartmentType: { type: String },
   compartments: { type: String },
@@ -102,6 +109,7 @@ const schema = new mongoose.Schema({
   comfortType: { type: Number },
   interiorState: { type: String },
   year: { type: Number },
+  // suprafata utila
   squareMeters: { type: Number },
   builtArea: { type: Number },
   terrace: { type: Number },
@@ -120,7 +128,8 @@ const schema = new mongoose.Schema({
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
   images: images,
-  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
+  // user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  address: address
 })
 
 

@@ -1,0 +1,208 @@
+@import './colors.scss';
+
+h4 {
+  font-size: 1.25em;
+  font-weight: 300;
+  font-weight: 400;
+  padding: 0.3em;
+}
+
+h5 {
+  font-size: 1.1em;
+  font-weight: 400;
+}
+
+textarea {
+  width: 90%;
+  outline: none;
+}
+
+.fields-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid grey;
+  border-top: none;
+}
+
+
+
+.characteristics-container {
+  margin: 0 auto;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  // border: 1px solid grey;
+  // background-color: red;
+
+  
+
+  .main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    
+    
+
+    .characteristics {
+      width: 60%;
+      min-height: 80vh;
+      background-color: $containers-color;
+      padding: 0.75em;
+      border: 1px solid grey;
+      border-top: none;
+      
+
+      h4 {
+        font-weight: 400;
+        padding: 0.3em;
+      }
+
+      .field {
+        margin: 0.25em 0;
+        
+        
+        display: flex;
+        justify-content: flex-end;
+        border: 0.5px solid grey;
+        background-color: $secondary-color;
+
+        h6 {
+          font-weight: 400;
+          font-size: 1em;
+          line-height: 30px;
+          margin-bottom: 0;
+          // padding-right: 0.5em;
+        }
+        
+      }
+
+      .checkbox {
+        display: flex;
+        justify-content: center;
+        border: 0.5px solid grey;
+        background-color: $secondary-color;
+        height: 30px;
+
+        h6 {
+          padding-left: 1em;
+          line-height: 30px;
+          font-weight: 500;
+          font-size: 1em;
+          
+        }
+        input {
+          width: 15px;
+          height: 15px;
+          margin-top: 0.5em;
+
+        }
+      }
+    }
+
+    .features {
+      width: 100%;
+      background-color: $containers-color;
+      border-right: 1px solid grey;
+        border-bottom: 1px solid grey;
+
+      .features-container {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        // background-color: $containers-color;
+        padding: 0.75em;
+        
+
+        .features-col {
+          padding-left: 1em;
+          // display: flex;
+          width: 25%;
+
+          .checkbox {
+            min-height: 20px;
+            display: flex;
+            // justify-content: center;
+            // border: 0.5px solid grey;
+            background-color: $secondary-color;
+
+            h6 {
+              line-height: 20px;
+              margin-left: 0.5em;
+              font-weight: 300;
+              font-size: 1em;
+              margin-bottom: 0;
+            }
+
+            input {
+              min-width: 15px;
+              min-height: 15px;
+              // line-height: 30px;
+              margin-top: 0.10em;
+              margin-left: 0.25em;
+    
+            }
+          }
+        }
+        
+      }
+    }
+  }
+
+  .description-container {
+    margin-bottom: 50px;
+    border: 1px solid grey;
+    padding: 1em;
+    background-color: $containers-color;
+  }
+}
+
+
+
+
+@media only screen and (min-width: 992px) {
+  h6 {
+    padding-right: 1em;
+    // line-height: 20px;
+    
+  }
+  .characteristics-container {
+    .main-content .characteristics {
+      .characteristics-content {
+        .field {
+          padding-right: 2.5em;
+          min-height: 20px;
+
+
+            select, input {
+            width: 12em;
+            }
+          }
+        }
+      }
+    }          
+    .fields-container {
+      margin: 0 auto;
+      width: 80vw;
+      display: flex;
+      flex-direction: row;
+      border: 1px solid grey;
+      border-top: none;
+    }
+
+    .content {
+      padding: 1em 4em;
+      // border: 1px solid grey;
+      // margin-bottom: 3em;
+    }
+}
+
+
+@media only screen and (max-width: 991px) {
+  h6 {
+    padding-right: 0.5em;
+    
+  }
+  
+}

@@ -14,4 +14,4 @@ const schema = new mongoose.Schema({
   view: { type: [String] }
 })
 
-module.exports = mongoose.model('ComercialSpace', schema)
+module.exports = mongoose.model('ComercialSpaceConfig', schema)

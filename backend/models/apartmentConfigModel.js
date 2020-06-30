@@ -5,12 +5,13 @@ const schema = new mongoose.Schema({
   compartments: { type: [String] },
   facingDirection: { type: [String] },
   floor: { type: [String] },
-  comfort: { type: [String] },
+  comfortType: { type: [String] },
   interiorState: { type: [String] },
   buildingType: { type: [String] },
   constructionStage: { type: [String] },
   constructionType: { type: [String] },
   features: { type: [String] },
+  characteristics: { type: [String] },
   seismicRisk: { type: [String] },
   realEstateFacilities: { type: [String] },
   doorEntry: { type: [String] },
@@ -32,4 +33,4 @@ const schema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model('ApartmentConfigModel', schema)
+module.exports = mongoose.model('ApartmentConfig', schema)

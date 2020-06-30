@@ -42,7 +42,7 @@ mongoose.connect(
           compartments: ['Decomandat', 'Semidecomandat', 'Nedecomandat', 'Circular', 'Vagon'],
           facingDirection: ['Nord', 'Nord-Est', 'Est', 'Sud-Est', 'Sud', 'Sud-Vest', 'Vest', 'Nord-Vest', 'Nord-Sud', 'Est-Vest'],
           floor: ['Demisol', 'Parter', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', 'Mansarda', 'Ultimele 2 etaje'],
-          comfort: ['1', '2', '3', 'Lux'],
+          comfortType: ['1', '2', '3', 'Lux'],
           interiorState: ['Ultrafinisat', 'Finisat modern', 'Semifinisat', 'Finisat clasic', 'Buna', 'Nou', 'Renovat', 'Necesita renovare'],
           buildingType: ['Bloc de apartamente', 'Casa/Vila', 'Bloc de garsoniere', 'Bloc mixt'],
           constructionStage: ['Finalizata', 'Finisat', 'Semifinisat', 'In constructie', 'La gri', 'La rosu', 'Necesita renovare', 'De demolat', 'Structura', 'Proiect'],
@@ -65,7 +65,8 @@ mongoose.connect(
           heatingSystem: ['Calorifere', 'Centrala cu lemne', 'Centrala cu peleti', 'Centrala imobil', 'Centrala proprie', 'Incalzire diesel', 'Incalzire prin pardoseala', 'Pompa de caldura', 'Soba/Teracota', 'Termoficare', 'Ventiloconvectoare'],
           insulation: ['Interior', 'Exterior'],
           meters: ['Apometre', 'Contor caldura', 'Contor electric', 'Contor gaz'],
-          view: ['Vedere panoramica', 'Vedere spre lac', 'Vedere spre munte', 'Vedere spre oras']
+          view: ['Vedere panoramica', 'Vedere spre lac', 'Vedere spre munte', 'Vedere spre oras'],
+          realEstateFacilities: ['Acces pentru persoane cu dizabilitati', 'Acoperis', 'Camera de aburi', 'Fitness', 'Interfon', 'Parcare biciclete', 'Paza', 'Paza permanenta', 'Piscina comunala', 'Piscina exterioara', 'Piscina interioara', 'Piscina privata', 'Senzor de fum', 'Spa', 'Spalatorie', 'Spatii agrement', 'Supraveghere video', 'Telecomanda poarta acces auto', 'Telecomanda poarta garaj', 'Uscatorie', 'Videointerfon', 'Wireless']
 
 
         }
@@ -97,7 +98,8 @@ mongoose.connect(
           heatingSystem: ['Calorifere', 'Centrala cu lemne', 'Centrala cu peleti', 'Centrala imobil', 'Centrala proprie', 'Incalzire diesel', 'Incalzire prin pardoseala', 'Pompa de caldura', 'Soba/Teracota', 'Termoficare', 'Ventiloconvectoare'],
           insulation: ['Interior', 'Exterior'],
           meters: ['Apometre', 'Contor caldura', 'Contor electric', 'Contor gaz'],
-          view: ['Vedere panoramica', 'Vedere spre lac', 'Vedere spre munte', 'Vedere spre oras']
+          view: ['Vedere panoramica', 'Vedere spre lac', 'Vedere spre munte', 'Vedere spre oras'],
+          realEstateFacilities: ['Acces pentru persoane cu dizabilitati', 'Acoperis', 'Camera de aburi', 'Fitness', 'Interfon', 'Parcare biciclete', 'Paza', 'Paza permanenta', 'Piscina comunala', 'Piscina exterioara', 'Piscina interioara', 'Piscina privata', 'Senzor de fum', 'Spa', 'Spalatorie', 'Spatii agrement', 'Supraveghere video', 'Telecomanda poarta acces auto', 'Telecomanda poarta garaj', 'Uscatorie', 'Videointerfon', 'Wireless']
 
         }])
       })
@@ -170,4 +172,3 @@ mongoose.connect(
       .finally(() => mongoose.connection.close())
 
   })
-      

@@ -90,18 +90,24 @@ function remove(req, res) {
 }
 
 function edit(req, res) {
-  const currentUser = req.currentUser
+  // const currentUser = req.currentUser
   const id = req.params.id
+
+  console.log(id)
+  console.log('body')
+  console.log(req.body)
   const Property = propertyType(req)
   Property.findById(id)
     .then(property => {
       return property.set(req.body)
     })
     .then(property => {
-      if (!event.user.equals(currentUser))
-        return res.status(401).send({
-          message: 'You are not authorized!'
-        })
+      console.log('saving')
+      console.log(property)
+      // if (!event.user.equals(currentUser))
+      //   return res.status(401).send({
+      //     message: 'You are not authorized!'
+      //   })
       return property.save()
     })
     .then(property => {

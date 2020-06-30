@@ -4,7 +4,6 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node backend/seeds.js",
     "serve:back": "nodemon backend/app.js",
     "serve:front": "webpack-dev-server --mode-development"
@@ -19,6 +18,7 @@
     "babel-loader": "^8.1.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.0",
     "css-loader": "^3.5.3",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.7-alpha.3",
@@ -29,10 +29,13 @@
     "mongoose-unique-validator": "^2.0.3",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
+    "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
+    "use-between": "0.0.14",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"

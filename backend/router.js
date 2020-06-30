@@ -2,17 +2,24 @@ const router = require('express').Router()
 const userController = require('./controllers/userController')
 
 const propertyController = require('./controllers/propertyController')
+const propertyConfigController = require('./controllers/propertyConfigController')
 
-const secureRoute = require('./lib/secureRoute')
+// const secureRoute = require('./lib/secureRoute')
 
 
 router.route('/property/:type')
-  .get(secureRoute, propertyController.index)
-  .post(secureRoute, propertyController.create)
-  .get(secureRoute, propertyController.getSingle)
-  .delete(secureRoute, propertyController.remove)
-  .put(secureRoute, propertyController.edit)
+  .get(propertyController.index)
+  .post(propertyController.create)
 
+
+
+router.route('/property/:type/:id')
+  .get(propertyController.getSingle)
+  .delete(propertyController.remove)
+  .put(propertyController.edit)
+
+router.route('/property-config/:type')
+  .get(propertyConfigController.index)
 
 router.route('/register').post(userController.register)
 
