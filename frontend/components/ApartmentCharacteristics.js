@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 
-const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
+const ApartmentCharacteristics = ({ handleChange, handleSubmit, characteristics }) => {
   const [configs, setConfigs] = useState(null)
 
+  
 
-
-
+  console.log(characteristics.historicalMonument)
   useEffect(() => {
     if (configs) {
       return
@@ -15,6 +15,19 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
     }
   })
 
+  const isChecked = (selectedOptions, currentOption) => {
+    const isChecked = selectedOptions.includes(currentOption)
+    return isChecked
+  }
+
+  const isCheckedSingle = (selectedOption) => {
+    console.log(selectedOption)
+    // return true
+    if (selectedOption) {
+      return true
+    }
+    return
+  } 
 
   const fetchCharacteristics = () => {
     Axios.get('/api/property-config/apartment')
@@ -38,7 +51,7 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
             <h4>Caracteristici apartament</h4>
             <div className="field">
               <h6>Tip tranzactie</h6>
-              <select 
+              <select defaultValue={characteristics.transactionType}
                 name="transactionType" >
                 <option value="apartament">Inchiriere</option>
                 <option value="casa">Vanzare</option>
@@ -46,14 +59,16 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
             </div>
             <div className="field">
               <h6>Tip proprietate</h6>
-              <select   name="propertyType" >
+              <select defaultValue={characteristics.propertyType}
+                name="propertyType" >
                 <option value="apartament">Apartament</option>
                 <option value="casa">Casa</option>
               </select>
             </div>
             <div className="field">
               <h6>Tip apartament</h6>
-              <select name="apartmentType" >
+              <select defaultValue={characteristics.apartmentType}
+                name="apartmentType" >
                 {configs.apartmentType.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
                 })}
@@ -62,7 +77,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
             </div>
             <div className="field">
               <h6>Compartimentare</h6>
-              <select name="compartments" >
+              <select defaultValue={characteristics.compartments}
+                name="compartments" >
                 {configs.compartments.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
                 })}
@@ -70,7 +86,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
             </div>
             <div className="field">
               <h6>Orientare</h6>
-              <select name="facingDirection" >
+              <select defaultValue={characteristics.facingDirection}
+                name="facingDirection" >
                 {configs.facingDirection.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
                 })}
@@ -78,7 +95,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
             </div>
             <div className="field">
               <h6>Etaj</h6>
-              <select name="floor" >
+              <select defaultValue={characteristics.floor}
+                name="floor" >
                 {configs.floor.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
                 })}
@@ -86,7 +104,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
             </div>
             <div className="field">
               <h6>Confort</h6>
-              <select name="comfortType" >
+              <select defaultValue={characteristics.comforType}
+                name="comfortType" >
                 {configs.comfortType.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
                 })}
@@ -94,70 +113,89 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
             </div>
             <div className="field">
               <h6>Stare interior</h6>
-              <select name="interiorState" >
+              <select defaultValue={characteristics.interiorState}
+                name="interiorState" >
                 {configs.interiorState.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
                 })}
               </select>
             </div>
             <div className="field">
+
+
+
               <h6>Disponibilitate</h6>
-              <input type="text" name="availability" />
+              <input type="text" name="availability" 
+                defaultValue={characteristics.availability}
+              />
             </div>
             <div className="field">
               <h6>Anul finisarii</h6>
-              <input type="text" name="year" />
+              <input defaultValue={characteristics.year}
+                type="text" name="year" />
             </div>
             <div className="field">
               <h6>S utila (mp)</h6>
-              <input type="text" name="squareMeters" />
+              <input defaultValue={characteristics.squareMeters}
+                type="text" name="squareMeters" />
             </div>
             <div className="field">
               <h6>S construita (mp)</h6>
-              <input type="text" name="builtArea" />
+              <input defaultValue={characteristics.biltArea}
+                type="text" name="builtArea" />
             </div>
             <div className="field">
               <h6>S terasa (mp)</h6>
-              <input type="text" name="terrace" />
+              <input defaultValue={characteristics.terrace}
+                type="text" name="terrace" />
             </div>
             <div className="field">
               <h6>S balcoane (mp)</h6>
-              <input type="text" name="balcony" />
+              <input defaultValue={characteristics.balcony}
+                type="text" name="balcony" />
             </div>
             <div className="field">
               <h6>S curte (mp)</h6>
-              <input type="text" name="garden" />
+              <input defaultValue={characteristics.garden}
+                type="text" name="garden" />
             </div>
           </div>
           <div className="characteristics-content">
             <h4>Incaperi si anexe</h4>
             <div className="field">
               <h6>Nr. camere</h6>
-              <input type="text" name="numberOfRooms" />
+              <input defaultValue={characteristics.numberOfRooms}
+                type="text" name="numberOfRooms" />
             </div>
             <div className="field">
               <h6>Nr. dormitoare</h6>
-              <input type="text" name="bedrooms" />
+              <input defaultValue={characteristics.bedrooms}
+                type="text" name="bedrooms" />
             </div>
             <div className="field">
               <h6>Nr. bucatarii</h6>
-              <input type="text" name="kitchen" />
+              <input defaultValue={characteristics.kitchen}
+                type="text" name="kitchen" />
             </div>
             <div className="field">
               <h6>Nr. bai</h6>
-              <input type="text" name="bathrooms" />
+              <input defaultValue={characteristics.bathrooms}
+                type="text" name="bathrooms" />
             </div>
             <div className="checkbox">
-              <input type="checkbox" name="bathroomWindow" />
+              <input 
+                type="checkbox" name="bathroomWindow" />
               <h6>Geam la baie</h6>
             </div>
             <div className="field">
               <h6>Nr. garaje</h6>
-              <input type="text" name="garage" />
+              <input defaultValue={characteristics.garage}
+                type="text" name="garage" />
             </div>
             <div className="field">
               <h6>Nr. locuri parcare</h6>
-              <input type="text" name="parkingSpace" />
+              <input defaultValue={characteristics.parkingSpace}
+                type="text" name="parkingSpace" />
             </div>
           </div>
 
@@ -166,7 +204,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
             <h4>Caracteristici imobil</h4>
             <div className="field">
               <h6>Imobil</h6>
-              <select datacontainer="characteristics"
+              <select defaultValue={characteristics.buildingType}
+                datacontainer="characteristics"
                 name="buildingType" >
                 {configs.buildingType.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
@@ -175,12 +214,14 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
             </div>
             <div className="field">
               <h6>An. constructie</h6>
-              <input datacontainer="characteristics"
+              <input defaultValue={characteristics.constructionYear}
+                datacontainer="characteristics"
                 type="text" name="constructionYear" />
             </div>
             <div className="field">
               <h6>Stadiu constructie</h6>
-              <select datacontainer="characteristics"
+              <select defaultValue={characteristics.constructionStage}
+                datacontainer="characteristics"
                 name="constructionStage" >
                 {configs.constructionStage.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
@@ -189,7 +230,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
             </div>
             <div className="field">
               <h6>Tip constructie</h6>
-              <select datacontainer="characteristics"
+              <select defaultValue={characteristics.constructionType}
+                datacontainer="characteristics"
                 name="constructionType" >
                 {configs.constructionType.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
@@ -198,7 +240,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
             </div>
             <div className="field">
               <h6>Risc seismic</h6>
-              <select datacontainer="characteristics"
+              <select defaultValue={characteristics.seismicRisk}
+                datacontainer="characteristics"
                 name="seismicRisk" >
                 {configs.seismicRisk.map(elem => {
                   return <option key={elem._id} value={elem}>{elem}</option>
@@ -208,16 +251,20 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
 
             <div className="field">
               <h6>Nr. etaje imobil</h6>
-              <input datacontainer="characteristics"
+              <input defaultValue={characteristics.numberofFloors}
+                datacontainer="characteristics"
                 type="text" name="numberOfFloors" />
             </div>
             <div className="field">
               <h6>Nr. subsoluri</h6>
-              <input datacontainer="characteristics"
+              <input defaultValue={characteristics.characteristics}
+                datacontainer="characteristics"
                 type="text" name="lowerGroundFloor" />
             </div>
             <div className="checkbox">
-              <input datacontainer="characteristics"
+              <input checked={isCheckedSingle(characteristics.historicalMonument)}
+                // checked={characteristics.historicalMonument ? true : false}
+                datacontainer="characteristics"
                 type="checkbox" name="historicalMonument" />
               <h6>Monument istoric</h6>
             </div>
@@ -244,12 +291,20 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
         <div className="features">
           <h4>Dotari si utilitati</h4>
           <div className="features-container">
-            <div className="features-col">
+            <div 
+              className="features-col">
               <h5>Dotari</h5>
               {configs.features.map((elem) => {
-                return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
-                    type="checkbox" name="features" value={elem} />
+                console.log('features')
+                console.log(characteristics.facilities.features)
+                // console.log(event.target.value)
+                // const { value, checked } = event.target
+                // console.log(checked)
+                return <div 
+                  key={elem._id} className="checkbox">
+                  <input checked={isChecked(characteristics.facilities.features, elem)}
+                    datacontainer="facilities"
+                    type="checkbox" name="features" value={elem}  />
                   <h6>{elem}</h6>
 
                 </div>
@@ -258,7 +313,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Amenajare strazi</h5>
               {configs.streetFacilities.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.streetFacilities, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="streetFacilities" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -266,7 +322,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Utilitati generale</h5>
               {configs.generalUtilities.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.generalUtilities, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="generalUtilities" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -274,7 +331,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Izolatii termice</h5>
               {configs.insulation.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.insulation, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="insulation" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -284,7 +342,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Dotari imobil</h5>
               {configs.realEstateFacilities.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.realEstateFacilities, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="realEstateFacilities" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -292,7 +351,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Parcare</h5>
               {configs.parking.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.parking, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="parking" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -300,7 +360,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Sistem incalzire</h5>
               {configs.heatingSystem.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.heatingSystem, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="heatingSystem" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -311,7 +372,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Usa intrare</h5>
               {configs.doorEntry.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.doorEntry, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="doorEntry" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -319,7 +381,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Pereti</h5>
               {configs.walls.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.walls, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="walls" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -327,7 +390,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Mobilat</h5>
               {configs.furnished.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.furnished, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="furnished" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -335,7 +399,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Bucatarie</h5>
               {configs.kitchenType.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.kitchenType, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="kitchenType" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -343,7 +408,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Ferestre</h5>
               {configs.windows.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.windows, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="windows" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -351,7 +417,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Contorizare</h5>
               {configs.meters.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.meters, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="meters" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -361,7 +428,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Usa interior</h5>
               {configs.interiorDoors.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.interiorDoors, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="interiorDoors" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -369,7 +437,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Podele</h5>
               {configs.floorType.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.floorType, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="floorType" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -377,7 +446,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Alte spatii</h5>
               {configs.otherSpaces.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.otherSpaces, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="otherSpaces" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -385,7 +455,8 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
               <h5>Priveliste</h5>
               {configs.view.map((elem) => {
                 return <div key={elem._id} className="checkbox">
-                  <input datacontainer="facilities"
+                  <input checked={isChecked(characteristics.facilities.view, elem)}
+                    datacontainer="facilities"
                     type="checkbox" name="view" value={elem} />
                   <h6>{elem}</h6>
                 </div>
@@ -399,11 +470,13 @@ const ApartmentCharacteristics = ({ handleChange, handleSubmit }) => {
       <div className="description-container">
         <div className="title">
           <h5>Title</h5>
-          <textarea name="title" rows="2"></textarea>
+          <textarea defaultValue={characteristics.title}
+            name="title" rows="2"></textarea>
         </div>
         <div className="description">
           <h5>Description</h5>
-          <textarea name="description" rows="10"></textarea>
+          <textarea defaultValue={characteristics.description}
+            name="description" rows="10"></textarea>
         </div>
       </div>
 

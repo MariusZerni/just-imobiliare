@@ -11,7 +11,7 @@ import ApartmentImages from './ApartmentImages'
 
 const Apartment = (props) => {
 
-  const [state, setState] = useState({
+  const [characteristics, setCharacteristics] = useState({
     characteristics: {},
     facilities: {
       features: [],
@@ -45,8 +45,8 @@ const Apartment = (props) => {
 
   useEffect(() => {
 
-
-    console.log(currentSelection)
+    console.log('state')
+    console.log(characteristics)
   })
 
   const handleLocation = () => {
@@ -69,35 +69,34 @@ const Apartment = (props) => {
 
 
   const handleChange = (event) => {
-    console.log(event.target)
     const { name, value, type, checked } = event.target
     const objKey = event.target.getAttribute('datacontainer')
 
     if (!objKey && type === 'checkbox') {
       console.log('not object')
-      setState(prevState => ({
+      setCharacteristics(prevState => ({
         ...prevState,
         [name]: checked      
       })) 
     } else if (objKey === 'characteristics') {
-      setState(prevState => ({
+      setCharacteristics(prevState => ({
         ...prevState,
         characteristics: type === 'checkbox' ?  { ...prevState.characteristics, [name]: checked } : { ...prevState.characteristics, [name]: value } 
       }))
     } else if (type === 'checkbox') {
       console.log('my check2')
-      setState(prevState => ({
+      setCharacteristics(prevState => ({
         ...prevState,
         [objKey]: { ...prevState[objKey],[name]: [...prevState[objKey][name], value] }
         
       }))
     } else if (objKey) {
-      setState(prevState => ({
+      setCharacteristics(prevState => ({
         ...prevState,
         [objKey]: { [name]: value }
       }))
     } else {
-      setState(prevState => ({
+      setCharacteristics(prevState => ({
         ...prevState,
         [name]: value 
       }))
@@ -110,7 +109,7 @@ const Apartment = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     const { propertyType, propertyId } = props.history.location.state
-    Axios.put(`/api/property/${propertyType}/${propertyId}`, state)
+    Axios.put(`/api/property/${propertyType}/${propertyId}`, characteristics)
       .then(res => console.log(res))
       .catch(error => console.log(error))
   }
@@ -125,7 +124,7 @@ const Apartment = (props) => {
     <div className="fields-container">
       <div onClick={() => handleLocation()}
         className="content">
-        <h4>Localizare</h4>
+        <h4>Localizare / Imagini</h4>
       </div>
       <div onClick={() => handleCharacteristics()}
         className="content">
@@ -135,19 +134,20 @@ const Apartment = (props) => {
         className="content">
         <h4>Pret</h4>
       </div>
-      <div onClick={() => handleImages()}
+      {/* <div onClick={() => handleImages()}
         className="content">
         <h4>Imagini</h4>
-      </div>
+      </div> */}
       <div className="content">
         <button type="submit" form="form"
 
-        >Adauga</button>
+        >Salveaza</button>
       </div>
     </div>
     {currentSelection === 'Characteristics' && <ApartmentCharacteristics
       handleSubmit={event => handleSubmit(event)}
       handleChange={event => handleChange(event)}
+      characteristics={characteristics}
     />} 
     {currentSelection === 'Location' && <ApartmentLocation
       handleSubmit={event => handleSubmit(event)}
