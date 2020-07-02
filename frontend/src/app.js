@@ -4,7 +4,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../styles/home.scss'
-import '../styles/properties.scss'
+import '../styles/characteristics.scss'
+import '../styles/locationImages.scss'
 import '../styles/colors.scss'
 
 import Home from '../components/Home'

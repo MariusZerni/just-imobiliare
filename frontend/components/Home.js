@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Axios from 'axios'
 
@@ -15,23 +15,30 @@ const Home = (props) => {
 
   })
 
- 
+  useEffect(() => {
+    console.log('state', state)
+  })
 
 
   const handleChange = (event) => {
     // console.log(event.target.value)
     const { name, value } = event.target
+    console.log(name)
 
-    const state = { ...state, [name]: value }
-    setState(state)
+    setState(prevState => ({
+      ...prevState,
+      address: { ...prevState.address, [name]: value }
+    }))
 
     console.log(state)  
   }
 
   const handleSubmit = (event) => {
-    event.preventDefault()    
+    event.preventDefault()   
+    console.log(state) 
     Axios.post(`/api/property/${propertyTypeId}`, state)
       .then((res) => {
+        console.log(res)
         const propertyId = res.data._id
         props.history.push(`/${propertyTypeId}/${propertyId}`, { propertyType: propertyTypeId, propertyId: propertyId })
       })
@@ -65,9 +72,9 @@ const Home = (props) => {
               className="fas fa-home fa-3x"></i>
             <h5 style={{ pointerEvents: 'none' }} >Casa / Vila</h5>
           </div>
-          <div id="teren"
+          <div id="land"
 
-            className={propertyTypeId === 'teren' ? 'font-awesome clicked' : 'font-awesome'}
+            className={propertyTypeId === 'land' ? 'font-awesome clicked' : 'font-awesome'}
             onClick={(event) => setPropertyTypeId(event.target.id)}
           >
             <i style={{ pointerEvents: 'none' }} className="fas fa-box fa-3x" ></i>
@@ -83,14 +90,14 @@ const Home = (props) => {
             <h5 style={{ pointerEvents: 'none' }} >Spatiu de birouri</h5>
           </div>
 
-          <div id="spatiu-comercial"
-            className={propertyTypeId === 'spatiu-comercial' ? 'font-awesome clicked' : 'font-awesome'}
+          <div id="comarcial-space"
+            className={propertyTypeId === 'comercil-space' ? 'font-awesome clicked' : 'font-awesome'}
             onClick={() => setPropertyTypeId(event.target.id)}>
             <i style={{ pointerEvents: 'none' }} className="fas fa-hotel fa-3x"></i>
             <h5 style={{ pointerEvents: 'none' }} >Spatiu comercial</h5>
           </div>
-          <div id="spatiu-industrial"
-            className={propertyTypeId === 'spatiu-industrial' ? 'font-awesome clicked' : 'font-awesome'}
+          <div id="industrial-space"
+            className={propertyTypeId === 'industrial-space' ? 'font-awesome clicked' : 'font-awesome'}
             onClick={() => setPropertyTypeId(event.target.id)}
           >
             <i style={{ pointerEvents: 'none' }} className="fas fa-warehouse fa-3x"></i>

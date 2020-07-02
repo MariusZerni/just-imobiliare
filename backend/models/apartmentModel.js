@@ -7,9 +7,9 @@ const address = new mongoose.Schema({
   streetNumber: { type: Number }
 })
 
-const images = new mongoose.Schema({
-  image: { type: String }
-})
+// const images = new mongoose.Schema({
+//   images: { type: [String] }
+// })
 
 const characteristics = new mongoose.Schema({
   buildingType: { type: String },
@@ -26,6 +26,7 @@ const characteristics = new mongoose.Schema({
   description: { type: String, maxLength: 300 },
   title: { type: String, maxLength: 80 }
 })
+
 
 const facilities = new mongoose.Schema({
   features: { type: [String] },
@@ -109,6 +110,7 @@ const schema = new mongoose.Schema({
   comfortType: { type: Number },
   interiorState: { type: String },
   year: { type: Number },
+  images: { type: [String] },
   // suprafata utila
   squareMeters: { type: Number },
   builtArea: { type: Number },
@@ -123,11 +125,12 @@ const schema = new mongoose.Schema({
   garage: { type: Number },
   parkingSpace: { type: Number },
   date: { type: Date, default: Date.now },
+  
   characteristics: characteristics,
   facilities: facilities,
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
-  images: images,
+  // images: images,
   // user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   address: address
 })
