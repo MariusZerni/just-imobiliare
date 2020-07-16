@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Axios from 'axios'
 
 import Header from './Header'
@@ -38,7 +38,7 @@ const Apartment = (props) => {
       insulation: [],
       meters: [],
       view: [],
-      realEstateFacilities: [] 
+      realEstateFacilities: []
     },
     priceForSale: {},
     priceForRenting: {}
@@ -46,12 +46,10 @@ const Apartment = (props) => {
   })
 
   const [currentSelection, setCurrentSelection] = useState('Location')
+  const [location] = useState(props.history.location.state.location.address)
 
-  
 
-  useEffect(() => {
-    // console.log('chracteristics', state)
-  })
+
 
   const handleLocation = () => {
     setCurrentSelection('Location')
@@ -65,53 +63,29 @@ const Apartment = (props) => {
     setCurrentSelection('Price')
   }
 
-  const handleImageChange = (event) => {
-    event.preventDefault()    
-    const fileListAsArray = Array.from(event.target.files)
-    const filesUrls = fileListAsArray.map(file =>  URL.createObjectURL(file))
-    // setState(filesUrls)
-    setState({ ...state, images: filesUrls, files: event.target.files } )
-  }
+  const handleSubmit = (event) => {
 
-  const handleImageSubmit = (event) => {
-    console.log(event)
-    console.log('images')
     event.preventDefault()
-    
-    
+
     const formData = new FormData()
     for (let i = 0; i < state.files.length; i++) {
       formData.append('file', state.files[i])
     }
+    for (const [key, value] of Object.entries(state)) {
+      formData.append(key, JSON.stringify(value))
+    }
+ 
+    // formData.forEach((value,key) => {
+    //   console.log('for each')
+    // })
 
-//     for (var value of formData.values()) {
-//       console.log(value)
-//    }
-
-//    for (var key of formData.keys()) {
-//     console.log(key)
-//  }
-   
     const { propertyType, propertyId } = props.history.location.state
 
     const url = `/api/property/${propertyType}/${propertyId}`
     Axios.put(url, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
-      .then(() => res => console.log(res))
+      .then(res => console.log(res))
       .catch(err => console.error(err))
-  } 
-
-
-
-  const handleChangeLocation = (event) => {
-    const { value, name } = event.target
-    const objKey = event.target.getAttribute('datacontainer')
-    // console.log(name)
-    setState(prevState => ({
-      ...prevState,
-      [objKey]: { ...prevState[objKey], [name]: [value] }
-    }))
   }
-
 
 
   const handleChange = (event) => {
@@ -119,49 +93,61 @@ const Apartment = (props) => {
     const objKey = event.target.getAttribute('datacontainer')
 
     if (!objKey && type === 'checkbox') {
+      console.log('characteristics 1')
       setState(prevState => ({
         ...prevState,
-        [name]: checked      
-      })) 
-    } else if (objKey === 'characteristics') {
-      setState(prevState => ({
-        ...prevState,
-        state: type === 'checkbox' ?  { ...prevState.state, [name]: checked } : { ...prevState.state, [name]: value } 
+        [name]: checked
       }))
     } else if (type === 'checkbox') {
+      console.log('characteristics 2')
       setState(prevState => ({
         ...prevState,
-        [objKey]: { ...prevState[objKey],[name]: [...prevState[objKey][name], value] }
-        
+        [objKey]: { ...prevState[objKey], [name]: checked }
+      }))
+    } else if (objKey === 'characteristics') {
+      console.log('characteristics 3')
+      setState(prevState => ({
+        ...prevState,
+        [objKey]: type === 'checkbox' ? { ...prevState[objKey], [name]: checked } : { ...prevState[objKey], [name]: value }
+      }))
+    } else if (type === 'checkbox') {
+      console.log('characteristics 4')
+      setState(prevState => ({
+        ...prevState,
+        [objKey]: { ...prevState[objKey], [name]: [...prevState[objKey][name], value] }
+
       }))
     } else if (objKey) {
+      console.log('characteristics 5')
+
       setState(prevState => ({
         ...prevState,
-        [objKey]: { [name]: value }
+        [objKey]: { ...prevState[objKey], [name]: value }
       }))
     } else {
+      console.log('characteristics 6')
       setState(prevState => ({
         ...prevState,
-        [name]: value 
+        [name]: value
       }))
     }
   }
 
+  const handlelocationChange = (event) => {
+    const { value, name } = event.target
+    const objKey = event.target.getAttribute('datacontainer')
+    setState(prevState => ({
+      ...prevState,
+      [objKey]: { ...prevState[objKey], [name]: [value] }
+    }))
+  }
 
-
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault()
-  //   const { propertyType, propertyId } = props.history.location.state
-  //   Axios.put(`/api/property/${propertyType}/${propertyId}`, state)
-  //     .then(res => console.log(res))
-  //     .catch(error => console.log(error))
-  // }
-
-
-
-
-
+  const handleImageChange = (event) => {
+    event.preventDefault()
+    const fileListAsArray = Array.from(event.target.files)
+    const filesUrls = fileListAsArray.map(file => URL.createObjectURL(file))
+    setState({ ...state, images: filesUrls, files: event.target.files })
+  }
 
 
 
@@ -180,35 +166,28 @@ const Apartment = (props) => {
         className="content">
         <h4>Pret</h4>
       </div>
-      {/* <div onClick={() => handleImages()}
-        className="content">
-        <h4>Imagini</h4>
-      </div> */}
       <div className="content">
-        <button type="submit" form="form_i"
-
-        >Salveaza</button>
+        <button
+          onClick={event => handleSubmit(event)}
+          type="submit"
+          form="form">Salveaza</button>
       </div>
     </div>
     {currentSelection === 'Characteristics' && <ApartmentCharacteristics
-      // handleSubmit={event => handleSubmit(event)}
       handleChange={event => handleChange(event)}
       state={state}
-    />} 
+    />}
     {currentSelection === 'Location' && <ApartmentLocationImages
-      handleImageSubmit={event => handleImageSubmit(event)}
-      handleChangeLocation={event => handleChangeLocation(event)}
+      handlelocationChange={event => handlelocationChange(event)}
       handleImageChange={event => handleImageChange(event)}
       state={state}
+      location={location}
     />}
     {currentSelection === 'Price' && <ApartmentPrice
-      // handleSubmit={event => handleSubmit(event)}
       handleChange={event => handleChange(event)}
+      state={state}
     />}
-
-    
   </div>
-
 }
 
 

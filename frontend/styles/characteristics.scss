@@ -24,6 +24,12 @@ textarea {
   flex-direction: row;
   border: 1px solid grey;
   border-top: none;
+  // width: 80vw;
+}
+
+.content {
+  cursor: pointer;
+  margin: 0 auto;
 }
 
 
@@ -33,8 +39,6 @@ textarea {
   width: 80vw;
   display: flex;
   flex-direction: column;
-  // border: 1px solid grey;
-  // background-color: red;
 
   
 
@@ -62,16 +66,15 @@ textarea {
 
       .field {
         margin: 0.25em 0;
-        
-        
         display: flex;
+        align-items: center;
         justify-content: flex-end;
         border: 0.5px solid grey;
         background-color: $secondary-color;
 
         h6 {
-          font-weight: 400;
-          font-size: 1em;
+          font-weight: 350;
+          font-size: 0.9em;
           line-height: 30px;
           margin-bottom: 0;
           // padding-right: 0.5em;
@@ -89,8 +92,8 @@ textarea {
         h6 {
           padding-left: 1em;
           line-height: 30px;
-          font-weight: 500;
-          font-size: 1em;
+          font-weight: 350;
+          font-size: 0.9em;
           
         }
         input {
@@ -103,36 +106,33 @@ textarea {
     }
 
     .features {
+      padding-top: 0.75em;
       width: 100%;
       background-color: $containers-color;
       border-right: 1px solid grey;
-        border-bottom: 1px solid grey;
+      border-bottom: 1px solid grey;
 
       .features-container {
         display: flex;
         width: 100%;
         flex-wrap: wrap;
-        // background-color: $containers-color;
-        padding: 0.75em;
+        padding: 0.5em;
         
 
         .features-col {
           padding-left: 1em;
-          // display: flex;
           width: 25%;
 
           .checkbox {
             min-height: 20px;
             display: flex;
-            // justify-content: center;
-            // border: 0.5px solid grey;
             background-color: $secondary-color;
 
             h6 {
               line-height: 20px;
               margin-left: 0.5em;
               font-weight: 300;
-              font-size: 1em;
+              font-size: 0.9em;
               margin-bottom: 0;
             }
 
@@ -177,7 +177,9 @@ textarea {
 
 
             select, input {
-            width: 12em;
+            width: 10em;
+            height: 1.3em;
+            border: none;
             }
           }
         }
@@ -192,19 +194,16 @@ textarea {
       border-top: none;
     }
 
-    .content {
-      padding: 1em 4em;
-      cursor: pointer;
-      // border: 1px solid grey;
-      // margin-bottom: 3em;
-    }
-}
 
 
-@media only screen and (max-width: 991px) {
-  h6 {
-    padding-right: 0.5em;
     
-  }
-  
 }
+
+
+// @media only screen and (max-width: 991px) {
+//   h6 {
+//     padding-right: 0.5em;
+    
+//   }
+  
+// }

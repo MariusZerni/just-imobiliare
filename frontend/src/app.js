@@ -7,6 +7,8 @@ import '../styles/home.scss'
 import '../styles/characteristics.scss'
 import '../styles/locationImages.scss'
 import '../styles/colors.scss'
+import '../styles/price.scss'
+import '../utilities/Utilities.js'
 
 import Home from '../components/Home'
 import Apartment from '../components/Apartment'
@@ -24,19 +26,5 @@ const App = () => (
   </BrowserRouter>
 )
 
-// ReactDOM.render(<App />, document.getElementById('root'))
-
-
-// const App = () => (
-//   <BrowserRouter>
-//     <Switch>
-//       <Route path="/register" component={Register} />
-//       <Route path="/login" component={Login} />
-//       <Route exact path="/" component={Home} />
-//       <Route exact path="/create" component={CreateEvent} />
-//       <Route exact path="/hub" component={Events} />
-//     </Switch>
-//   </BrowserRouter>
-// )
 
 ReactDOM.render(<App />, document.getElementById('root'))

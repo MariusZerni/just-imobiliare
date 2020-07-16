@@ -48,7 +48,16 @@ const facilities = new mongoose.Schema({
   view: { type: [String] }
 })
 // Schema for price
-const commissionFromLanlordOnSale = new mongoose.Schema({
+
+const priceForSale = new mongoose.Schema({
+  price: { type: String },
+  priceSqm: { type: String },
+  lowerPrice: { type: String },
+  negociable: { type: Boolean },
+  collaborationInSale: { type: Boolean },
+  VAT: { type: Number },
+  lanlord: { type: String },
+  percentageCommission: { type: Number },
   servicesOnContractForSale: { type: String },
   exclusive: { type: Boolean },
   intermediation: { type: Boolean },
@@ -59,21 +68,14 @@ const commissionFromLanlordOnSale = new mongoose.Schema({
   lanlordComision: { type: Number }
 })
 
-const collaborationInSale = new mongoose.Schema({
-  collaborationInSale: { type: Boolean },
-  currencyCommission: { type: Number },
-  percentageCommission: { type: Number }
-})
 
-const priceForSale = new mongoose.Schema({
-  price: { type: Number },
-  lowerPrice: { type: Number },
-  negociable: { type: Boolean },
-  commissionFromLanlordOnSale: commissionFromLanlordOnSale,
-  collaborationInSale: collaborationInSale
-})
-
-const commissionLanlordRenting = new mongoose.Schema({
+const priceForRenting = new mongoose.Schema({
+  pricePerMounth: { type: Number },
+  negociablePrice: { type: Boolean },
+  lanlord: { type: String },
+  deposit: { type: Number },
+  commissionCurrency: { type: Number },
+  commissionPercentage: { type: Number },
   contractRentalServices: { type: String },
   exclusiveRepresentation: { type: Boolean },
   exclusiveIntermediation: { type: Boolean },
@@ -84,21 +86,6 @@ const commissionLanlordRenting = new mongoose.Schema({
   lanlordCommission: { type: Number }
 })
 
-const otherDetailsRenting = new mongoose.Schema({
-  pricePerMounth: { type: Number },
-  commissionCurrency: { type: Number },
-  commissionPercentage: { type: Number }
-})
-
-const priceForRenting = new mongoose.Schema({
-  pricePerMounth: { type: Number },
-  negociablePrice: { type: Boolean },
-  lanlord: { type: String },
-  deposit: { type: Number },
-  commissionLanlordRenting: commissionLanlordRenting,
-  otherDetailsRenting: otherDetailsRenting
-})
-
 const schema = new mongoose.Schema({
   transactionType: { type: String },
   propertyType: { type: String },
@@ -106,8 +93,8 @@ const schema = new mongoose.Schema({
   apartmentType: { type: String },
   compartments: { type: String },
   facingDirection: { type: String },
-  floor: { type: Number },
-  comfortType: { type: Number },
+  floor: { type: String },
+  comfortType: { type: String },
   interiorState: { type: String },
   year: { type: Number },
   images: { type: [String] },

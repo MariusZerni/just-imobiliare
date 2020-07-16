@@ -1,0 +1,105 @@
+@import '../styles/colors.scss';
+
+
+
+.container-price {
+  height: 80vh;
+  margin: 0 auto;
+  border-left: 1px solid grey;
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+  // background-color: green;
+  
+  // background-color: red;
+
+  .sale-rent {
+    width: 100%;
+    display: flex;
+
+    .sale {
+      border-right: 1px solid grey;
+      border-bottom: 1px solid grey;
+      width: 50%;
+      cursor: pointer;
+    }
+
+    .border-bottom {
+      border-bottom: none !important;
+      // background-color: red;
+    }
+
+    .rent {
+
+      border-bottom: 1px solid grey;
+      width: 50%;
+      cursor: pointer;
+    }
+
+
+
+    h4 {
+      text-align: center;
+      font-size: 1.3em;
+      
+    }
+
+  }
+
+  .sale-content {
+
+    .columns-p-s {
+      margin-top: 3em;
+
+      .column-p-s {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-bottom: 2em;
+
+        .row-p-s {
+          width: 30%;
+          // height: 20px;
+          // background-color: green;
+
+          .field {
+            margin: 0.25em 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            border: 0.5px solid grey;
+            background-color: $secondary-color;
+
+            h6 {
+              margin-bottom: 0;
+              font-size: 0.9em;
+              line-height: 30px;
+              font-weight: 350;
+            }
+
+            .checkbox {
+              width: 15px;
+              height: 15px;
+              margin-right: 1em;
+            }
+
+            input {
+              width: 10em;
+              height: 1.3em;
+              border: none;
+            }
+          }
+        }
+      }
+
+      h5 {
+        margin-left: 1em;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 991px) {
+  .container-price {
+    width: 80vw;
+  }
+}

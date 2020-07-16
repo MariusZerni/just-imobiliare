@@ -103,28 +103,55 @@ function remove(req, res) {
 }
 
 function edit(req, res) {
+  console.log('edit')
   // const currentUser = req.currentUser
   const id = req.params.id
 
+  console.log(req.body)
 
-  let editedProperty = { ...req.body, images: [] }
+  const newBody = {}
+
+  console.log('body',req.body)
+
+  for (const [key, value] of Object.entries(req.body)) {
+    // console.log(`${key}: ${value}`)
+    newBody[key] =  JSON.parse(value)
+  }
+
+  console.log('newbody1',newBody)
+
+
+  let editedProperty = { ...newBody, images: [] }
   if (req.files && req.files.file) {
     const file = req.files.file
     console.log('files', req.files)
-    console.log('file', file)
-
-    file.forEach((file) => {
-      editedProperty = { ...req.body, images: [ ...editedProperty.images, file.name ] }
-
+    console.log('file1')
+    if (file.length < 1) {
+      console.log('multiple files')
+      file.forEach((file) => {
+        editedProperty = { ...newBody, images: [ ...editedProperty.images, file.name ] }
+  
+        file.mv(`${__dirname}/../../frontend/images/${file.name}`, err => {
+          if (err) {
+            console.log(err)
+            return res.status(500).send(err)
+          }        
+        })   
+      })
+    } else {
+      
+      editedProperty = { ...newBody, images: [file.name] }
       file.mv(`${__dirname}/../../frontend/images/${file.name}`, err => {
+        console.log('one image')
         if (err) {
+          
           console.log(err)
           return res.status(500).send(err)
-        }
-        
-      })
-  
-    })
+        }        
+      }) 
+    }
+
+
 
     const Property = propertyType(req)
     Property.findById(id)
@@ -133,7 +160,7 @@ function edit(req, res) {
       })
       .then(property => {
         console.log('saving', id)
-        console.log(property)
+        // console.log(property)
         // if (!event.user.equals(currentUser))
         //   return res.status(401).send({
         //     message: 'You are not authorized!'

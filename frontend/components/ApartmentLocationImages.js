@@ -1,17 +1,7 @@
 import React from 'react'
 
 
-
-const ApartmentLocationImages = ({ handleChangeLocation, handleSubmitLocation, handleImageChange, handleImageSubmit, state }) => {
-
-  // const [images, setimages] = useState([])
-  // console.log(images)
-  // const handleImageChange = (event) => {
-  //   console.log(event, 'images')
-  //   setimages(event.target.files)
-  // }
-  console.log(state.images)
-
+const ApartmentLocationImages = ({ handlelocationChange, handleImageChange, state, location }) => {
 
   return <div className="location-container">
     <div className="wrap-container">
@@ -19,30 +9,33 @@ const ApartmentLocationImages = ({ handleChangeLocation, handleSubmitLocation, h
       <section className="section-container ">
         <div className="address-container">
           <h4>Adresa Proprietate</h4>
-          <form id="form"
-            onChange={(event) => handleChangeLocation(event)}
-            // onSubmit={(event) => handleSubmitLocation(event)}
+          <form onChange={(event) => handlelocationChange(event)}
           >
-            <div className="form-group col-md-10">
-              <input datacontainer="address"
+            <div className="form-group col-md-10"> 
+              <input 
+                value={location && location.county ? location.county : null}
+                datacontainer="address"
                 name="county"
                 type="text" className="form-control" placeholder="Judet" />
             </div>
             <div className="form-group col-md-10">
               <input datacontainer="address"
+                value={location && location.town ? location.town : null}
                 name="town"
                 type="text" className="form-control" placeholder="Localitate" />
             </div>
             <div className="form-group col-md-10">
               <input datacontainer="address"
+                value={location && location.street ? location.street : null}
                 name="street"
                 type="text" className="form-control" placeholder="Strada" />
             </div>
             <div className="form-group col-md-10">
               <input datacontainer="address"
+                value={location && location.streetNumber ? location.streetNumber : null}
                 name="streetNumber"
                 type="text" className="form-control" placeholder="Numar strada" />
-            </div>
+            </div> 
             {/*If apartment is selected  */}
             <div className="form-group col-md-10">
               <input datacontainer="address"
@@ -63,8 +56,7 @@ const ApartmentLocationImages = ({ handleChangeLocation, handleSubmitLocation, h
       <section className="section-container">
         {/* <h4>Adauga imagini</h4> */}
         <div className="image-container">
-          <form onSubmit={ event => handleImageSubmit(event)}
-            encType='mutipart/form-data' id="form_i">       
+          <form encType='mutipart/form-data'>       
             <label> Adauga imagini
               <input onChange={event => handleImageChange(event)}
                 name="file"

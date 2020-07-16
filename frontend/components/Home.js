@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react'
-
+import React, { useState } from 'react'
 import Axios from 'axios'
-
 import Header from './Header'
 
 const Home = (props) => {
@@ -11,36 +9,23 @@ const Home = (props) => {
     town: '',
     street: '',
     streetNumber: null
-
-
-  })
-
-  useEffect(() => {
-    console.log('state', state)
   })
 
 
   const handleChange = (event) => {
-    // console.log(event.target.value)
     const { name, value } = event.target
-    console.log(name)
-
     setState(prevState => ({
       ...prevState,
       address: { ...prevState.address, [name]: value }
-    }))
-
-    console.log(state)  
+    })) 
   }
 
   const handleSubmit = (event) => {
-    event.preventDefault()   
-    console.log(state) 
+    event.preventDefault()    
     Axios.post(`/api/property/${propertyTypeId}`, state)
       .then((res) => {
-        console.log(res)
         const propertyId = res.data._id
-        props.history.push(`/${propertyTypeId}/${propertyId}`, { propertyType: propertyTypeId, propertyId: propertyId })
+        props.history.push(`/${propertyTypeId}/${propertyId}`, { propertyType: propertyTypeId, propertyId: propertyId, location: state })
       })
       .catch((error) => {
         console.log(error)
@@ -142,7 +127,6 @@ const Home = (props) => {
               className=" btn btn-primary">
               Adauga proprietate
             </button>
-
           </form>
         </div>
       </div>

@@ -7,7 +7,6 @@
 .location-container {
   width: 100vw;
   min-height: 83vh;
-  // background-color: greenyellow;
   
   .wrap-container {
     height: 100%;
@@ -15,16 +14,15 @@
     display: flex;
     width: 80vw;
     border: 1px solid grey;
+    border-top: none;
 
     .section-container {
-      // display: flex;
       width: 100%;
-      // height: 83vh;
-      border: 1px solid grey;
-      // background-color: greenyellow;
       margin: 0 .5em;
 
+
       .address-container {
+        border-right: 1px solid grey;
         padding-top: 3em;
         height: 100%;
         background-color: $containers-color;
@@ -57,7 +55,6 @@
     .image-container {
 
 
-  
       label{
         box-shadow: $buttons-shadow;
         margin: 2em 0 2em 4em;
