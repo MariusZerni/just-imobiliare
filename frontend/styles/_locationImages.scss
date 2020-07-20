@@ -6,24 +6,24 @@
 
 .location-container {
   width: 100vw;
-  min-height: 83vh;
+  min-height: 80vh;
   
   .wrap-container {
     height: 100%;
     margin: auto;
     display: flex;
-    width: 80vw;
+    width: 85vw;
     border: 1px solid grey;
     border-top: none;
 
     .section-container {
       width: 100%;
-      margin: 0 .5em;
+      // margin: 0 .5em;
 
 
       .address-container {
         border-right: 1px solid grey;
-        padding-top: 3em;
+        padding-top: 1.5em;
         height: 100%;
         background-color: $containers-color;
 
@@ -39,7 +39,7 @@
           justify-content: center;
           align-items: center;
           margin: 0 auto;
-          background-color: honeydew;
+          // background-color: honeydew;
 
 
           textarea {
@@ -56,9 +56,10 @@
 
 
       label{
+        border-radius: 4px;
         box-shadow: $buttons-shadow;
         margin: 2em 0 2em 4em;
-        padding: 10px;
+        padding: 0.6em 1.2em;
         background: $button-color; 
         display: table;
         color: #fff;

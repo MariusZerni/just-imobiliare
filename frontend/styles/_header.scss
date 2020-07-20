@@ -1,0 +1,61 @@
+
+
+
+.search-box {
+  // background-color: red;
+  width: 38vw;
+}
+
+
+.header {
+  height: 10vh;
+  border-bottom: 1px solid $button-color;
+  
+
+
+  .content-header {
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    width: 85vw;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  
+
+    .logo {
+      width: 70px;
+      height: 23px;
+      // margin-left: 8em;
+    }
+
+    .profile {
+      // margin-right: 8em;
+      display: flex;
+      align-items: center;
+      
+      .name {
+
+        h6 {
+          margin-bottom: 0;
+        }
+
+      }
+      .image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 0.5px solid grey;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        // background-color: red;
+
+        i {
+          color: $button-color;
+
+        }
+      }
+    }
+  }    
+}

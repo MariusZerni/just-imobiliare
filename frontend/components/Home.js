@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
+// import auth from '../lib/auth'
 import Header from './Header'
 
 const Home = (props) => {
   const [propertyTypeId, setPropertyTypeId] = useState('')
+  const [user] = useState(props.location.state.user)
   const [state, setState] = useState({
     county: '',
     town: '',
@@ -11,17 +13,36 @@ const Home = (props) => {
     streetNumber: null
   })
 
+  
+  
+
+  // useEffect(() => {
+  //   if (!user) {
+  //     findUser()
+  //   }
+    
+  // })
+
+  // console.log(auth.getUserId())
+  // console.log('user', user)
+  // const findUser = () => {
+  //   const userId = auth.getUserId()
+  //   Axios.get(`/api/user/${userId}`)
+  //     .then((res) => console.log(res))
+  //     .catch(error => console.error(error))
+  // }
+
 
   const handleChange = (event) => {
     const { name, value } = event.target
     setState(prevState => ({
       ...prevState,
       address: { ...prevState.address, [name]: value }
-    })) 
+    }))
   }
 
   const handleSubmit = (event) => {
-    event.preventDefault()    
+    event.preventDefault()
     Axios.post(`/api/property/${propertyTypeId}`, state)
       .then((res) => {
         const propertyId = res.data._id
@@ -35,7 +56,7 @@ const Home = (props) => {
 
   return (
     <div className="main-container">
-      <Header />
+      <Header user={user}/>
       <div className="section">
         <h3 className="title">Alege tipul proprietatii</h3>
         <div className="property-section">
@@ -48,7 +69,7 @@ const Home = (props) => {
           </div>
           <div id="house"
             className={propertyTypeId === 'house' ? 'font-awesome clicked' : 'font-awesome'}
-            onClick={() => 
+            onClick={() =>
               setPropertyTypeId(event.target.id)
 
             }
@@ -75,8 +96,8 @@ const Home = (props) => {
             <h5 style={{ pointerEvents: 'none' }} >Spatiu de birouri</h5>
           </div>
 
-          <div id="comarcial-space"
-            className={propertyTypeId === 'comercil-space' ? 'font-awesome clicked' : 'font-awesome'}
+          <div id="comercial-space"
+            className={propertyTypeId === 'comercial-space' ? 'font-awesome clicked' : 'font-awesome'}
             onClick={() => setPropertyTypeId(event.target.id)}>
             <i style={{ pointerEvents: 'none' }} className="fas fa-hotel fa-3x"></i>
             <h5 style={{ pointerEvents: 'none' }} >Spatiu comercial</h5>
@@ -93,23 +114,23 @@ const Home = (props) => {
           <form onChange={(event) => handleChange(event)}
             onSubmit={(event) => handleSubmit(event)}>
             <div className="form-group col-md-10">
-              <input 
+              <input
                 name="county"
                 type="text" className="form-control" placeholder="Judet" />
             </div>
             <div className="form-group col-md-10">
-              <input 
+              <input
                 name="town"
                 type="text" className="form-control" placeholder="Localitate" />
             </div>
             <div className="form-row">
               <div className="form-group col-md-8">
-                <input 
+                <input
                   name="street"
                   type="text" className="form-control" placeholder="Strada" />
               </div>
               <div className="form-group col-md-4">
-                <input 
+                <input
                   name="streetNumber"
                   type="text" className="form-control" placeholder="Numar strada" />
               </div>

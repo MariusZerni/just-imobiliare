@@ -1,18 +1,20 @@
 @import '../styles/colors.scss';
 
 
+.subtitle {
+  margin-bottom: 1.2em;
+}
+
+
 
 .container-price {
-  height: 80vh;
+
   margin: 0 auto;
   border-left: 1px solid grey;
   border-bottom: 1px solid grey;
   border-right: 1px solid grey;
-  // background-color: green;
-  
-  // background-color: red;
 
-  .sale-rent {
+  .sale-rent {   
     width: 100%;
     display: flex;
 
@@ -25,41 +27,51 @@
 
     .border-bottom {
       border-bottom: none !important;
-      // background-color: red;
+      background-color: $containers-color;
     }
 
     .rent {
-
       border-bottom: 1px solid grey;
       width: 50%;
       cursor: pointer;
     }
 
-
-
     h4 {
       text-align: center;
-      font-size: 1.3em;
-      
+      font-size: 1.3em;    
     }
 
   }
 
   .sale-content {
+    background-color: $containers-color;
+    padding-bottom: 2em;
 
     .columns-p-s {
-      margin-top: 3em;
+      padding-top: 3em;
+
+      .column-p-s:nth-child(5) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        .row-p-s {
+          width: 29%;
+          margin: 0 1.3em;
+        }  
+      }
 
       .column-p-s {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        margin-bottom: 2em;
+        padding-bottom: 2em;
+
+
 
         .row-p-s {
-          width: 30%;
-          // height: 20px;
-          // background-color: green;
+          width: 29%;
+
 
           .field {
             margin: 0.25em 0;
@@ -82,14 +94,18 @@
               margin-right: 1em;
             }
 
-            input {
+            input, select {
+              margin-right: 0.5em;
               width: 10em;
               height: 1.3em;
-              border: none;
+              // border: none;
             }
           }
         }
       }
+
+
+
 
       h5 {
         margin-left: 1em;
@@ -100,6 +116,6 @@
 
 @media only screen and (min-width: 991px) {
   .container-price {
-    width: 80vw;
+    width: 85vw;
   }
 }

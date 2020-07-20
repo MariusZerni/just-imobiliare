@@ -25,5 +25,9 @@ router.route('/register').post(userController.register)
 
 router.route('/login').post(userController.login)
 
+router.route('/user/:id').get(userController.getUser)
+
+router.route('/user').get(userController.findUsers)
+
 
 module.exports = router

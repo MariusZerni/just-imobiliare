@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
+// import auth from '../lib/auth'
 
 import Header from './Header'
 import ApartmentCharacteristics from './ApartmentCharacteristics'
@@ -48,7 +49,7 @@ const Apartment = (props) => {
   const [currentSelection, setCurrentSelection] = useState('Location')
   const [location] = useState(props.history.location.state.location.address)
 
-
+  
 
 
   const handleLocation = () => {
@@ -167,7 +168,7 @@ const Apartment = (props) => {
         <h4>Pret</h4>
       </div>
       <div className="content">
-        <button
+        <button className="button"
           onClick={event => handleSubmit(event)}
           type="submit"
           form="form">Salveaza</button>

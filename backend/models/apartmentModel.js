@@ -54,7 +54,8 @@ const priceForSale = new mongoose.Schema({
   priceSqm: { type: String },
   lowerPrice: { type: String },
   negociable: { type: Boolean },
-  collaborationInSale: { type: Boolean },
+  comissionOnCollab: { type: Number },
+  comissionOnCollabPercent: { type: Number },
   VAT: { type: Number },
   lanlord: { type: String },
   percentageCommission: { type: Number },
@@ -64,23 +65,25 @@ const priceForSale = new mongoose.Schema({
   contractNumber: { type: Number },
   contractSigningDate: { type: Date },
   contractExpiringDate: { type: Date },
-  lanlordComsionPercentage: { type: Number },
-  lanlordComision: { type: Number }
+  lanlordComssionPercentage: { type: Number },
+  lanlordComission: { type: Number }
 })
 
 
 const priceForRenting = new mongoose.Schema({
   pricePerMounth: { type: Number },
+  lastPrice: { type: Number },
   negociablePrice: { type: Boolean },
+  TVA: { type: String },
   lanlord: { type: String },
   deposit: { type: Number },
   commissionCurrency: { type: Number },
   commissionPercentage: { type: Number },
   contractRentalServices: { type: String },
-  exclusiveRepresentation: { type: Boolean },
-  exclusiveIntermediation: { type: Boolean },
-  contractNUmber: { type: Number },
-  contractSignDate: { type: Date },
+  exclusive: { type: Boolean },
+  intermediation: { type: Boolean },
+  contractNumber: { type: Number },
+  contractSigningDate: { type: Date },
   contractExpiringDate: { type: Date },
   lanlordCommissionPercentage: { type: Number },
   lanlordCommission: { type: Number }

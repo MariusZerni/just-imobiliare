@@ -4,13 +4,17 @@ const mongooseHidden = require('mongoose-hidden')()
 const bcrypt = require('bcrypt')
 
 const schema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, minLength: 6, unique: true },
+  date: { type: Date, default: Date.now },
+  name: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true, hide: true }
 })
 
 schema.plugin(require('mongoose-unique-validator'))
-schema.plugin(mongooseHidden)
+schema.plugin(mongooseHidden, { hidden: { _id: false, password: true } })
+
+
+
 
 schema
   .virtual('passwordConfirmation')
@@ -23,7 +27,7 @@ schema.pre('validate', function checkPassword(next) {
     this.isModified('password') &&
     this._passwordConfirmation !== this.password
   ) {
-    this.invalidate('passwordConfirmation', 'should match')
+    this.invalidate('passwordConfirmation', 'Should match')
   }
   next()
 })

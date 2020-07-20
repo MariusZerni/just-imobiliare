@@ -30,7 +30,7 @@ function login(req, res) {
       }
 
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '14d' })
-      res.status(202).send({ message: `Welcome back ${user.username}`, token })
+      res.status(202).send({ user: user.name, token })
     })
     .catch(error => {
       console.log(error)
@@ -38,9 +38,30 @@ function login(req, res) {
     })
 }
 
+function getUser(req, res) {
+  const id = req.params.id
+  console.log(req.params.id)
+  User.findById(id)
+    .then(user => {
+      console.log('user', user)
+      res.send(user)
+    })
+
+}
+
+function findUsers(req, res) {
+  User.find().then(user => {
+    console.log('m', user)
+    res.send(user)
+  })
+}
+
+
+
 
 
 module.exports = {
   register,
-  login
+  login, getUser,
+  findUsers
 }

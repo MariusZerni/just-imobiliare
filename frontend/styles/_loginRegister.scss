@@ -1,0 +1,117 @@
+
+
+
+
+.container-log-reg {
+  background-color: $body-color;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-wrap {
+  border-radius: 5px;
+  box-shadow: $buttons-shadow;
+  background-color: $white-color;
+  position: relative;
+  width: 40vw;
+  min-height: 60vh;
+  // border: 1px solid grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.input {
+  width: 30vw;
+  position: relative;
+  height: 50px;
+  overflow: hidden;
+  margin: 1.5em 0;
+}
+
+.input input {
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  border: none;
+  outline: none;
+}
+
+.input label {
+  margin-bottom: 0;
+  position: absolute;
+  bottom: 0px;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid black;
+}
+
+.input label::after {
+  content: '';
+  position: absolute;
+  left: 0px;
+  bottom: -1px;
+  height: 100%;
+  width: 100%;
+  border-bottom: 3px solid #5fa8d3;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  
+}
+
+.content-name {
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  transition: all 0.3s ease;
+}
+
+
+// .input input:not([value]) + .label-name .content-name,
+.input input:focus + .label-name .content-name,
+.input input:valid + .label-name .content-name
+{
+  transform: translateY(-120%);
+  font-size: 14px;
+  color: #5fa8d3;
+}
+
+.input input:focus + .label-name::after, 
+.input input:valid + .label-name::after {
+  transform: translateX(0%)
+}
+
+.btn-container {
+  margin: 3em 0 4em 0;
+}
+
+
+.text {
+  position: absolute;
+  bottom: 20px;
+  right: 0px;
+  // padding-top: 3em;
+}
+
+.span {
+  color: #5fa8d3;
+  cursor: pointer;
+}
+
+.label-name {
+  width: 100%;
+}
+
+.password-eye {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  cursor: pointer;
+}
+

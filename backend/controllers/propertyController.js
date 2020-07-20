@@ -46,8 +46,6 @@ function create(req, res) {
 
   const PropertyModel = propertyType(req)
 
-  console.log('req', req)
-  console.log('req.files', req.files)
 
 
   // if (req.files && req.files.file) {

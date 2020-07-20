@@ -22,7 +22,7 @@ mongoose.connect(
       .then(() => {
         return User.create([
           {
-            username: 'Marius',
+            name: 'Marius',
             email: 'marius@yahoo.com',
             password: 'marius',
             passwordConfirmation: 'marius'

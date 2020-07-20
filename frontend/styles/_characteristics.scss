@@ -4,7 +4,8 @@ h4 {
   font-size: 1.25em;
   font-weight: 300;
   font-weight: 400;
-  padding: 0.3em;
+  padding: 0.9em;
+  margin-bottom: 0;
 }
 
 h5 {
@@ -12,6 +13,9 @@ h5 {
   font-weight: 400;
 }
 
+// select, input {
+//   border: none;
+// }
 
 textarea {
   width: 90%;
@@ -30,13 +34,27 @@ textarea {
 .content {
   cursor: pointer;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
+
+  .button {
+    box-shadow: $buttons-shadow;
+    background: $button-color; 
+    display: table;
+    color: #fff;
+    padding: 0.3em 1.2em;
+    border: none;
+    border-radius: 3px;
+  }
 
 
 
 .characteristics-container {
   margin: 0 auto;
-  width: 80vw;
+  width: 85vw;
   display: flex;
   flex-direction: column;
 
@@ -179,7 +197,7 @@ textarea {
             select, input {
             width: 10em;
             height: 1.3em;
-            border: none;
+
             }
           }
         }
@@ -187,7 +205,7 @@ textarea {
     }          
     .fields-container {
       margin: 0 auto;
-      width: 80vw;
+      width: 85vw;
       display: flex;
       flex-direction: row;
       border: 1px solid grey;
