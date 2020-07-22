@@ -14,10 +14,12 @@ module.exports = {
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.css$/, loader: ['style-loader', 'css-loader'] },
       { test: /\.s(a|c)ss$/, loader: ['style-loader', 'css-loader', 'sass-loader'] },
+      // { test: /\.(jpg|png|gif)$/, loader: 'file-loader' },
       { test: /\.(gif|png|jpg|svg)(\?.*$|$)/, use: [{ loader: 'url-loader' }] }
       
     ]
   },
+  
   devServer: {
     contentBase: path.resolve('./frontend/src'),
     hot: true,

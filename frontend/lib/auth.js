@@ -8,7 +8,7 @@ function isLoggedIn() {
 }
 
 function logout() {
-  localStorage.removeItem('token')
+  return localStorage.removeItem('token')
 }
 
 function getToken() {

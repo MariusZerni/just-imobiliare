@@ -110,3 +110,79 @@
 
   
 }
+
+
+// Edit profile 
+.container-edit-profile {
+
+  background-color: $body-color;
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container-edit {
+    border-radius: 5px;
+    box-shadow: $buttons-shadow;
+    background-color: $white-color;
+    position: relative;
+    width: 40vw;
+    min-height: 60vh;
+    padding-top: 2em;
+    // border: 1px solid grey;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .edit-profile-image {
+      label{
+        
+        border-radius: 4px;
+        box-shadow: $buttons-shadow;
+        margin: 2em 0 2em 0em;
+        padding: 0.6em 1.2em;
+        background: $register-input; 
+        display: table;
+        color: black;
+        cursor: pointer;
+        font-size: 0.9em;
+      }
+
+
+
+      input[type="file"] {
+          display: none;
+      }
+
+
+    }
+  }
+}
+
+// .container-wrap {
+//   position: relative;
+// }
+
+.btn-edit {
+  position: absolute;
+  left: 50%;
+  bottom: 2em;
+  transform: translate(-50%, 0);
+  
+  .button {
+    padding: 0.5em 2em;
+  }
+}
+
+.image-profile {
+  align-self: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 1px solid grey;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

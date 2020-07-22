@@ -22,12 +22,13 @@ router.route('/property-config/:type')
   .get(propertyConfigController.index)
 
 router.route('/register').post(userController.register)
+router.route('/edit-user/:id').put(userController.edit)
 
 router.route('/login').post(userController.login)
 
 router.route('/user/:id').get(userController.getUser)
 
-router.route('/user').get(userController.findUsers)
+router.route('/users').get(userController.findUsers)
 
 
 module.exports = router

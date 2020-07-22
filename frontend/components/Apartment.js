@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 // import auth from '../lib/auth'
 
@@ -10,8 +10,10 @@ import ApartmentPrice from './ApartmentPrice'
 
 
 
+
 const Apartment = (props) => {
 
+  
   const [state, setState] = useState({
     files: '',
     address: {
@@ -48,8 +50,20 @@ const Apartment = (props) => {
 
   const [currentSelection, setCurrentSelection] = useState('Location')
   const [location] = useState(props.history.location.state.location.address)
-
+  const [user, setUser] = useState()
   
+  // console.log(props.history.location.state.user)
+  console.log(user)
+  
+  useEffect(() => {
+    if (!props.location.state || !props.location.state.user) {
+      return
+    } else if (!user && props.location.state.user) {
+      console.log('user')
+      setUser(props.history.location.state.user)
+    } 
+    
+  })
 
 
   const handleLocation = () => {
@@ -84,7 +98,10 @@ const Apartment = (props) => {
 
     const url = `/api/property/${propertyType}/${propertyId}`
     Axios.put(url, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        props.history.push('/home')
+      })
       .catch(err => console.error(err))
   }
 
@@ -153,7 +170,7 @@ const Apartment = (props) => {
 
 
   return <div className="property-container">
-    <Header />
+    <Header user={user}/>
     <div className="fields-container">
       <div onClick={() => handleLocation()}
         className="content">

@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 // import auth from '../lib/auth'
 import Header from './Header'
+// import UserContext from '../components/UserContext'
 
 const Home = (props) => {
   const [propertyTypeId, setPropertyTypeId] = useState('')
-  const [user] = useState(props.location.state.user)
+  const [user, setUser] = useState()
   const [state, setState] = useState({
     county: '',
     town: '',
@@ -13,15 +14,19 @@ const Home = (props) => {
     streetNumber: null
   })
 
-  
+  // const {user} = useContext(UserContext)
   
 
-  // useEffect(() => {
-  //   if (!user) {
-  //     findUser()
-  //   }
+  useEffect(() => {
+    console.log('user', user)
+    if (!props.location.state || !props.location.state.user) {
+      return
+    } else if (!user && props.location.state.user) {
+      // console.log('user')
+      setUser(props.location.state.user)
+    } 
     
-  // })
+  })
 
   // console.log(auth.getUserId())
   // console.log('user', user)
@@ -46,7 +51,7 @@ const Home = (props) => {
     Axios.post(`/api/property/${propertyTypeId}`, state)
       .then((res) => {
         const propertyId = res.data._id
-        props.history.push(`/${propertyTypeId}/${propertyId}`, { propertyType: propertyTypeId, propertyId: propertyId, location: state })
+        props.history.push(`/${propertyTypeId}/${propertyId}`, { propertyType: propertyTypeId, propertyId: propertyId, location: state, user })
       })
       .catch((error) => {
         console.log(error)

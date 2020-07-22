@@ -7,6 +7,19 @@
 }
 
 
+
+
+// .arrow-up {
+//   margin: 3px auto;
+// 	width: 0;
+// 	height: 0;
+// 	position: absolute;
+// 	border-left: 15px solid transparent;
+// 	border-right: 15px solid transparent;
+// 	border-bottom: 15px solid rgb(199, 199, 199);
+// }
+
+
 .header {
   height: 10vh;
   border-bottom: 1px solid $button-color;
@@ -21,6 +34,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: relative;
   
 
     .logo {
@@ -33,13 +47,67 @@
       // margin-right: 8em;
       display: flex;
       align-items: center;
+      // background-color: blue;
+      
       
       .name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
 
         h6 {
           margin-bottom: 0;
+          padding-right: 0;
         }
 
+        i {
+          padding: 0 10px 0 6px;
+        }
+
+      }
+
+      .user-profile {
+        visibility: hidden;
+        position: absolute;
+        top: 70%;
+        right: 50px;
+        width: 180px;
+        min-height: 80px;
+        background-color: rgb(255, 255, 250);
+        box-shadow: $buttons-shadow;
+
+        .link-container {
+          position: relative;
+          padding-top: 25px;
+          width: 100%;
+          // height: 10px;
+          // background-color: green;
+
+
+
+          &:first-child {
+            padding-bottom: 11px;
+          }
+ 
+          &:last-child {
+            padding-bottom: 20px;
+          }
+
+
+          h6 {
+            cursor: pointer;
+            text-decoration: none;
+            // background-color: blue;
+            // width: 100%;
+            color: black;
+            margin-bottom: 0;
+            padding-left: 10px;
+
+
+          }
+          
+        }
       }
       .image {
         display: flex;
@@ -49,6 +117,9 @@
         height: 40px;
         width: 40px;
         border-radius: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         // background-color: red;
 
         i {
@@ -58,4 +129,15 @@
       }
     }
   }    
+}
+
+.link-container:first-child::after {
+  content: '';
+  position: absolute;
+  // bottom: 2px;
+  left: 0%;
+  margin-top: 10px;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid black;
 }

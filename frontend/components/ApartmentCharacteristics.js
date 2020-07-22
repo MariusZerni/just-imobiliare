@@ -5,6 +5,7 @@ const ApartmentCharacteristics = ({ handleChange, state }) => {
   const [configs, setConfigs] = useState(null)
 
 
+
   useEffect(() => {
     if (configs) {
       return

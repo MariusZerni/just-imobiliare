@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt')
 
 const schema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
+  image: { type: String },
   name: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true, hide: true }

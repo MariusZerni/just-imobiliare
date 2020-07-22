@@ -56,7 +56,7 @@ const ApartmentLocationImages = ({ handlelocationChange, handleImageChange, stat
       <section className="section-container">
         {/* <h4>Adauga imagini</h4> */}
         <div className="image-container">
-          <form encType='mutipart/form-data'>       
+          <form encType='multipart/form-data'>       
             <label> Adauga imagini
               <input onChange={event => handleImageChange(event)}
                 name="file"

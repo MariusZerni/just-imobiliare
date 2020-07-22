@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Axios from 'axios'
-
+import auth from '../lib/auth'
+import { UserContext } from '../components/UserContext'
 
 
 const LoginRegister = (props) => {
@@ -8,11 +9,13 @@ const LoginRegister = (props) => {
   const [pswVisible, setPswVisible] = useState(false)
   const [register, setRegister] = useState()
   const [login, setLogin] = useState()
-  console.log('register', register)
-  console.log('login', login)
+
+  const { user, setUser } = useContext(UserContext)
+
+  console.log('user', user)
+
 
   const handlePassword = () => {
-    console.log(pswVisible)
     if (!pswVisible) {
       setPswVisible(true)
     } else {
@@ -42,7 +45,9 @@ const LoginRegister = (props) => {
     event.preventDefault()
     Axios.post('/api/login', login)
       .then((res) => {
-        console.log(res.data.user)
+        setUser(res.data.user)
+        const token = res.data.token
+        auth.setToken(token)
         props.history.push('/home', { user: res.data.user })
       })
       .catch(err => {

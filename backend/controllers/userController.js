@@ -15,7 +15,7 @@ function register(req, res) {
 
 function login(req, res) {
 
-  User 
+  User
     .findOne({ email: req.body.email })
     .then(user => {
       const errorMsg = { message: 'Invalid credentials' }
@@ -30,7 +30,7 @@ function login(req, res) {
       }
 
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '14d' })
-      res.status(202).send({ user: user.name, token })
+      res.status(202).send({ user: user, token })
     })
     .catch(error => {
       console.log(error)
@@ -56,6 +56,71 @@ function findUsers(req, res) {
   })
 }
 
+function edit(req, res) {
+  console.log('edit')
+  // const currentUser = req.currentUser
+  const id = req.params.id
+
+  const newBody = {}
+
+  for (const [key, value] of Object.entries(req.body)) {
+    newBody[key] = value
+  }
+
+  let editedUser = { ...newBody, images: [] }
+  if (req.files && req.files.file) {
+    const file = req.files.file
+
+    editedUser = { ...newBody, image: file.name }
+    file.mv(`${__dirname}/../../backend/images/profiles/${file.name}`, err => {
+      console.log('one image')
+      if (err) {
+
+        console.log(err)
+        return res.status(500).send(err)
+      }
+    })
+
+
+    console.log('editedUser', editedUser)
+    User.findById(id)
+      .then(user => {
+        console.log(user)
+        return user.set(editedUser)
+      })
+      .then(user => {
+        console.log('saving', id)
+        console.log(user)
+        // if (!event.user.equals(currentUser))
+        //   return res.status(401).send({
+        //     message: 'You are not authorized!'
+        //   })
+        return user.save()
+      })
+      .then(user => {
+        res.status(202).send(user)
+      })
+
+  } else {
+
+    User.findById(id)
+      .then(user => {
+        return user.set(editedUser)
+      })
+      .then(user => {
+        console.log('saving')
+        console.log(user)
+        // if (!event.user.equals(currentUser))
+        //   return res.status(401).send({
+        //     message: 'You are not authorized!'
+        //   })
+        return user.save()
+      })
+      .then(user => {
+        res.status(202).send(user)
+      })
+  }
+}
 
 
 
@@ -63,5 +128,5 @@ function findUsers(req, res) {
 module.exports = {
   register,
   login, getUser,
-  findUsers
+  findUsers, edit
 }
