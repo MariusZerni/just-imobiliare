@@ -14,3 +14,4 @@ export function squareMeters (price, sqm) {
   const priceNumber = price.replace(/,/g, '')
   return priceNumber / sqm
 }
+

@@ -2,8 +2,8 @@ const HouseConfig = require('../models/houseConfigModel')
 const ApartmentConfig = require('../models/apartmentConfigModel')
 const OfficeConfig = require('../models/officeConfigModel')
 const LandConfig = require('../models/landConfigModel')
-const IndustrialSpaceConfig = require('../models/industrialSpaceConfigModel')
-const ComercialSpaceConfig = require('../models/comercialSpaceConfigModel')
+const IndustrialPropertyConfig = require('../models/industrialPropertyConfigModel')
+const CommercialPropertyConfig = require('../models/commercialPropertyConfigModel')
 
 
 function propertyTypeConfig(req) {
@@ -20,9 +20,9 @@ function propertyTypeConfig(req) {
   } else if (type === 'land') {
     PropertyConfig = LandConfig
   } else if (type === 'industrial-space') {
-    PropertyConfig = IndustrialSpaceConfig
-  } else if (type === 'comercial-space') {
-    PropertyConfig = ComercialSpaceConfig
+    PropertyConfig = IndustrialPropertyConfig
+  } else if (type === 'commercial-space') {
+    PropertyConfig = CommercialPropertyConfig
   }
 
   return PropertyConfig

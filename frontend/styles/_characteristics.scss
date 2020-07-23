@@ -13,9 +13,6 @@ h5 {
   font-weight: 400;
 }
 
-// select, input {
-//   border: none;
-// }
 
 textarea {
   width: 90%;
@@ -28,7 +25,6 @@ textarea {
   flex-direction: row;
   border: 1px solid grey;
   border-top: none;
-  // width: 80vw;
 }
 
 .content {
@@ -37,7 +33,6 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
   .button {
@@ -95,9 +90,7 @@ textarea {
           font-size: 0.9em;
           line-height: 30px;
           margin-bottom: 0;
-          // padding-right: 0.5em;
-        }
-        
+        }    
       }
 
       .checkbox {
@@ -111,14 +104,13 @@ textarea {
           padding-left: 1em;
           line-height: 30px;
           font-weight: 350;
-          font-size: 0.9em;
-          
+          font-size: 0.9em;      
         }
+
         input {
           width: 15px;
           height: 15px;
           margin-top: 0.5em;
-
         }
       }
     }
@@ -157,14 +149,11 @@ textarea {
             input {
               min-width: 15px;
               min-height: 15px;
-              // line-height: 30px;
               margin-top: 0.10em;
-              margin-left: 0.25em;
-    
+              margin-left: 0.25em;   
             }
           }
-        }
-        
+        }      
       }
     }
   }
@@ -179,13 +168,11 @@ textarea {
 
 
 
-
 @media only screen and (min-width: 992px) {
   h6 {
-    padding-right: 1em;
-    // line-height: 20px;
-    
+    padding-right: 1em;  
   }
+
   .characteristics-container {
     .main-content .characteristics {
       .characteristics-content {
@@ -197,12 +184,11 @@ textarea {
             select, input {
             width: 10em;
             height: 1.3em;
-
-            }
           }
         }
       }
-    }          
+    }
+  }          
     .fields-container {
       margin: 0 auto;
       width: 85vw;
@@ -218,10 +204,3 @@ textarea {
 }
 
 
-// @media only screen and (max-width: 991px) {
-//   h6 {
-//     padding-right: 0.5em;
-    
-//   }
-  
-// }

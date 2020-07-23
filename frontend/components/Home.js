@@ -16,7 +16,7 @@ const Home = (props) => {
 
   // const {user} = useContext(UserContext)
   
-
+  console.log('state', state)
   useEffect(() => {
     console.log('user', user)
     if (!props.location.state || !props.location.state.user) {
@@ -40,6 +40,7 @@ const Home = (props) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target
+    console.log(value)
     setState(prevState => ({
       ...prevState,
       address: { ...prevState.address, [name]: value }
@@ -101,14 +102,14 @@ const Home = (props) => {
             <h5 style={{ pointerEvents: 'none' }} >Spatiu de birouri</h5>
           </div>
 
-          <div id="comercial-space"
-            className={propertyTypeId === 'comercial-space' ? 'font-awesome clicked' : 'font-awesome'}
+          <div id="commercial-property"
+            className={propertyTypeId === 'commercial-property' ? 'font-awesome clicked' : 'font-awesome'}
             onClick={() => setPropertyTypeId(event.target.id)}>
             <i style={{ pointerEvents: 'none' }} className="fas fa-hotel fa-3x"></i>
-            <h5 style={{ pointerEvents: 'none' }} >Spatiu comercial</h5>
+            <h5 style={{ pointerEvents: 'none' }} >Spatiu commercial</h5>
           </div>
-          <div id="industrial-space"
-            className={propertyTypeId === 'industrial-space' ? 'font-awesome clicked' : 'font-awesome'}
+          <div id="industrial-property"
+            className={propertyTypeId === 'industrial-property' ? 'font-awesome clicked' : 'font-awesome'}
             onClick={() => setPropertyTypeId(event.target.id)}
           >
             <i style={{ pointerEvents: 'none' }} className="fas fa-warehouse fa-3x"></i>

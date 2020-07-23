@@ -9,11 +9,9 @@ const LoginRegister = (props) => {
   const [pswVisible, setPswVisible] = useState(false)
   const [register, setRegister] = useState()
   const [login, setLogin] = useState()
-
   const { user, setUser } = useContext(UserContext)
 
   console.log('user', user)
-
 
   const handlePassword = () => {
     if (!pswVisible) {
@@ -21,7 +19,6 @@ const LoginRegister = (props) => {
     } else {
       setPswVisible(false)
     }
-
   }
 
   const handleChangeRegister = (event) => {
@@ -52,7 +49,7 @@ const LoginRegister = (props) => {
       })
       .catch(err => {
         console.log(err.response.data.errors)
-        // this.setState({ errors: err.response.data.errors })
+        //setErrors(err.response.data.errors)
       })
   }
 
@@ -62,7 +59,7 @@ const LoginRegister = (props) => {
       .then(() => setLoginRegister('Login'))
       .catch(err => {
         console.log(err.response.data.errors)
-        // this.setState({ errors: err.response.data.errors })
+        //setErrors(err.response.data.errors)
       })
   }
 
@@ -78,23 +75,19 @@ const LoginRegister = (props) => {
       {loginRegister === 'Login' && <form
         onChange={(event) => handleChangeLogin(event)}
         onSubmit={(event) => handleSubmitLogin(event)}>
-
         <div className="input">
           <input type="email" name="email" autoComplete="off" required />
           <label htmlFor="name" className="label-name">
             <span className="content-name">Email</span>
           </label>
         </div>
-
         <div className="input">
           <i className="fa fa-eye password-eye" onClick={() => handlePassword()}></i>
           <input type={pswVisible ? 'text' : 'password'}
             name="password" autoComplete="off" required />
           <label htmlFor="name" className="label-name">
             <span className="content-name">Password</span>
-
           </label>
-
         </div>
         <div className="btn-container">
           <button type="submit" className="button">Login</button>
@@ -102,10 +95,7 @@ const LoginRegister = (props) => {
         <div className="text">
           <h6>Don&#39;t have an account? <span className="span" onClick={(event) => handleClickLogin(event)}>register here!</span> </h6>
         </div>
-
       </form>}
-
-
 
       {loginRegister === 'Register' && <form
         onChange={(event) => handleChangeRegister(event)}
@@ -144,7 +134,6 @@ const LoginRegister = (props) => {
         <div className="text">
           <h6>You have an account? <span className="span" onClick={(event) => handleClickRegister(event)}>login here!</span> </h6>
         </div>
-
       </form>}
     </div>
   </div>

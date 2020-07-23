@@ -1,51 +1,42 @@
-import React, { useState, useRef, useContext, useEffect } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import auth from '../lib/auth'
 import logo from '../images/logo70.png'
-// import Axios from 'axios'
 import { UserContext } from '../components/UserContext'
 
 
 
 const Header = () => {
   const [userDropdown, setUserDropdown] = useState(false)
-  const { user } = useContext(UserContext)
-  // const [userId, setuserId] = useState()
-  // const { user } = props
+  const { user, setUser } = useContext(UserContext)
   const menuRef = useRef()
   const menuOn = useRef()
-  // console.log('user', user)
 
 
-  // console.log(user)
-  useEffect(() => {
-    console.log(user)
-  })
+  // useEffect(() => {
+  //   console.log('header user use effect', user)
+  //   if (user)
+  //     console.log('header user use effect image', user, user.image)
+  // })
 
   const handleDropdown = () => {
     document.addEventListener('mousedown', (event) => {
-
       if (!user) {
         console.log('return')
         return
       }
-
-      console.log('clicked')
-
-
       if (!menuRef.current.contains(event.target)) {
-        console.log('menu ref')
         setUserDropdown(false)
       } else if (!userDropdown) {
-        console.log('else')
         setUserDropdown(true)
       }
     })
   }
 
   const handleLogout = () => {
-    console.log('logout')
     auth.logout()
+    localStorage.removeItem('user')
+    setUser(null)
     setUserDropdown(false)
   }
 
@@ -56,7 +47,7 @@ const Header = () => {
   //     .catch(error => console.log(error))
   // }
 
-  // console.log('props', props)
+
 
   return <div className="header">
     <div className="content-header">
@@ -77,9 +68,6 @@ const Header = () => {
         <div className="name">
           {auth.isLoggedIn() && <> <h6>{user ? user.name : 'Agent'}</h6>
             <i className="fas fa-caret-down fa-2x"></i></>}
-
-
-          {/* <div className="arrow-up"></div> */}
         </div>
         <div ref={menuOn}
           className="user-profile" style={userDropdown ? { visibility: 'visible' } : { visibility: 'hidden' }}>
@@ -89,23 +77,17 @@ const Header = () => {
           <div
             onClick={() => handleLogout()}
             className="link-container">
-            <Link to="/home"><h6>Log out</h6></Link>
-
+            <Link style={{ textDecoration: 'none' }} to="/home"><h6>Log out</h6></Link>
           </div>
-
         </div>
         {user && <div className="image" style={{ backgroundImage: `url(${'http://localhost:8000/images/' + (user.image)})` }} >
           {!user && <i className="far fa-user fa-2x"></i>}
-
         </div>}
         {!user && <div className="image"  >
           <i className="far fa-user fa-2x"></i>
-
         </div>}
-
       </div>
     </div>
-
   </div>
 }
 

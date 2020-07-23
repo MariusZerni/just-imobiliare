@@ -2,8 +2,8 @@ const House = require('../models/houseModel')
 const Apartment = require('../models/apartmentModel')
 const Office = require('../models/officeModel')
 const Land = require('../models/landModel')
-const IndustrialSpace = require('../models/industrialSpaceModel')
-const ComercialSpace = require('../models/comercialSpaceModel')
+const IndustrialProperty = require('../models/industrialPropertyModel')
+const CommercialProperty = require('../models/commercialPropertyModel')
 
 function propertyType(req) {
   const type = req.params.type
@@ -18,10 +18,10 @@ function propertyType(req) {
     Property = Office
   } else if (type === 'land') {
     Property = Land
-  } else if (type === 'industrial-space') {
-    Property = IndustrialSpace
-  } else if (type === 'comercial-space') {
-    Property = ComercialSpace
+  } else if (type === 'industrial-property') {
+    Property = IndustrialProperty
+  } else if (type === 'commercial-property') {
+    Property = CommercialProperty
   }
 
   return Property
@@ -41,13 +41,8 @@ function index(req, res) {
 
 function create(req, res) {
   console.log(req.params.type)
-
   const property = req.body
-
   const PropertyModel = propertyType(req)
-
-
-
 
   // if (req.files && req.files.file) {
   //   const file = req.files.file
@@ -105,20 +100,11 @@ function edit(req, res) {
   console.log('edit')
   // const currentUser = req.currentUser
   const id = req.params.id
-
-  console.log(req.body)
-
   const newBody = {}
-
-  console.log('body',req.body)
-
   for (const [key, value] of Object.entries(req.body)) {
     // console.log(`${key}: ${value}`)
     newBody[key] =  JSON.parse(value)
   }
-
-  console.log('newbody1',newBody)
-
 
   let editedProperty = { ...newBody, images: [] }
   if (req.files && req.files.file) {
@@ -141,10 +127,7 @@ function edit(req, res) {
       
       editedProperty = { ...newBody, images: [file.name] }
       file.mv(`${__dirname}/../../frontend/images/${file.name}`, err => {
-        console.log('one image')
         if (err) {
-          
-          console.log(err)
           return res.status(500).send(err)
         }        
       }) 
@@ -171,17 +154,12 @@ function edit(req, res) {
       })
 
   } else {
-
-    console.log('no files')
-
     const Property = propertyType(req)
     Property.findById(id)
       .then(property => {
         return property.set(editedProperty)
       })
       .then(property => {
-        console.log('saving')
-        console.log(property)
         // if (!event.user.equals(currentUser))
         //   return res.status(401).send({
         //     message: 'You are not authorized!'

@@ -7,16 +7,13 @@ const address = new mongoose.Schema({
   streetNumber: { type: Number }
 })
 
-// const images = new mongoose.Schema({
-//   images: { type: [String] }
-// })
 
 const characteristics = new mongoose.Schema({
   buildingType: { type: String },
   constructionYear: { type: Number },
   constructionStage: { type: String },
   constructionType: { type: String },
-  seismicRisk: { type: Boolean },
+  seismicRisk: { type: String },
   historicalMonument: { type: Boolean },
   thermalRehabilitation: { type: Boolean },
   consolidatedBuilding: { type: Boolean },
@@ -56,7 +53,7 @@ const priceForSale = new mongoose.Schema({
   negociable: { type: Boolean },
   comissionOnCollab: { type: Number },
   comissionOnCollabPercent: { type: Number },
-  VAT: { type: Number },
+  VAT: { type: String },
   lanlord: { type: String },
   percentageCommission: { type: Number },
   servicesOnContractForSale: { type: String },
@@ -74,7 +71,7 @@ const priceForRenting = new mongoose.Schema({
   pricePerMounth: { type: Number },
   lastPrice: { type: Number },
   negociablePrice: { type: Boolean },
-  TVA: { type: String },
+  VAT: { type: String },
   lanlord: { type: String },
   deposit: { type: Number },
   commissionCurrency: { type: Number },

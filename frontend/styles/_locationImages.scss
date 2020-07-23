@@ -2,8 +2,6 @@
 
 
 
-
-
 .location-container {
   width: 100vw;
   min-height: 80vh;
@@ -18,7 +16,6 @@
 
     .section-container {
       width: 100%;
-      // margin: 0 .5em;
 
 
       .address-container {
@@ -29,7 +26,6 @@
 
         h4 {
           margin-left: 2em;
-
         }
 
         form {
@@ -39,21 +35,16 @@
           justify-content: center;
           align-items: center;
           margin: 0 auto;
-          // background-color: honeydew;
 
 
           textarea {
             height: 10em;
- 
           }
         }
       }
-
-
     }
 
     .image-container {
-
 
       label{
         border-radius: 4px;
@@ -65,9 +56,7 @@
         color: #fff;
         cursor: pointer;
       }
-    
-    
-    
+        
       input[type="file"] {
           display: none;
       }
@@ -76,11 +65,9 @@
         margin-left: 2em;
         padding-top: 3em;
   
-      }
-    
-
-    
+      }  
     }
+
     .img-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -103,12 +90,8 @@
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
         0 10px 10px rgba(0,0,0,0.22);
       }
-
     }
-
-  }
-
-  
+  } 
 }
 
 
@@ -127,12 +110,10 @@
     box-shadow: $buttons-shadow;
     background-color: $white-color;
     position: relative;
-    width: 40vw;
+    width: 35vw;
     min-height: 60vh;
     padding-top: 2em;
-    // border: 1px solid grey;
     display: flex;
-    // justify-content: center;
     align-items: center;
     flex-direction: column;
 
@@ -151,7 +132,6 @@
       }
 
 
-
       input[type="file"] {
           display: none;
       }
@@ -161,9 +141,7 @@
   }
 }
 
-// .container-wrap {
-//   position: relative;
-// }
+
 
 .btn-edit {
   position: absolute;

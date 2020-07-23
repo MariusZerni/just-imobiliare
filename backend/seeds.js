@@ -5,8 +5,8 @@ const ApartmentConfigModel = require('./models/apartmentConfigModel')
 const HouseConfigModel = require('./models/houseConfigModel')
 const LandConfigModel = require('./models/landConfigModel')
 const OfficeConfigModel = require('./models/officeConfigModel')
-const ComercialSpaceConfigModel = require('./models/comercialSpaceConfigModel')
-const IndustrialSpaceConfig = require('./models/industrialSpaceConfigModel')
+const CommercialPropertyConfigModel = require('./models/commercialPropertyConfigModel')
+const IndustrialPropertyConfig = require('./models/industrialPropertyConfigModel')
 
 const dbURI = 'mongodb://localhost/just-imobiliare-db'
 
@@ -135,7 +135,7 @@ mongoose.connect(
         }])
       })
       .then(() => {
-        return ComercialSpaceConfigModel.create([{
+        return CommercialPropertyConfigModel.create([{
           pedestrianTraffic: ['Intens', 'Moderat', 'Fara trafic pietonal'],
           // floors need to accept strings an numbers
           buildingType: ['Bloc de apart.', 'Cladire birouri', 'Casa/Vila', 'Hala', 'Centru comercial', 'Depozit', 'Stradal'],
@@ -150,7 +150,7 @@ mongoose.connect(
         }])
       })
       .then(() => {
-        return IndustrialSpaceConfig.create([{
+        return IndustrialPropertyConfig.create([{
           useFor: ['Depozitare', 'Productie'],
           officeType: ['A', 'B', 'C'],
           buildingType: ['Bloc de apartamente', 'Cladire birouri', 'Casa/Vila', 'Hala', 'Centru comercial', 'Depozit', 'Stradal'],

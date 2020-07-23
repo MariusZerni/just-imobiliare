@@ -15,8 +15,12 @@ const ApartmentCharacteristics = ({ handleChange, state }) => {
   })
 
   const isChecked = (selectedOptions, currentOption) => {
+    // console.log('selected', selectedOptions, currentOption)
+
     const isChecked = selectedOptions.includes(currentOption)
     return isChecked
+    
+
   }
 
 
@@ -42,14 +46,14 @@ const ApartmentCharacteristics = ({ handleChange, state }) => {
               <h6>Tip proprietate</h6>
               <select defaultValue={state.propertyType}
                 name="propertyType" >
-                <option selected disabled hidden>--------</option>   
+                <option selected disabled hidden>--------</option>
                 <option value="apartament">Apartament</option>
                 <option value="casa">Casa</option>
               </select>
             </div>
             <div className="field">
               <h6>Tip apartament</h6>
-              <select 
+              <select
                 defaultValue={state.apartmentType}
                 name="apartmentType" >
                 <option selected disabled hidden>--------</option>
@@ -110,7 +114,7 @@ const ApartmentCharacteristics = ({ handleChange, state }) => {
             </div>
             <div className="field">
               <h6>Disponibilitate</h6>
-              <input type="text" name="availability" 
+              <input type="text" name="availability"
                 defaultValue={state.availability}
               />
             </div>
@@ -281,16 +285,16 @@ const ApartmentCharacteristics = ({ handleChange, state }) => {
         <div className="features">
           <h4>Dotari si utilitati</h4>
           <div className="features-container">
-            <div 
+            <div
               className="features-col">
               <h5>Dotari</h5>
               {configs.features.map((elem) => {
 
-                return <div 
+                return <div
                   key={elem} className="checkbox">
                   <input checked={isChecked(state.facilities.features, elem)}
                     datacontainer="facilities"
-                    type="checkbox" name="features" value={elem}  />
+                    type="checkbox" name="features" value={elem} />
                   <h6>{elem}</h6>
 
                 </div>

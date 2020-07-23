@@ -7,23 +7,21 @@ const ApartmentPrice = ({ handleChange, state }) => {
   const [saleRent, setSaleRent] = useState('Sale')
   const [priceSqm, setPriceSqm] = useState()
   const [price, setPrice] = useState()
-
+  const { priceForSale, priceForRenting } = state
 
   const handleSale = () => {
     setSaleRent('Sale')
   }
-
   const handleRent = () => {
     setSaleRent('Rent')
   }
-
-  const { priceForSale, priceForRenting } = state
 
   useEffect(() => {
     const { price } = priceForSale
     if (price) {
       setPrice(thousandsSeparators(price))
       const resultSqM = squareMeters(price, state.builtArea)
+      console.log('result sqm', resultSqM)
       setPriceSqm(resultSqM.toLocaleString().toString())
     } else {
       setPriceSqm('')
@@ -63,7 +61,6 @@ const ApartmentPrice = ({ handleChange, state }) => {
                   datacontainer="priceForSale"
                   defaultValue={priceForSale.lowerPrice} />
               </div>
-
             </div>
             <div className="row-p-s">
               <div className="field">
@@ -73,9 +70,9 @@ const ApartmentPrice = ({ handleChange, state }) => {
                   defaultValue={priceSqm} />
               </div>
               <div className="field">
-                <input className="checkbox" type="checkbox" name="negociable"
+                <input className="checkbox" type="checkbox" onChange={()=>{}} name="negociable"
                   datacontainer="priceForSale"
-                  defaultValue={priceSqm} />
+                  defaultChecked={priceSqm} />
                 <h6>Pret vanzare negociabil</h6>
               </div>
             </div>
@@ -107,7 +104,6 @@ const ApartmentPrice = ({ handleChange, state }) => {
           <div className="subtitle">
             <h5>Comision de la proprietar la vanzare</h5>
           </div>
-
           <div className="column-p-s">
             <div className="row-p-s">
               <div className="field">
@@ -145,15 +141,15 @@ const ApartmentPrice = ({ handleChange, state }) => {
             </div>
             <div className="row-p-s">
               <div className="field">
-                <input className="checkbox" type="checkbox" name="exclusive"
+                <input className="checkbox" type="checkbox" onChange={()=>{}} name="exclusive"
                   datacontainer="priceForSale"
-                  defaultValue={priceForSale.exclusive} />
+                  defaultChecked={priceForSale.exclusive} />
                 <h6>Reprezentare exclusiva</h6>
               </div>
               <div className="field">
-                <input className="checkbox" type="checkbox" name="intermediation"
+                <input className="checkbox" type="checkbox" onChange={()=>{}} name="intermediation"
                   datacontainer="priceForSale"
-                  defaultValue={priceForSale.intermediation} />
+                  defaultChecked={priceForSale.intermediation} />
                 <h6>Intermediere exclusiva</h6>
               </div>
             </div>
@@ -161,7 +157,6 @@ const ApartmentPrice = ({ handleChange, state }) => {
           <div className="subtitle">
             <h5>Colaborare la vanzare</h5>
           </div>
-
           <div className="column-p-s">
             <div className="row-p-s">
               <div className="field">
@@ -178,15 +173,11 @@ const ApartmentPrice = ({ handleChange, state }) => {
                 <input type="text" name="comissionOnCollabPercent"
                   datacontainer="priceForSale"
                   defaultValue={priceForSale.comissionOnCollabPercent} />
-
               </div>
             </div>
           </div>
-
         </div>
       </div>}
-
-
       {saleRent === 'Rent' && <div className="sale-content">
         <div className="columns-p-s">
           <div className="column-p-s">
@@ -204,8 +195,6 @@ const ApartmentPrice = ({ handleChange, state }) => {
                   datacontainer="priceForRenting"
                   defaultValue={priceForRenting.lastPrice} />
               </div>
-
-
             </div>
             <div className="row-p-s">
               <div className="field">
@@ -244,7 +233,6 @@ const ApartmentPrice = ({ handleChange, state }) => {
           <div className="subtitle">
             <h5>Comision de la proprietar la inchiriere</h5>
           </div>
-
           <div className="column-p-s">
             <div className="row-p-s">
               <div className="field">
@@ -282,15 +270,15 @@ const ApartmentPrice = ({ handleChange, state }) => {
             </div>
             <div className="row-p-s">
               <div className="field">
-                <input className="checkbox" type="checkbox" name="exclusive"
+                <input className="checkbox" type="checkbox" onChange={()=>{}} name="exclusive"
                   datacontainer="priceForRenting"
-                  defaultValue={priceForRenting.exclusive} />
+                  defaultChecked={priceForRenting.exclusive} />
                 <h6>Reprezentare exclusiva</h6>
               </div>
               <div className="field">
-                <input className="checkbox" type="checkbox" name="intermediation"
+                <input className="checkbox" type="checkbox" onChange={()=>{}} name="intermediation"
                   datacontainer="priceForRenting"
-                  defaultValue={priceForRenting.intermediation} />
+                  defaultChecked={priceForRenting.intermediation} />
                 <h6>Intermediere exclusiva</h6>
               </div>
             </div>
@@ -298,7 +286,6 @@ const ApartmentPrice = ({ handleChange, state }) => {
           <div className="subtitle">
             <h5>Colaborare la inchiriere</h5>
           </div>
-
           <div className="column-p-s">
             <div className="row-p-s">
               <div className="field">
@@ -306,7 +293,6 @@ const ApartmentPrice = ({ handleChange, state }) => {
                 <input type="text" name="commissionCurrency"
                   datacontainer="priceForSale"
                   defaultValue={priceForSale.commissionCurrency} />
-
               </div>
             </div>
             <div className="row-p-s">
@@ -315,14 +301,11 @@ const ApartmentPrice = ({ handleChange, state }) => {
                 <input type="text" name="commissionPercentage"
                   datacontainer="priceForSale"
                   defaultValue={priceForSale.commissionPercentage} />
-
               </div>
             </div>
           </div>
-
         </div>
       </div>}
-
     </form>
   </div>
 

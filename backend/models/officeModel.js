@@ -79,8 +79,8 @@ const priceForRenting = new mongoose.Schema({
 })
 
 const schema = new mongoose.Schema({
-  transactionType: { type: String, required: true },
-  propertyType: { type: String, required: true },
+  transactionType: { type: String },
+  propertyType: { type: String },
   officeType: { type: String },
   bathrooms: { type: Number },
   terrace: { type: Number },
