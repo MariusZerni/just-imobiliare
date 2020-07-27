@@ -1,7 +1,9 @@
 import React from 'react'
 
 
-const ApartmentLocationImages = ({ handlelocationChange, handleImageChange, state, location }) => {
+const PropertyLocationImages = ({ handlelocationChange, handleImageChange, state, location }) => {
+
+  console.log('apartment location ', location)
 
   return <div className="location-container">
     <div className="wrap-container">
@@ -39,7 +41,7 @@ const ApartmentLocationImages = ({ handlelocationChange, handleImageChange, stat
             {/*If apartment is selected  */}
             <div className="form-group col-md-10">
               <input datacontainer="address"
-                type="text" className="form-control" placeholder="Apartament" />
+                type="text" className="form-control" placeholder="Scara" />
             </div>
             <div className="form-group col-md-10">
               <input datacontainer="address"
@@ -84,4 +86,4 @@ const ApartmentLocationImages = ({ handlelocationChange, handleImageChange, stat
 }
 
 
-export default ApartmentLocationImages
+export default PropertyLocationImages

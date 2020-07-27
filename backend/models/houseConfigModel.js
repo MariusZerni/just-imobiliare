@@ -13,6 +13,7 @@ const schema = new mongoose.Schema({
   characteristics: { type: [String] },
   doorEntry: { type: [String] },
   interiorDoors: { type: [String] },
+  realEstateFacilities: { type: [String] },
   walls: { type: [String] },
   floorType: { type: [String] },
   furnished: { type: [String] },

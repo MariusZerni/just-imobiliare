@@ -110,9 +110,9 @@ mongoose.connect(
           areaUnit: ['mp', 'ha'],
           classification: ['Intravilan', 'Extravilan'],
           useFor: ['Rezidential', 'Comercial', 'Scoala/Gradinita', 'Restaurant/Cafenea', 'benzinarie', 'Retail', 'Spalatorie auto', 'Industrial', 'Agricol', 'De vacanta', 'Spital/Clinica', 'Hotel/Pensiune'],
-          additionalFeatures: ['Acces auto', 'Constructie demolabila', 'La sosea', 'Oportunitate de investitii', 'Parcelabil', 'Studiu Geo', 'Teren imprejmuit'],
+          moreFeatures: ['Acces auto', 'Constructie demolabila', 'La sosea', 'Oportunitate de investitii', 'Parcelabil', 'Studiu Geo', 'Teren imprejmuit'],
           landUtilities: ['Apa', 'Canalizare', 'Curent', 'Gaz', 'irigatii', 'Utilitati in zona'],
-          streetfacilities: ['Asfaltate', 'Betonate', 'De pamant', 'Iluminat stradal', 'Mijloace de transport in comun', 'Neamenajate', 'Pietruite'],
+          streetFacilities: ['Asfaltate', 'Betonate', 'De pamant', 'Iluminat stradal', 'Mijloace de transport in comun', 'Neamenajate', 'Pietruite'],
           view: ['Vedere panoramica', 'Vedere spre lac', 'Vedere spre munte', 'Vedere spre oras'],
           parking: ['Garaj', 'Garaj subteran', 'Parcare acoperita', 'Parcare deschisa']
         }])
@@ -156,7 +156,7 @@ mongoose.connect(
           buildingType: ['Bloc de apartamente', 'Cladire birouri', 'Casa/Vila', 'Hala', 'Centru comercial', 'Depozit', 'Stradal'],
           // floors need to accept strings an numbers
           layout: ['Open space', 'Compartimentat', 'Partial compartimentat', 'Flexibil'],
-          additionalCharacteristics: ['Acces auto', 'Acces TIR', 'Constructie demolabila', 'Curent trifazic (380V)', 'La sosea', 'Luminatoare', 'Oportunitate de investitii', 'Panouri solare', 'Pod rulant', 'Posibilitate de compartimentare', 'Sistem de alarma', 'Teren imprejmuit', 'Usi de acces', 'Vestiar'],
+          moreCharacteristics: ['Acces auto', 'Acces TIR', 'Constructie demolabila', 'Curent trifazic (380V)', 'La sosea', 'Luminatoare', 'Oportunitate de investitii', 'Panouri solare', 'Pod rulant', 'Posibilitate de compartimentare', 'Sistem de alarma', 'Teren imprejmuit', 'Usi de acces', 'Vestiar'],
           parking: ['Garaj', 'Garaj subteran', 'Parcare acoperita', 'Parcare deschisa'],
           streetFacilities: ['Asfaltare', 'Betonate', 'De pamant', 'Iluminat stradal', 'Mijloace de transport in comun', 'Neamenajate', 'Pietruite'],
           landFacilities: ['Apa', 'Canalizare', 'Curent', 'Gaz', 'Irigatii', 'Utilitati in zona']

@@ -6,9 +6,9 @@ const schema = new mongoose.Schema({
   areaUnit: { type: [String] },
   classification: { type: [String] },
   useFor: { type: [String] },
-  additionalFeatures: { type: [String] },
+  moreFeatures: { type: [String] },
   landUtilities: { type: [String] },
-  streetfacilities: { type: [String] },
+  streetFacilities: { type: [String] },
   view: { type: [String] },
   parking: { type: [String] }
 })

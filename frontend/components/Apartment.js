@@ -4,8 +4,8 @@ import Axios from 'axios'
 
 import Header from './Header'
 import ApartmentCharacteristics from './ApartmentCharacteristics'
-import ApartmentLocationImages from './ApartmentLocationImages'
-import ApartmentPrice from './ApartmentPrice'
+import PropertyLocationImages from './PropertyLocationImages'
+import PropertyPrice from './PropertyPrice'
 
 
 
@@ -13,7 +13,7 @@ import ApartmentPrice from './ApartmentPrice'
 
 const Apartment = (props) => {
 
-  
+
   const [state, setState] = useState({
     files: '',
     address: {
@@ -52,18 +52,21 @@ const Apartment = (props) => {
   const [location] = useState(props.history.location.state.location.address)
   const [user, setUser] = useState()
   // console.log('location address', props.history.location.state.location.address)
-  
+
   // console.log(props.history.location.state.user)
-  console.log('state', state.facilities)
-  
+  // console.log('state', state.facilities)
+
   useEffect(() => {
+  
+    console.log('use efefct apartment', state)
+
     if (!props.location.state || !props.location.state.user) {
       return
     } else if (!user && props.location.state.user) {
       console.log('user')
       setUser(props.history.location.state.user)
-    } 
-    
+    }
+
   })
 
 
@@ -90,7 +93,7 @@ const Apartment = (props) => {
     for (const [key, value] of Object.entries(state)) {
       formData.append(key, JSON.stringify(value))
     }
- 
+
     // formData.forEach((value,key) => {
     //   console.log('for each')
     // })
@@ -118,7 +121,7 @@ const Apartment = (props) => {
         ...prevState,
         [name]: checked
       }))
-    
+
     } else if (objKey === 'characteristics') {
       console.log('characteristics 3')
       //statement from apartmentCharacteristics objKey(characteristics) = objKey[name]
@@ -126,8 +129,8 @@ const Apartment = (props) => {
         ...prevState,
         [objKey]: type === 'checkbox' ? { ...prevState[objKey], [name]: checked } : { ...prevState[objKey], [name]: value }
       }))
-    }  else if ((objKey === 'priceForSale' || objKey === 'priceForRent') && type === 'checkbox') {
-      //statement for checkboxes from apartmentPrice 
+    } else if ((objKey === 'priceForSale' || objKey === 'priceForRent') && type === 'checkbox') {
+      //statement for checkboxes from propertyPrice 
       console.log('characteristics 2')
       setState(prevState => ({
         ...prevState,
@@ -135,12 +138,21 @@ const Apartment = (props) => {
       }))
     } else if (type === 'checkbox') {
       //statement from apartmentCharacteristics(checkboxes) objKey = 'characteristics'
-      console.log('characteristics 4')
-      setState(prevState => ({
-        ...prevState,
-        [objKey]: { ...prevState[objKey], [name]: [...prevState[objKey][name], value] }
+      console.log('characteristics 4')    
+      if (checked) {
+        setState(prevState => ({
+          ...prevState,
+          [objKey]: { ...prevState[objKey], [name]: [...prevState[objKey][name], value] }
 
-      }))
+        }))
+      } else {
+        const prevSelected = state[objKey][name]      
+        const newArray = prevSelected.filter((i) => i !== value)
+        setState(prevState => ({
+          ...prevState,
+          [objKey]: { ...prevState[objKey], [name]: newArray }
+        }))
+      }
     } else if (objKey) {
       console.log('characteristics 5')
 
@@ -173,16 +185,6 @@ const Apartment = (props) => {
     setState({ ...state, images: filesUrls, files: event.target.files })
   }
 
-  // const isChecked = (selectedOptions, currentOption) => {
-  //   // console.log('selected', selectedOptions, currentOption)
-  //   if (currentOption) {
-  //     setState(currentOption === true)
-  //   } else {
-  //     setState(currentOption === false)
-  //   }
-  //   const isChecked = selectedOptions.includes(currentOption)
-  //   return isChecked
-    
 
   // }
   // const checkboxHandler = (e) => {
@@ -198,7 +200,7 @@ const Apartment = (props) => {
 
 
   return <div className="property-container">
-    <Header user={user}/>
+    <Header user={user} />
     <div className="fields-container">
       <div onClick={() => handleLocation()}
         className="content">
@@ -224,13 +226,13 @@ const Apartment = (props) => {
       handleChange={event => handleChange(event)}
       state={state}
     />}
-    {currentSelection === 'Location' && <ApartmentLocationImages
+    {currentSelection === 'Location' && <PropertyLocationImages
       handlelocationChange={event => handlelocationChange(event)}
       handleImageChange={event => handleImageChange(event)}
       state={state}
       location={location}
     />}
-    {currentSelection === 'Price' && <ApartmentPrice
+    {currentSelection === 'Price' && <PropertyPrice
       // checkboxHandler={event => checkboxHandler(event)}
       handleChange={event => handleChange(event)}
       state={state}

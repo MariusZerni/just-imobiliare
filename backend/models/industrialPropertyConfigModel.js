@@ -6,7 +6,7 @@ const schema = new mongoose.Schema({
   buildingType: { type: [String] },
   // floors need to accept strings an numbers
   layout: { type: [String] },
-  additionalCharacteristics: { type: [String] },
+  moreCharacteristics: { type: [String] },
   parking: { type: [String] },
   streetFacilities: { type: [String] },
   landFacilities: { type: [String] }

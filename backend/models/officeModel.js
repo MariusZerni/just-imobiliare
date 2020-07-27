@@ -4,10 +4,6 @@ const images = new mongoose.Schema({
   image: { type: String }
 })
 
-const buildingCharacteristics = new mongoose.Schema({
-  year: { type: Number },
-  numberOfFloors: { type: Number }
-})
 
 const description = new mongoose.Schema({
   title: { type: String, maxLength: 80 },
@@ -15,15 +11,15 @@ const description = new mongoose.Schema({
 })
 
 const technicalParameters = new mongoose.Schema({
-  servicesProvided: { type: String },
-  internetAndComunication: { type: String },
-  safetyAndSecurity: { type: String },
-  electricalSystem: { type: String },
-  ecoElements: { type: String },
-  arhitecture: { type: String },
-  officeAirConditioning: { type: String },
-  parking: { type: String },
-  view: { type: String }
+  servicesProvided: { type: [String] },
+  internetAndComunication: { type: [String] },
+  safetyAndSecurity: { type: [String] },
+  electricalSystem: { type: [String] },
+  ecoElements: { type: [String] },
+  arhitecture: { type: [String] },
+  officeAirConditioning: { type: [String] },
+  parking: { type: [String] },
+  view: { type: [String] }
 })
 
 // Price Schema
@@ -85,16 +81,17 @@ const schema = new mongoose.Schema({
   bathrooms: { type: Number },
   terrace: { type: Number },
   availability: { type: String },
-  squareMeter: { type: Number },
-  parking: { type: String },
+  squareMeters: { type: Number },
+  parkings: { type: String },
   parkingPrice: { type: Number },
   buildingType: { type: String },
-  numberOfFloors: { type: Number },
+  floor: { type: Number },
   numberOfRooms: { type: Number },
   layout: { type: String },
+  year: { type: Number },
+  numberOfFloors: { type: Number },
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
-  buildingCharacteristics: buildingCharacteristics,
   description: description,
   technicalParameters: technicalParameters,
   images: images

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { squareMeters, thousandsSeparators } from '../utilities/Utilities'
 
 
-const ApartmentPrice = ({ handleChange, state }) => {
+const PropertyPrice = ({ handleChange, state }) => {
 
   const [saleRent, setSaleRent] = useState('Sale')
   const [priceSqm, setPriceSqm] = useState()
@@ -70,7 +70,7 @@ const ApartmentPrice = ({ handleChange, state }) => {
                   defaultValue={priceSqm} />
               </div>
               <div className="field">
-                <input className="checkbox" type="checkbox" onChange={()=>{}} name="negociable"
+                <input className="checkbox" type="checkbox" name="negociable"
                   datacontainer="priceForSale"
                   defaultChecked={priceSqm} />
                 <h6>Pret vanzare negociabil</h6>
@@ -312,4 +312,4 @@ const ApartmentPrice = ({ handleChange, state }) => {
 }
 
 
-export default ApartmentPrice
+export default PropertyPrice

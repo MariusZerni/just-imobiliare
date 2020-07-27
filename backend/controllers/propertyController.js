@@ -101,11 +101,12 @@ function edit(req, res) {
   // const currentUser = req.currentUser
   const id = req.params.id
   const newBody = {}
+  
   for (const [key, value] of Object.entries(req.body)) {
     // console.log(`${key}: ${value}`)
     newBody[key] =  JSON.parse(value)
   }
-
+  console.log('newBody',newBody)
   let editedProperty = { ...newBody, images: [] }
   if (req.files && req.files.file) {
     const file = req.files.file
@@ -132,12 +133,14 @@ function edit(req, res) {
         }        
       }) 
     }
-
+    console.log('edited property', editedProperty)
 
 
     const Property = propertyType(req)
+    console.log('Property', Property)
     Property.findById(id)
       .then(property => {
+        console.log('property')
         return property.set(editedProperty)
       })
       .then(property => {
@@ -155,8 +158,10 @@ function edit(req, res) {
 
   } else {
     const Property = propertyType(req)
+    console.log('Property', Property)
     Property.findById(id)
       .then(property => {
+        console.log('else', property)
         return property.set(editedProperty)
       })
       .then(property => {

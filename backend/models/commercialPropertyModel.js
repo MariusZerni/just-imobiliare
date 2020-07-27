@@ -4,14 +4,7 @@ const images = new mongoose.Schema({
   image: { type: String }
 })
 
-const buidingCharacteristics = new mongoose.Schema({
-  year: { type: Number },
-  numberOfFloors: { type: Number },
-  lowerGroundFloor: { type: Number },
-  seismicRisk: { type: String },
-  historicalMonument: { type: Boolean },
-  attic: { type: Boolean }
-})
+
 
 const description = new mongoose.Schema({
   title: { type: String, maxLength: 80 },
@@ -19,11 +12,11 @@ const description = new mongoose.Schema({
 })
 
 const additionalFeatures = new mongoose.Schema({
-  landUtilities: { type: String },
-  ecoElements: { type: String },
-  extraCharacteristics: { type: String },
-  parking: { type: String },
-  view: { type: String }
+  landUtilities: { type: [String] },
+  ecoElements: { type: [String] },
+  extraCharacteristics: { type: [String] },
+  parking: { type: [String] },
+  view: { type: [String] }
 })
 
 // Price Schema
@@ -82,21 +75,27 @@ const schema = new mongoose.Schema({
   transactionType: { type: String },
   propertyType: { type: String },
   pedestrianTraffic: { type: String },
-  numberOfFloors: { type: Number },
-  bathroom: { type: Number },
+  floor: { type: Number },
+  bathrooms: { type: Number },
   kitchen: { type: Number },
-  squareMeter: { type: Number },
-  roadFronts: { type: Number },
+  squareMeters: { type: Number },
+  roadFront: { type: Number },
   interiorHeight: { type: Number },
   layout: { type: String },
   buildingTypes: { type: String },
-  destination: { type: String },
-  rooms: { type: Number },
+  availability: { type: String },
+  numberOfRooms: { type: Number },
   terrace: { type: Number },
-  parking: { type: Number },
+  parkingSpace: { type: Number },
+  constructionYear: { type: Number },
+  numberOfFloors: { type: Number },
+  lowerGroundFloor: { type: Number },
+  seismicRisk: { type: String },
+  historicalMonument: { type: Boolean },
+  attic: { type: Boolean },
+  consolidatedBuilding: { type: Boolean },
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
-  buidingCharacteristics: buidingCharacteristics,
   description: description,
   additionalFeatures: additionalFeatures,
   images: images

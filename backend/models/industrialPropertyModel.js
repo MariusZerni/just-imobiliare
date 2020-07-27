@@ -9,7 +9,7 @@ const description = new mongoose.Schema({
   description: { type: String, maxLength: 300 }
 })
 const additionalCharacteristics = new mongoose.Schema({
-  additionalCharacteristics: { type: String },
+  moreCharacteristics: { type: String },
   parking: { type: String },
   streetFacilities: { type: String },
   landFacilities: { type: String }
@@ -68,14 +68,14 @@ const priceForRenting = new mongoose.Schema({
 })
 
 const schema = new mongoose.Schema({
-  transactionType: { type: String },
-  propertyType: { type: String },
+  layout: { type: String },
   useFor: { type: String },
-  officeType: { type: String },
   bathrooms: { type: Number },
   terrace: { type: Number },
-  year: { type: Number },
-  officeSquareMeter: { type: Number },
+  constructionYear: { type: Number },
+  officeSquareMeters: { type: Number },
+  productionAreaSqm: { type: Number },
+  squareMeters: { type: Number },
   doorsDimensions: { type: Number },
   buildingType: { type: String },
   numberOfFloors: { type: Number },
@@ -83,8 +83,9 @@ const schema = new mongoose.Schema({
   cloackroom: { type: Number },
   kitchen: { type: Number },
   parking: { type: Number },
-  landSquareMeter: { type: Number },
+  landSquareMeters: { type: Number },
   interiorHeight: { type: Number },
+  availability: { type: String },
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
   description: description,

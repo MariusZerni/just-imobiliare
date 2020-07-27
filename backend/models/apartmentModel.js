@@ -35,7 +35,7 @@ const facilities = new mongoose.Schema({
   furnished: { type: [String] },
   kitchenType: { type: [String] },
   otherSpaces: { type: [String] },
-  streetFaciities: { type: [String] },
+  streetFacilities: { type: [String] },
   parking: { type: [String] },
   windows: { type: [String] },
   generalUtilities: { type: [String] },

@@ -10,6 +10,7 @@ const schema = new mongoose.Schema({
   buildingType: { type: [String] },
   constructionStage: { type: [String] },
   constructionType: { type: [String] },
+  // Features are the same for apartment and house
   features: { type: [String] },
   characteristics: { type: [String] },
   seismicRisk: { type: [String] },

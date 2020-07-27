@@ -1,20 +1,7 @@
 const mongoose = require('mongoose')
 
-const images = new mongoose.Schema({
-  image: { type: String }
-})
 
-const annexes = new mongoose.Schema({
-  numberOfRooms: { type: Number },
-  bedroom: { type: Number },
-  kitchen: { type: Number },
-  bathrooms: { type: Number },
-  bathroomWindow: { type: Boolean },
-  balcony: { type: Number },
-  terrace: { type: Number },
-  garage: { type: Number },
-  parkingSpace: { type: Number }
-})
+
 
 const descriptionAndTitle = new mongoose.Schema({
   title: { type: String, maxLength: 80 },
@@ -33,7 +20,7 @@ const facilities = new mongoose.Schema({
   furnished: { type: [String] },
   kitchenType: { type: [String] },
   otherSpaces: { type: [String] },
-  streetFaciities: { type: [String] },
+  streetFacilities: { type: [String] },
   parking: { type: [String] },
   windows: { type: [String] },
   generalUtilities: { type: [String] },
@@ -101,28 +88,38 @@ const schema = new mongoose.Schema({
   availability: { type: String },
   houseType: { type: String },
   interiorState: { type: String },
-  year: { type: Number },
+  refurbishedYear: { type: Number },
   builtArea: { type: Number },
-  squareMeter: { type: Number },
-  landSquareMeter: { type: Number },
+  squareMeters: { type: Number },
+  landSquareMeters: { type: Number },
   gardenSquareMeter: { type: Number },
   terrace: { type: Number },
+  frontAccess: { type: Number },
   roof: { type: String },
-  cnstructionStage: { type: String },
+  constructionStage: { type: String },
+  constructionYear: { type: String },
   constructionType: { type: String },
   seismicRisk: { type: String },
   historicalMonument: { type: Boolean },
   consolidatedBuilding: { type: Boolean },
   thermalRehabilitation: { type: Boolean },
-  lowerGroundFloor: { type: Number },
+  basement: { type: Number },
   numberOfFloors: { type: Number },
   attic: { type: Boolean },
-  annexes: annexes,
+  numberOfRooms: { type: Number },
+  bedrooms: { type: Number },
+  kitchens: { type: Number },
+  bathrooms: { type: Number },
+  bathroomWindow: { type: Boolean },
+  balconies: { type: Number },
+  garage: { type: Number },
+  parkingSpace: { type: Number },
+  images: { type: [String] },
   descriptionAndTitle: descriptionAndTitle,
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
-  facilities: facilities,
-  images: images
+  facilities: facilities
+  
 })
 
 

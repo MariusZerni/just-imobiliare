@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 
-const ApartmentCharacteristics = ({ handleChange, state }) => {
+const HousePrice = ({ handleChange, state }) => {
+
   const [configs, setConfigs] = useState(null)
 
 
-
+  // console.log('features', state.facilities.features)
   useEffect(() => {
+    // fetchCharacteristics()
+
     if (configs) {
       return
     } else {
@@ -14,21 +17,25 @@ const ApartmentCharacteristics = ({ handleChange, state }) => {
     }
   })
 
+  if (configs) {
+    console.log('real estate', configs)
+  }
+  
+
   const isChecked = (selectedOptions, currentOption) => {
     return selectedOptions ? selectedOptions.includes(currentOption) : false
   }
 
-
   const fetchCharacteristics = () => {
-    Axios.get('/api/property-config/apartment')
+    Axios.get('/api/property-config/house')
       .then(res => {
+        console.log('res', res)
         if (res.data.length > 0) {
           setConfigs(res.data[0])
         }
       })
       .catch(error => console.log(error))
   }
-
 
   return configs ? <form onChange={event => handleChange(event)}>
 
@@ -37,62 +44,24 @@ const ApartmentCharacteristics = ({ handleChange, state }) => {
         <div className="characteristics">
           <div className="characteristics-content">
             <h4>Caracteristici apartament</h4>
+
             <div className="field">
-              <h6>Tip proprietate</h6>
-              <select defaultValue={state.propertyType}
-                name="propertyType" >
-                <option selected disabled hidden>--------</option>
-                <option value="apartament">Apartament</option>
-                <option value="casa">Casa</option>
-              </select>
-            </div>
-            <div className="field">
-              <h6>Tip apartament</h6>
+              <h6>Destinatie</h6>
               <select
-                defaultValue={state.apartmentType}
-                name="apartmentType" >
+                defaultValue={state.useFor}
+                name="useFor" >
                 <option selected disabled hidden>--------</option>
-                {configs.apartmentType.map(elem => {
+                {configs.useFor.map(elem => {
                   return <option key={elem} value={elem}>{elem}</option>
                 })}
               </select>
             </div>
             <div className="field">
-              <h6>Compartimentare</h6>
-              <select defaultValue={state.compartments}
-                name="compartments" >
+              <h6>Tip casa</h6>
+              <select defaultValue={state.houseType}
+                name="houseType" >
                 <option selected disabled hidden>--------</option>
-                {configs.compartments.map(elem => {
-                  return <option key={elem} value={elem}>{elem}</option>
-                })}
-              </select>
-            </div>
-            <div className="field">
-              <h6>Orientare</h6>
-              <select defaultValue={state.facingDirection}
-                name="facingDirection" >
-                <option selected disabled hidden>--------</option>
-                {configs.facingDirection.map(elem => {
-                  return <option key={elem} value={elem}>{elem}</option>
-                })}
-              </select>
-            </div>
-            <div className="field">
-              <h6>Etaj</h6>
-              <select defaultValue={state.floor}
-                name="floor" >
-                <option selected disabled hidden>--------</option>
-                {configs.floor.map(elem => {
-                  return <option key={elem} value={elem}>{elem}</option>
-                })}
-              </select>
-            </div>
-            <div className="field">
-              <h6>Confort</h6>
-              <select defaultValue={state.comforType}
-                name="comfortType" >
-                <option selected disabled hidden>--------</option>
-                {configs.comfortType.map(elem => {
+                {configs.houseType.map(elem => {
                   return <option key={elem} value={elem}>{elem}</option>
                 })}
               </select>
@@ -108,16 +77,59 @@ const ApartmentCharacteristics = ({ handleChange, state }) => {
               </select>
             </div>
             <div className="field">
-              <h6>Disponibilitate</h6>
-              <input type="text" name="availability"
-                defaultValue={state.availability}
+              <h6>Acoperis</h6>
+              <select defaultValue={state.roof}
+                name="roof" >
+                <option selected disabled hidden>--------</option>
+                {configs.roof.map(elem => {
+                  return <option key={elem} value={elem}>{elem}</option>
+                })}
+              </select>
+            </div>
+            <div className="field">
+              <h6>Stadiu Constructie</h6>
+              <select defaultValue={state.constructionStage}
+                name="constructionStage" >
+                <option selected disabled hidden>--------</option>
+                {configs.constructionStage.map(elem => {
+                  return <option key={elem} value={elem}>{elem}</option>
+                })}
+              </select>
+            </div>
+            <div className="field">
+              <h6>Tip Constructie</h6>
+              <select defaultValue={state.constructionType}
+                name="constructionType" >
+                <option selected disabled hidden>--------</option>
+                {configs.constructionType.map(elem => {
+                  return <option key={elem} value={elem}>{elem}</option>
+                })}
+              </select>
+            </div>
+            <div className="field">
+              <h6>Risc seismic</h6>
+              <select defaultValue={state.seismicRisk}
+                name="seismicRisk" >
+                <option selected disabled hidden>--------</option>
+                {configs.seismicRisk.map(elem => {
+                  return <option key={elem} value={elem}>{elem}</option>
+                })}
+              </select>
+            </div>
+
+            <div className="field">
+              <h6>Anul finisarii</h6>
+              <input type="text" name="refurbishedYear"
+                defaultValue={state.refurbishedYear}
               />
             </div>
             <div className="field">
-              <h6>Anul finisarii</h6>
-              <input defaultValue={state.year}
-                type="text" name="year" />
+              <h6>An constructie</h6>
+              <input type="text" name="constructionYear"
+                defaultValue={state.constructionYear}
+              />
             </div>
+
             <div className="field">
               <h6>S utila (mp)</h6>
               <input defaultValue={state.squareMeters}
@@ -129,21 +141,60 @@ const ApartmentCharacteristics = ({ handleChange, state }) => {
                 type="text" name="builtArea" />
             </div>
             <div className="field">
+              <h6>S teren (mp)</h6>
+              <input defaultValue={state.landSquareMeters}
+                type="text" name="landSquareMeters" />
+            </div>
+            <div className="field">
+              <h6>S curte (mp)</h6>
+              <input defaultValue={state.gardenSquareMeter}
+                type="text" name="gardenSquareMeter" />
+            </div>
+            <div className="field">
               <h6>S terasa (mp)</h6>
               <input defaultValue={state.terrace}
                 type="text" name="terrace" />
             </div>
             <div className="field">
-              <h6>S balcoane (mp)</h6>
-              <input defaultValue={state.balcony}
-                type="text" name="balcony" />
+              <h6>Deschidere (m)</h6>
+              <input defaultValue={state.frontAccess}
+                type="text" name="frontAccess" />
             </div>
             <div className="field">
-              <h6>S curte (mp)</h6>
-              <input defaultValue={state.garden}
-                type="text" name="garden" />
+              <h6>Nr subsoluri</h6>
+              <input defaultValue={state.basement}
+                type="text" name="basement" />
+            </div>
+            <div className="field">
+              <h6>Nr etaje</h6>
+              <input defaultValue={state.numberOfFloors}
+                type="text" name="numberOfFloors" />
+            </div>
+            <div className="checkbox">
+              <input checked={state.historicalMonument}
+                type="checkbox" name="historicalMonument" />
+              <h6>Monument istoric</h6>
+            </div>
+            <div className="checkbox">
+              <input checked={state.thermalRehabilitation}
+                type="checkbox" name="thermalRehabilitation" />
+              <h6>Reabilitat termic</h6>
+            </div>
+            <div className="checkbox">
+              <input checked={state.consolidatedBuilding}
+                type="checkbox" name="consolidatedBuilding" />
+              <h6>Imobil consolidat</h6>
+            </div>
+            <div className="checkbox">
+              <input checked={state.attic}
+                type="checkbox" name="attic" />
+              <h6>Mansarda</h6>
             </div>
           </div>
+
+
+
+
           <div className="characteristics-content">
             <h4>Incaperi si anexe</h4>
             <div className="field">
@@ -158,8 +209,8 @@ const ApartmentCharacteristics = ({ handleChange, state }) => {
             </div>
             <div className="field">
               <h6>Nr. bucatarii</h6>
-              <input defaultValue={state.kitchen}
-                type="text" name="kitchen" />
+              <input defaultValue={state.kitchens}
+                type="text" name="kitchens" />
             </div>
             <div className="field">
               <h6>Nr. bai</h6>
@@ -172,6 +223,11 @@ const ApartmentCharacteristics = ({ handleChange, state }) => {
               <h6>Geam la baie</h6>
             </div>
             <div className="field">
+              <h6>Nr. balcoane</h6>
+              <input defaultValue={state.balconies}
+                type="text" name="balconies" />
+            </div>
+            <div className="field">
               <h6>Nr. garaje</h6>
               <input defaultValue={state.garage}
                 type="text" name="garage" />
@@ -182,99 +238,12 @@ const ApartmentCharacteristics = ({ handleChange, state }) => {
                 type="text" name="parkingSpace" />
             </div>
           </div>
-
-          {/* Characteristics key */}
-          <div className="characteristics-content">
-            <h4>Caracteristici imobil</h4>
-            <div className="field">
-              <h6>Imobil</h6>
-              <select defaultValue={state.characteristics.buildingType}
-                datacontainer="characteristics"
-                name="buildingType" >
-                <option selected disabled hidden>--------</option>
-                {configs.buildingType.map(elem => {
-                  return <option key={elem} value={elem}>{elem}</option>
-                })}
-              </select>
-            </div>
-            <div className="field">
-              <h6>An. constructie</h6>
-              <input defaultValue={state.characteristics.constructionYear}
-                datacontainer="characteristics"
-                type="text" name="constructionYear" />
-            </div>
-            <div className="field">
-              <h6>Stadiu constructie</h6>
-              <select defaultValue={state.characteristics.constructionStage}
-                datacontainer="characteristics"
-                name="constructionStage" >
-                <option selected disabled hidden>--------</option>
-                {configs.constructionStage.map(elem => {
-                  return <option key={elem} value={elem}>{elem}</option>
-                })}
-              </select>
-            </div>
-            <div className="field">
-              <h6>Tip constructie</h6>
-              <select defaultValue={state.characteristics.constructionType}
-                datacontainer="characteristics"
-                name="constructionType" >
-                <option selected disabled hidden>--------</option>
-                {configs.constructionType.map(elem => {
-                  return <option key={elem} value={elem}>{elem}</option>
-                })}
-              </select>
-            </div>
-            <div className="field">
-              <h6>Risc seismic</h6>
-              <select defaultValue={state.characteristics.seismicRisk}
-                datacontainer="characteristics"
-                name="seismicRisk" >
-                <option selected disabled hidden>--------</option>
-                {configs.seismicRisk.map(elem => {
-                  return <option key={elem} value={elem}>{elem}</option>
-                })}
-              </select>
-            </div>
-
-            <div className="field">
-              <h6>Nr. etaje imobil</h6>
-              <input datacontainer="characteristics"
-                type="text" name="numberOfFloors" />
-            </div>
-            <div className="field">
-              <h6>Nr. subsoluri</h6>
-              <input datacontainer="characteristics"
-                type="text" name="lowerGroundFloor" />
-            </div>
-            <div className="checkbox">
-              <input checked={state.characteristics.historicalMonument}
-                // checked={characteristics.historicalMonument ? true : false}
-                datacontainer="characteristics"
-                type="checkbox" name="historicalMonument" />
-              <h6>Monument istoric</h6>
-            </div>
-            <div className="checkbox">
-              <input checked={state.characteristics.thermalRehabilitation}
-                datacontainer="characteristics"
-                type="checkbox" name="thermalRehabilitation" />
-              <h6>Reabilitare termic</h6>
-            </div>
-            <div className="checkbox">
-              <input checked={state.characteristics.consolidatedBuilding}
-                datacontainer="characteristics"
-                type="checkbox" name="consolidatedBuilding" />
-              <h6>Imobil consolidatc</h6>
-            </div>
-            <div className="checkbox">
-              <input checked={state.characteristics.attic}
-                datacontainer="characteristics"
-                type="checkbox" name="attic" value="attic" />
-              <h6>Pod</h6>
-            </div>
-          </div>
         </div>
         {/* End of Characteristics */}
+
+
+
+
 
         {/* Facilities key */}
         <div className="right-container">
@@ -466,8 +435,9 @@ const ApartmentCharacteristics = ({ handleChange, state }) => {
 
     </div>
   </form> : null
+
+  
 }
 
 
-
-export default ApartmentCharacteristics
+export default HousePrice

@@ -1,29 +1,19 @@
 const mongoose = require('mongoose')
 
-const images = new mongoose.Schema({
-  image: { type: String }
-})
 
-const townPlanning = new mongoose.Schema({
-  CUT: { type: String },
-  constructionAuthorization: { type: Boolean },
-  approvedPUD: { type: Boolean },
-  POT: { type: Number },
-  approvedPUZ: { type: Boolean },
-  urbanCertificate: { type: Boolean }
-})
+
 
 const description = new mongoose.Schema({
   title: { type: String, maxLength: 80 },
   description: { type: String, maxLength: 300 }
 })
 
-const additionalFeature = new mongoose.Schema({
-  additionalFeature: { type: String },
-  landUtilities: { type: String },
-  streetFacilities: { type: String },
-  view: { type: String },
-  parking: { type: String }
+const additionalFeatures = new mongoose.Schema({
+  moreFeatures: { type: [String] },
+  landUtilities: { type: [String] },
+  streetFacilities: { type: [String] },
+  view: { type: [String] },
+  parking: { type: [String] }
 })
 
 // Price Schema
@@ -82,24 +72,27 @@ const schema = new mongoose.Schema({
   transactionType: { type: String },
   propertyType: { type: String },
   type: { type: String },
-  squareMeter: { type: Number },
+  squareMeters: { type: Number },
   streetFront: { type: Number },
-  access: { type: String },
+  accessFrom: { type: String },
   distanceFromUtilities: { type: Number },
   inclination: { type: Number },
-  accessRoadWidth: { type: Number },
   landType: { type: String },
   areaUnit: { type: String },
   roadFronts: { type: Number },
   classification: { type: String },
-  destination: { type: String },
+  useFor: { type: String },
   availability: { type: String },
+  CUT: { type: String },
+  constructionAuthorization: { type: Boolean },
+  approvedPUD: { type: Boolean },
+  POT: { type: Number },
+  approvedPUZ: { type: Boolean },
+  urbanCertificate: { type: Boolean },
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
-  townPlanning: townPlanning,
   description: description,
-  additionalFeature: additionalFeature,
-  images: images
+  additionalFeatures: additionalFeatures
 })
 
 
