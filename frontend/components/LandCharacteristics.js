@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 
-const LandCharacteristics = ({ handleChange, state }) => {
+const LandCharacteristics = ({ handleChange, formState }) => {
   const [configs, setConfigs] = useState(null)
 
   console.log('state configs', configs)
@@ -36,13 +36,13 @@ const LandCharacteristics = ({ handleChange, state }) => {
   return configs ? <form onChange={event => handleChange(event)}>
 
     <div className="characteristics-container">
-      <div className="left-container">
-        <div className="characteristics">
+      <div className="inner-container">
+        <div className="left-container">
           <div className="characteristics-content">
             <h4>Caracteristici teren</h4>
             <div className="field">
               <h6>Tip teren</h6>
-              <select defaultValue={state.landType}
+              <select defaultValue={formState.landType}
                 name="landType" >
                 <option selected disabled hidden>--------</option>
                 {configs.landType.map(elem => {
@@ -53,7 +53,7 @@ const LandCharacteristics = ({ handleChange, state }) => {
             <div className="field">
               <h6>Deschidere la</h6>
               <select
-                defaultValue={state.accessFrom}
+                defaultValue={formState.accessFrom}
                 name="accessFrom" >
                 <option selected disabled hidden>--------</option>
                 {configs.accessFrom.map(elem => {
@@ -63,7 +63,7 @@ const LandCharacteristics = ({ handleChange, state }) => {
             </div>
             <div className="field">
               <h6>Clasificare</h6>
-              <select defaultValue={state.classification}
+              <select defaultValue={formState.classification}
                 name="classification" >
                 <option selected disabled hidden>--------</option>
                 {configs.classification.map(elem => {
@@ -73,7 +73,7 @@ const LandCharacteristics = ({ handleChange, state }) => {
             </div>
             <div className="field">
               <h6>Destinatie</h6>
-              <select defaultValue={state.useFor}
+              <select defaultValue={formState.useFor}
                 name="useFor" >
                 <option selected disabled hidden>--------</option>
                 {configs.useFor.map(elem => {
@@ -87,32 +87,32 @@ const LandCharacteristics = ({ handleChange, state }) => {
             <div className="field">
               <h6>S teren</h6>
               <input type="text" name="squareMeters"
-                defaultValue={state.squareMeters}
+                defaultValue={formState.squareMeters}
               />
             </div>
             <div className="field">
               <h6>Front stradal (m)</h6>
-              <input defaultValue={state.streetFront}
+              <input defaultValue={formState.streetFront}
                 type="text" name="streetFront" />
             </div>
             <div className="field">
               <h6>Distanta utilitati</h6>
-              <input defaultValue={state.distanceFromUtilities}
+              <input defaultValue={formState.distanceFromUtilities}
                 type="text" name="distanceFromUtilities" />
             </div>
             <div className="field">
               <h6>Inclinatie</h6>
-              <input defaultValue={state.inclination}
+              <input defaultValue={formState.inclination}
                 type="text" name="inclination" />
             </div>
             <div className="field">
               <h6>Clasificare</h6>
-              <input defaultValue={state.classification}
+              <input defaultValue={formState.classification}
                 type="text" name="classification" />
             </div>
             <div className="field">
               <h6>Disponibilitate</h6>
-              <input defaultValue={state.availability}
+              <input defaultValue={formState.availability}
                 type="text" name="availability" />
             </div>
           </div>
@@ -125,31 +125,31 @@ const LandCharacteristics = ({ handleChange, state }) => {
             <h4>Urbanism</h4>
             <div className="field">
               <h6>CUT</h6>
-              <input defaultValue={state.CUT}
+              <input defaultValue={formState.CUT}
                 type="text" name="CUT" />
             </div>
             <div className="field">
               <h6>POT (%)</h6>
-              <input defaultValue={state.POT}
+              <input defaultValue={formState.POT}
                 type="text" name="POT" />
             </div>
             <div className="checkbox">
-              <input checked={state.constructionAuthorization}
+              <input checked={formState.constructionAuthorization}
                 type="checkbox" name="constructionAuthorization" />
               <h6>Autorizatie de constructie</h6>
             </div>
             <div className="checkbox">
-              <input checked={state.approvedPUD}
+              <input checked={formState.approvedPUD}
                 type="checkbox" name="approvedPUD" />
               <h6>PUD aprobat</h6>
             </div>
             <div className="checkbox">
-              <input checked={state.approvedPUZ}
+              <input checked={formState.approvedPUZ}
                 type="checkbox" name="approvedPUZ" />
               <h6>PUZ aprobat</h6>
             </div>
             <div className="checkbox">
-              <input checked={state.urbanCertificate}
+              <input checked={formState.urbanCertificate}
                 type="checkbox" name="urbanCertificate" />
               <h6>Certificat de urbanism</h6>
             </div>
@@ -168,7 +168,7 @@ const LandCharacteristics = ({ handleChange, state }) => {
 
                 return <div
                   key={elem} className="checkbox">
-                  <input checked={isChecked(state.additionalFeatures.moreFeatures, elem)}
+                  <input checked={isChecked(formState.additionalFeatures.moreFeatures, elem)}
                     datacontainer="additionalFeatures"
                     type="checkbox" name="moreFeatures" value={elem} />
                   <h6>{elem}</h6>
@@ -178,7 +178,7 @@ const LandCharacteristics = ({ handleChange, state }) => {
               <h5>Utilitati teren</h5>
               {configs.landUtilities.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.additionalFeatures.landUtilities, elem)}
+                  <input checked={isChecked(formState.additionalFeatures.landUtilities, elem)}
                     datacontainer="additionalFeatures"
                     type="checkbox" name="landUtilities" value={elem} />
                   <h6>{elem}</h6>
@@ -189,7 +189,7 @@ const LandCharacteristics = ({ handleChange, state }) => {
               <h5>Amenajare strazi</h5>
               {configs.streetFacilities.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.additionalFeatures.streetFacilities, elem)}
+                  <input checked={isChecked(formState.additionalFeatures.streetFacilities, elem)}
                     datacontainer="additionalFeatures"
                     type="checkbox" name="streetFacilities" value={elem} />
                   <h6>{elem}</h6>
@@ -201,7 +201,7 @@ const LandCharacteristics = ({ handleChange, state }) => {
               <h5>Priveliste</h5>
               {configs.view.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.additionalFeatures.view, elem)}
+                  <input checked={isChecked(formState.additionalFeatures.view, elem)}
                     datacontainer="additionalFeatures"
                     type="checkbox" name="view" value={elem} />
                   <h6>{elem}</h6>
@@ -210,7 +210,7 @@ const LandCharacteristics = ({ handleChange, state }) => {
               <h5>Parcare</h5>
               {configs.parking.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.additionalFeatures.parking, elem)}
+                  <input checked={isChecked(formState.additionalFeatures.parking, elem)}
                     datacontainer="additionalFeatures"
                     type="checkbox" name="parking" value={elem} />
                   <h6>{elem}</h6>
@@ -228,12 +228,12 @@ const LandCharacteristics = ({ handleChange, state }) => {
       <div className="description-container">
         <div className="title">
           <h5>Title</h5>
-          <textarea defaultValue={state.title}
+          <textarea defaultValue={formState.title}
             name="title" rows="2"></textarea>
         </div>
         <div className="description">
           <h5>Description</h5>
-          <textarea defaultValue={state.description}
+          <textarea defaultValue={formState.description}
             name="description" rows="10"></textarea>
         </div>
       </div>

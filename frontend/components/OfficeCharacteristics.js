@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 
-const OfficeCharacteristics = ({ handleChange, state }) => {
+const OfficeCharacteristics = ({ handleChange, formState }) => {
   const [configs, setConfigs] = useState(null)
 
   // console.log('state configs', configs.servicesProvided)
@@ -36,13 +36,13 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
   return configs ? <form onChange={event => handleChange(event)}>
 
     <div className="characteristics-container">
-      <div className="left-container">
-        <div className="characteristics">
+      <div className="inner-container">
+        <div className="left-container">
           <div className="characteristics-content">
             <h4>Caracteristici spatiu de birouri</h4>
             <div className="field">
               <h6>Clasa birouri</h6>
-              <select defaultValue={state.officeType}
+              <select defaultValue={formState.officeType}
                 name="officeType" >
                 <option selected disabled hidden>--------</option>
                 {configs.officeType.map(elem => {
@@ -54,7 +54,7 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
 
             <div className="field">
               <h6>Compartimentare</h6>
-              <select defaultValue={state.layout}
+              <select defaultValue={formState.layout}
                 name="layout" >
                 <option selected disabled hidden>--------</option>
                 {configs.layout.map(elem => {
@@ -66,7 +66,7 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
             <div className="field">
               <h6>Etaj</h6>
               <input type="text" name="floor"
-                defaultValue={state.floor}
+                defaultValue={formState.floor}
               />
             </div>
 
@@ -74,39 +74,39 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
             <div className="field">
               <h6>Nr camere</h6>
               <input type="text" name="numberOfRooms"
-                defaultValue={state.numberOfRooms}
+                defaultValue={formState.numberOfRooms}
               />
             </div>
 
             <div className="field">
               <h6>Nr bai</h6>
               <input type="text" name="bathrooms"
-                defaultValue={state.bathrooms}
+                defaultValue={formState.bathrooms}
               />
             </div>
             <div className="field">
               <h6>Nr terase</h6>
-              <input defaultValue={state.terrace}
+              <input defaultValue={formState.terrace}
                 type="text" name="terrace" />
             </div>
             <div className="field">
               <h6>Disponibilitate</h6>
-              <input defaultValue={state.availability}
+              <input defaultValue={formState.availability}
                 type="text" name="availability" />
             </div>
             <div className="field">
               <h6>S birouri</h6>
-              <input defaultValue={state.squareMeters}
+              <input defaultValue={formState.squareMeters}
                 type="text" name="squareMeters" />
             </div>
             <div className="field">
               <h6>Nr parcari</h6>
-              <input defaultValue={state.parkings}
+              <input defaultValue={formState.parkings}
                 type="text" name="parkings" />
             </div>
             <div className="field">
               <h6>Cost parcare</h6>
-              <input defaultValue={state.parkingPrice}
+              <input defaultValue={formState.parkingPrice}
                 type="text" name="parkingPrice" />
             </div>
           </div>
@@ -119,7 +119,7 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
             <h4>Caracteristici imobil</h4>
             <div className="field">
               <h6>Tip imobil</h6>
-              <select defaultValue={state.buildingType}
+              <select defaultValue={formState.buildingType}
                 name="buildingType" >
                 <option selected disabled hidden>--------</option>
                 {configs.buildingType.map(elem => {
@@ -129,12 +129,12 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
             </div>
             <div className="field">
               <h6>An constructie</h6>
-              <input defaultValue={state.year}
+              <input defaultValue={formState.year}
                 type="text" name="year" />
             </div>
             <div className="field">
               <h6>Nr etaje</h6>
-              <input defaultValue={state.numberOfFloors}
+              <input defaultValue={formState.numberOfFloors}
                 type="text" name="numberOfFloors" />
             </div>
           </div>
@@ -154,7 +154,7 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
 
                 return <div
                   key={elem} className="checkbox">
-                  <input checked={isChecked(state.technicalParameters.servicesProvided, elem)}
+                  <input checked={isChecked(formState.technicalParameters.servicesProvided, elem)}
                     datacontainer="technicalParameters"
                     type="checkbox" name="servicesProvided" value={elem} />
                   <h6>{elem}</h6>
@@ -164,7 +164,7 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
               <h5>Parcare</h5>
               {configs.parking.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.technicalParameters.parking, elem)}
+                  <input checked={isChecked(formState.technicalParameters.parking, elem)}
                     datacontainer="technicalParameters"
                     type="checkbox" name="parking" value={elem} />
                   <h6>{elem}</h6>
@@ -176,7 +176,7 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
               <h5>Climatizare birou</h5>
               {configs.officeAirConditioning.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.technicalParameters.officeAirConditioning, elem)}
+                  <input checked={isChecked(formState.technicalParameters.officeAirConditioning, elem)}
                     datacontainer="officeAirConditioning"
                     type="checkbox" name="streetFacilities" value={elem} />
                   <h6>{elem}</h6>
@@ -185,7 +185,7 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
               <h5>IT&C</h5>
               {configs.internetAndComunication.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.technicalParameters.internetAndComunication, elem)}
+                  <input checked={isChecked(formState.technicalParameters.internetAndComunication, elem)}
                     datacontainer="technicalParameters"
                     type="checkbox" name="internetAndComunication" value={elem} />
                   <h6>{elem}</h6>
@@ -194,7 +194,7 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
               <h5>Sistem electric</h5>
               {configs.electricalSystem.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.technicalParameters.electricalSystem, elem)}
+                  <input checked={isChecked(formState.technicalParameters.electricalSystem, elem)}
                     datacontainer="technicalParameters"
                     type="checkbox" name="electricalSystem" value={elem} />
                   <h6>{elem}</h6>
@@ -206,7 +206,7 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
               <h5>Elemente ECO</h5>
               {configs.ecoElements.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.technicalParameters.ecoElements, elem)}
+                  <input checked={isChecked(formState.technicalParameters.ecoElements, elem)}
                     datacontainer="technicalParameters"
                     type="checkbox" name="ecoElements" value={elem} />
                   <h6>{elem}</h6>
@@ -215,7 +215,7 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
               <h5>Arhitectura</h5>
               {configs.arhitecture.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.technicalParameters.arhitecture, elem)}
+                  <input checked={isChecked(formState.technicalParameters.arhitecture, elem)}
                     datacontainer="technicalParameters"
                     type="checkbox" name="arhitecture" value={elem} />
                   <h6>{elem}</h6>
@@ -229,7 +229,7 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
               <h5>Siguranta si securitate</h5>
               {configs.safetyAndSecurity.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.technicalParameters.safetyAndSecurity, elem)}
+                  <input checked={isChecked(formState.technicalParameters.safetyAndSecurity, elem)}
                     datacontainer="technicalParameters"
                     type="checkbox" name="safetyAndSecurity" value={elem} />
                   <h6>{elem}</h6>
@@ -239,7 +239,7 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
               <h5>Priveliste</h5>
               {configs.arhitecture.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.technicalParameters.view, elem)}
+                  <input checked={isChecked(formState.technicalParameters.view, elem)}
                     datacontainer="technicalParameters"
                     type="checkbox" name="view" value={elem} />
                   <h6>{elem}</h6>
@@ -257,12 +257,12 @@ const OfficeCharacteristics = ({ handleChange, state }) => {
       <div className="description-container">
         <div className="title">
           <h5>Title</h5>
-          <textarea defaultValue={state.title}
+          <textarea defaultValue={formState.title}
             name="title" rows="2"></textarea>
         </div>
         <div className="description">
           <h5>Description</h5>
-          <textarea defaultValue={state.description}
+          <textarea defaultValue={formState.description}
             name="description" rows="10"></textarea>
         </div>
       </div>

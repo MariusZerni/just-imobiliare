@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { squareMeters, thousandsSeparators } from '../utilities/Utilities'
 
 
-const PropertyPrice = ({ handleChange, state }) => {
+const PropertyPrice = ({ handleChange, formState }) => {
 
   const [saleRent, setSaleRent] = useState('Sale')
+  
+  
   const [priceSqm, setPriceSqm] = useState()
   const [price, setPrice] = useState()
-  const { priceForSale, priceForRenting } = state
+  
+  const { priceForSale, priceForRenting } = formState
 
   const handleSale = () => {
     setSaleRent('Sale')
@@ -20,7 +23,7 @@ const PropertyPrice = ({ handleChange, state }) => {
     const { price } = priceForSale
     if (price) {
       setPrice(thousandsSeparators(price))
-      const resultSqM = squareMeters(price, state.builtArea)
+      const resultSqM = squareMeters(price, formState.builtArea)
       console.log('result sqm', resultSqM)
       setPriceSqm(resultSqM.toLocaleString().toString())
     } else {
@@ -72,7 +75,7 @@ const PropertyPrice = ({ handleChange, state }) => {
               <div className="field">
                 <input className="checkbox" type="checkbox" name="negociable"
                   datacontainer="priceForSale"
-                  defaultChecked={priceSqm} />
+                  defaultChecked={priceForSale.negociable} />
                 <h6>Pret vanzare negociabil</h6>
               </div>
             </div>

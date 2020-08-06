@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
 
-const images = new mongoose.Schema({
-  image: { type: String }
+const address = new mongoose.Schema({
+  county: { type: String },
+  town: { type: String },
+  street: { type: String },
+  streetNumber: { type: Number }
 })
 
 const description = new mongoose.Schema({
@@ -69,6 +72,7 @@ const priceForRenting = new mongoose.Schema({
 
 const schema = new mongoose.Schema({
   layout: { type: String },
+  propertyType: { type: String },
   useFor: { type: String },
   bathrooms: { type: Number },
   terrace: { type: Number },
@@ -86,11 +90,14 @@ const schema = new mongoose.Schema({
   landSquareMeters: { type: Number },
   interiorHeight: { type: Number },
   availability: { type: String },
+  images: { type: [String] },
+  date: { type: Date, default: Date.now },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
   description: description,
   additionalCharacteristics: additionalCharacteristics,
-  images: images
+  address: address
 })
 
 module.exports = mongoose.model('IndustrialProperty', schema)

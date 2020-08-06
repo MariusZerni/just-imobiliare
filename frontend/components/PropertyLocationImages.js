@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { PropertyTypeSelected } from './Context'
 
 
-const PropertyLocationImages = ({ handlelocationChange, handleImageChange, state, location }) => {
+const PropertyLocationImages = ({ handlelocationChange, handleImageChange, formState }) => {
 
-  console.log('apartment location ', location)
+  const { propertyTypeSelected } = useContext(PropertyTypeSelected)
 
+  useEffect(() => {
+
+    console.log('prop loc', formState)
+  
+  })
+
+  // console.log('location', location)
   return <div className="location-container">
     <div className="wrap-container">
 
@@ -15,38 +23,38 @@ const PropertyLocationImages = ({ handlelocationChange, handleImageChange, state
           >
             <div className="form-group col-md-10"> 
               <input 
-                value={location && location.county ? location.county : null}
+                value={formState.address && formState.address.county ? formState.address.county : null}
                 datacontainer="address"
                 name="county"
                 type="text" className="form-control" placeholder="Judet" />
             </div>
             <div className="form-group col-md-10">
               <input datacontainer="address"
-                value={location && location.town ? location.town : null}
+                value={formState.address && formState.address.town ? formState.address.town : null}
                 name="town"
                 type="text" className="form-control" placeholder="Localitate" />
             </div>
             <div className="form-group col-md-10">
               <input datacontainer="address"
-                value={location && location.street ? location.street : null}
+                value={formState.address && formState.address.street ? formState.address.street : null}
                 name="street"
                 type="text" className="form-control" placeholder="Strada" />
             </div>
             <div className="form-group col-md-10">
               <input datacontainer="address"
-                value={location && location.streetNumber ? location.streetNumber : null}
+                value={formState.address && formState.address.street ? formState.address.street : null}
                 name="streetNumber"
                 type="text" className="form-control" placeholder="Numar strada" />
             </div> 
-            {/*If apartment is selected  */}
-            <div className="form-group col-md-10">
+            {propertyTypeSelected === 'apartment' && <> <div className="form-group col-md-10">
               <input datacontainer="address"
                 type="text" className="form-control" placeholder="Scara" />
             </div>
             <div className="form-group col-md-10">
               <input datacontainer="address"
                 type="text" className="form-control" placeholder="Numar apartament" />
-            </div>
+            </div> </>}
+
             <div className="form-group col-md-10">
               <textarea datacontainer="address"
                 name="moreDetails"
@@ -70,7 +78,7 @@ const PropertyLocationImages = ({ handlelocationChange, handleImageChange, state
           </form>
         </div>
         <div className="img-wrapper">
-          {state.images && state.images.map(image => {
+          {formState.images && formState.images.map(image => {
             return <div key={image._id} className="image-content"
               style={{ backgroundImage: `url(${image})` }}>
 

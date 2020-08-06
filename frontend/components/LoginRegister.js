@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import Axios from 'axios'
 import auth from '../lib/auth'
-import { UserContext } from '../components/UserContext'
+import { UserContext } from './Context'
 
 
 const LoginRegister = (props) => {
@@ -9,9 +9,12 @@ const LoginRegister = (props) => {
   const [pswVisible, setPswVisible] = useState(false)
   const [register, setRegister] = useState()
   const [login, setLogin] = useState()
-  const { user, setUser } = useContext(UserContext)
+  const [errors, setErrors] = useState()
+  const { setUser } = useContext(UserContext)
+  if (errors) {
+    console.log('errors1', errors)
+  }
 
-  console.log('user', user)
 
   const handlePassword = () => {
     if (!pswVisible) {
@@ -35,7 +38,7 @@ const LoginRegister = (props) => {
       ...prevState,
       [name]: value
     }))
-    
+
   }
 
   const handleSubmitLogin = () => {
@@ -48,8 +51,8 @@ const LoginRegister = (props) => {
         props.history.push('/home', { user: res.data.user })
       })
       .catch(err => {
-        console.log(err.response.data.errors)
-        //setErrors(err.response.data.errors)
+        console.log('err', err.response.data.message)
+        setErrors({ loginError: err.response.data.message })
       })
   }
 
@@ -59,6 +62,7 @@ const LoginRegister = (props) => {
       .then(() => setLoginRegister('Login'))
       .catch(err => {
         console.log(err.response.data.errors)
+        setErrors(err.response.data.errors)
         //setErrors(err.response.data.errors)
       })
   }
@@ -72,6 +76,7 @@ const LoginRegister = (props) => {
 
   return <div className="container-log-reg">
     <div className="container-wrap">
+
       {loginRegister === 'Login' && <form
         onChange={(event) => handleChangeLogin(event)}
         onSubmit={(event) => handleSubmitLogin(event)}>
@@ -81,6 +86,7 @@ const LoginRegister = (props) => {
             <span className="content-name">Email</span>
           </label>
         </div>
+
         <div className="input">
           <i className="fa fa-eye password-eye" onClick={() => handlePassword()}></i>
           <input type={pswVisible ? 'text' : 'password'}
@@ -89,6 +95,7 @@ const LoginRegister = (props) => {
             <span className="content-name">Password</span>
           </label>
         </div>
+        {errors && <>{errors.loginError ? <span className="danger">{errors.loginError}</span> : null}</>}
         <div className="btn-container">
           <button type="submit" className="button">Login</button>
         </div>
@@ -106,12 +113,14 @@ const LoginRegister = (props) => {
             <span className="content-name">Full name</span>
           </label>
         </div>
+        {errors && <>{errors.name ? <span className="danger">Name has to be unique</span> : null}</>}
         <div className="input">
           <input type="email" name="email" autoComplete="off" required />
           <label htmlFor="name" className="label-name">
             <span className="content-name">Email</span>
           </label>
         </div>
+        {errors && <>{errors.email ? <span className="danger">Email has to be unique</span> : null}</>}
         <div className="input">
           <i className="fa fa-eye password-eye" onClick={() => handlePassword()}></i>
           <input type={pswVisible ? 'text' : 'password'}
@@ -128,6 +137,7 @@ const LoginRegister = (props) => {
             <span className="content-name">Password confirmation</span>
           </label>
         </div>
+        {errors && <>{errors.passwordConfirmation ? <span className="danger">{errors.passwordConfirmation.properties.message}</span> : null}</>}
         <div className="btn-container">
           <button type="submit" className="button">Register</button>
         </div>
@@ -138,6 +148,6 @@ const LoginRegister = (props) => {
     </div>
   </div>
 }
- 
+
 
 export default LoginRegister

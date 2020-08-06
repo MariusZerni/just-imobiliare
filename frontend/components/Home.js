@@ -1,41 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Axios from 'axios'
-// import auth from '../lib/auth'
-import Header from './Header'
-// import UserContext from '../components/UserContext'
+import auth from '../lib/auth'
+import Nav from './Nav'
+import { PropertyTypeSelected, PropertyIdContext } from './Context'
 
 const Home = (props) => {
   const [propertyType, setPropertyType] = useState('')
   const [user, setUser] = useState()
-  const [state, setState] = useState({
-    county: '',
-    town: '',
-    street: '',
-    streetNumber: null
-  })
+  const [state, setState] = useState({})
+  const [error, setError] = useState()
+  const { setPropertyTypeSelected } = useContext(PropertyTypeSelected)
+  const { setPropertyIdContext } = useContext(PropertyIdContext)
 
-  // const {user} = useContext(UserContext)
-  
-  console.log('state', state)
+
+  console.log('home state', state)
   useEffect(() => {
     console.log('user', user)
     if (!props.location.state || !props.location.state.user) {
       return
     } else if (!user && props.location.state.user) {
-      // console.log('user')
       setUser(props.location.state.user)
     } 
     
   })
 
-  // console.log(auth.getUserId())
-  // console.log('user', user)
-  // const findUser = () => {
-  //   const userId = auth.getUserId()
-  //   Axios.get(`/api/user/${userId}`)
-  //     .then((res) => console.log(res))
-  //     .catch(error => console.error(error))
-  // }
 
 
   const handleChange = (event) => {
@@ -43,51 +31,71 @@ const Home = (props) => {
     console.log(value)
     setState(prevState => ({
       ...prevState,
+      propertyType: propertyType,
       address: { ...prevState.address, [name]: value }
     }))
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    Axios.post(`/api/property/${propertyType}`, state)
+    console.log('propertyType', propertyType)
+    
+    Axios.post(`/api/property/${propertyType}`, state,
+      { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then((res) => {
         const propertyId = res.data._id
-        props.history.push(`/${propertyType}/${propertyId}`, { propertyType: propertyType, propertyId: propertyId, location: state, user })
+        console.log('propertyID', propertyId)
+        // setState(propertyType)
+        setPropertyTypeSelected(propertyType) 
+        setPropertyIdContext(propertyId)
+        console.log('res', res.data)
+        props.history.push(`/${propertyType}/${propertyId}`, 
+          { propertyType: propertyType, propertyId: propertyId, location: state }
+        )
       })
       .catch((error) => {
-        console.log(error)
+        setError(error)
+        console.log(error.response.data)
       })
   }
 
 
   return (
     <div className="main-container">
-      <Header user={user}/>
+      <Nav user={user}/>
       <div className="section">
+      
         <h3 className="title">Alege tipul proprietatii</h3>
+        {error && <span className="is-warning">Selecteaza o proprietate!</span> }
         <div className="property-section">
           <div id="apartment"
             className={propertyType === 'apartment' ? 'font-awesome clicked' : 'font-awesome'}
-            onClick={(event) => setPropertyType(event.target.id)}
+            onClick={(event) => {
+              setState({ propertyType: event.target.id })
+              setPropertyType(event.target.id)
+            }}
           >
             <i style={{ pointerEvents: 'none' }} className="fas fa-building fa-3x"></i>
             <h5 style={{ pointerEvents: 'none' }} >Apartament</h5>
           </div>
           <div id="house"
             className={propertyType === 'house' ? 'font-awesome clicked' : 'font-awesome'}
-            onClick={() =>
+            onClick={() => {
+              setState({ propertyType: event.target.id })
               setPropertyType(event.target.id)
-
-            }
+            }}
+ 
           >
             <i style={{ pointerEvents: 'none' }}
               className="fas fa-home fa-3x"></i>
             <h5 style={{ pointerEvents: 'none' }} >Casa / Vila</h5>
           </div>
           <div id="land"
-
             className={propertyType === 'land' ? 'font-awesome clicked' : 'font-awesome'}
-            onClick={(event) => setPropertyType(event.target.id)}
+            onClick={(event) => {
+              setState({ propertyType: event.target.id })
+              setPropertyType(event.target.id)
+            }}
           >
             <i style={{ pointerEvents: 'none' }} className="fas fa-box fa-3x" ></i>
             <h5 style={{ pointerEvents: 'none' }} >Teren</h5>
@@ -96,7 +104,10 @@ const Home = (props) => {
 
           <div id="office"
             className={propertyType === 'office' ? 'font-awesome clicked' : 'font-awesome'}
-            onClick={(event) => setPropertyType(event.target.id)}
+            onClick={(event) => {
+              setState({ propertyType: event.target.id })
+              setPropertyType(event.target.id)
+            }}
           >
             <i style={{ pointerEvents: 'none' }} className="fas fa-city fa-3x"></i>
             <h5 style={{ pointerEvents: 'none' }} >Spatiu de birouri</h5>
@@ -104,18 +115,25 @@ const Home = (props) => {
 
           <div id="commercial-property"
             className={propertyType === 'commercial-property' ? 'font-awesome clicked' : 'font-awesome'}
-            onClick={() => setPropertyType(event.target.id)}>
+            onClick={() => {
+              setState({ propertyType: event.target.id })
+              setPropertyType(event.target.id)
+            }}>
             <i style={{ pointerEvents: 'none' }} className="fas fa-hotel fa-3x"></i>
             <h5 style={{ pointerEvents: 'none' }} >Spatiu comercial</h5>
           </div>
           <div id="industrial-property"
             className={propertyType === 'industrial-property' ? 'font-awesome clicked' : 'font-awesome'}
-            onClick={() => setPropertyType(event.target.id)}
+            onClick={() => {
+              setState({ propertyType: event.target.id })
+              setPropertyType(event.target.id)
+            }}
           >
             <i style={{ pointerEvents: 'none' }} className="fas fa-warehouse fa-3x"></i>
             <h5 style={{ pointerEvents: 'none' }} >Spatiu industrial</h5>
-          </div>
+          </div>  
         </div>
+        
         <div className="property-address">
           <form onChange={(event) => handleChange(event)}
             onSubmit={(event) => handleSubmit(event)}>

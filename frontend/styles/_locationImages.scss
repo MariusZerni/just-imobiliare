@@ -10,22 +10,33 @@
     height: 100%;
     margin: auto;
     display: flex;
-    width: 85vw;
+    width: 90vw;
     border: 1px solid grey;
     border-top: none;
+    
 
     .section-container {
       width: 100%;
+      background-color: $white-color;
+      padding-bottom: 2em;
+
+      &:first-child {
+        border-right: 1px solid grey;
+      }
 
 
       .address-container {
-        border-right: 1px solid grey;
+        // border-right: 1px solid grey;
         padding-top: 1.5em;
         height: 100%;
-        background-color: $containers-color;
+        // background-color: $white-color;
 
         h4 {
           margin-left: 2em;
+        }
+
+        input {
+          background-color: $secondary-color;
         }
 
         form {
@@ -39,6 +50,7 @@
 
           textarea {
             height: 10em;
+            background-color: $secondary-color;
           }
         }
       }

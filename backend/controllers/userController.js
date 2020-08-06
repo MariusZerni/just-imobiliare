@@ -26,6 +26,7 @@ function login(req, res) {
         return res.status(401).send(errorMsg)
       }
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '14d' })
+      console.log('login token', token)
       res.status(202).send({ user: user, token })
     })
     .catch(error => {

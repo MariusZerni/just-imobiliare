@@ -5,7 +5,10 @@ const jwt = require('jsonwebtoken')
 function secureRoute(req, res, next) {
   console.log('secure route')
   const authToken = req.headers.authorization
+  console.log('authorization', req.headers)
+  console.log('secure authToken', authToken)
   if (!authToken || !authToken.startsWith('Bearer')) {
+    console.log('secure authToken', authToken)
     return res.status(401).send({ message: 'Unauthorized, invalid login' })
   }
 
@@ -17,6 +20,7 @@ function secureRoute(req, res, next) {
       .then(user => {
         if (!user) return res.status(403).send({ message: 'No user was found' })
         req.currentUser = user
+        console.log('secureRoute', req.currentUser)
         next()
       })
       .catch(() => {

@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
 
-const images = new mongoose.Schema({
-  image: { type: String }
+const address = new mongoose.Schema({
+  county: { type: String },
+  town: { type: String },
+  street: { type: String },
+  streetNumber: { type: Number }
 })
-
-
 
 const description = new mongoose.Schema({
   title: { type: String, maxLength: 80 },
@@ -94,11 +95,14 @@ const schema = new mongoose.Schema({
   historicalMonument: { type: Boolean },
   attic: { type: Boolean },
   consolidatedBuilding: { type: Boolean },
+  date: { type: Date, default: Date.now },
+  images: { type: [String] },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
   description: description,
   additionalFeatures: additionalFeatures,
-  images: images
+  address: address
 })
 
 module.exports = mongoose.model('CommercialProperty', schema)

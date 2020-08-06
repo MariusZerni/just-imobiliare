@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 
-const IndustrialPropertyCharacteristics = ({ handleChange, state }) => {
+const IndustrialPropertyCharacteristics = ({ handleChange, formState }) => {
   const [configs, setConfigs] = useState(null)
 
   console.log('state configs', configs)
@@ -36,13 +36,13 @@ const IndustrialPropertyCharacteristics = ({ handleChange, state }) => {
   return configs ? <form onChange={event => handleChange(event)}>
 
     <div className="characteristics-container">
-      <div className="left-container">
-        <div className="characteristics">
+      <div className="inner-container">
+        <div className="left-container">
           <div className="characteristics-content">
             <h4>Caracteristici spatiu industrial</h4>
             <div className="field">
               <h6>Destinatie</h6>
-              <select defaultValue={state.useFor}
+              <select defaultValue={formState.useFor}
                 name="useFor" >
                 <option selected disabled hidden>--------</option>
                 {configs.useFor.map(elem => {
@@ -53,7 +53,7 @@ const IndustrialPropertyCharacteristics = ({ handleChange, state }) => {
 
             <div className="field">
               <h6>Compartimentare</h6>
-              <select defaultValue={state.layout}
+              <select defaultValue={formState.layout}
                 name="layout" >
                 <option selected disabled hidden>--------</option>
                 {configs.layout.map(elem => {
@@ -64,7 +64,7 @@ const IndustrialPropertyCharacteristics = ({ handleChange, state }) => {
             <div className="field">
               <h6>Nr bai</h6>
               <input type="text" name="bathrooms"
-                defaultValue={state.bathrooms}
+                defaultValue={formState.bathrooms}
               />
 
             </div>
@@ -74,80 +74,80 @@ const IndustrialPropertyCharacteristics = ({ handleChange, state }) => {
             <div className="field">
               <h6>Nr terase</h6>
               <input type="text" name="terrace"
-                defaultValue={state.terrace}
+                defaultValue={formState.terrace}
               />
             </div>
             <div className="field">
               <h6>An constructie</h6>
-              <input defaultValue={state.kitconstructionYearchen}
+              <input defaultValue={formState.kitconstructionYearchen}
                 type="text" name="constructionYear" />
             </div>
             <div className="field">
               <h6>S. construita</h6>
-              <input defaultValue={state.squareMeters}
+              <input defaultValue={formState.squareMeters}
                 type="text" name="squareMeters" />
             </div>
             <div className="field">
               <h6>S. birouri</h6>
-              <input defaultValue={state.roadofficeSquareMetersFront}
+              <input defaultValue={formState.roadofficeSquareMetersFront}
                 type="text" name="officeSquareMeters" />
             </div>
             <div className="field">
               <h6>S. productie</h6>
-              <input defaultValue={state.productionAreaSqm}
+              <input defaultValue={formState.productionAreaSqm}
                 type="text" name="productionAreaSqm" />
             </div>
             <div className="field">
               <h6>Dimensiuni usi intrare (m)</h6>
-              <input defaultValue={state.doorsDimensions}
+              <input defaultValue={formState.doorsDimensions}
                 type="text" name="doorsDimensions" />
             </div>
             <div className="field">
               <h6>Tip imobil</h6>
-              <input defaultValue={state.buildingType}
+              <input defaultValue={formState.buildingType}
                 type="text" name="buildingType" />
             </div>
             
             <div className="field">
               <h6>Tip imobil</h6>
-              <input defaultValue={state.numberOfFloors}
+              <input defaultValue={formState.numberOfFloors}
                 type="text" name="numberOfFloors" />
             </div>
 
             <div className="field">
               <h6>Nr camere</h6>
-              <input defaultValue={state.numberOfRooms}
+              <input defaultValue={formState.numberOfRooms}
                 type="text" name="numberOfRooms" />
             </div>
             <div className="field">
               <h6>Nr vestiare</h6>
-              <input defaultValue={state.cloackroom}
+              <input defaultValue={formState.cloackroom}
                 type="text" name="cloackroom" />
             </div>
 
             <div className="field">
               <h6>Nr bucatarii</h6>
-              <input defaultValue={state.kitchen}
+              <input defaultValue={formState.kitchen}
                 type="text" name="kitchen" />
             </div>
             <div className="field">
               <h6>Nr locuri parcare</h6>
-              <input defaultValue={state.parking}
+              <input defaultValue={formState.parking}
                 type="text" name="parking" />
             </div>
             <div className="field">
               <h6>S. teren (mp)</h6>
-              <input defaultValue={state.landSquareMeters}
+              <input defaultValue={formState.landSquareMeters}
                 type="text" name="landSquareMeters" />
             </div>
             <div className="field">
               <h6>Inaltime interioara</h6>
-              <input defaultValue={state.interiorHeight}
+              <input defaultValue={formState.interiorHeight}
                 type="text" name="interiorHeight" />
             </div>
             <div className="field">
               <h6>Disponibilitate</h6>
-              <input defaultValue={state.interioravailabilityHeight}
+              <input defaultValue={formState.interioravailabilityHeight}
                 type="text" name="availability" />
             </div>
           </div>
@@ -167,7 +167,7 @@ const IndustrialPropertyCharacteristics = ({ handleChange, state }) => {
 
                 return <div
                   key={elem} className="checkbox">
-                  <input checked={isChecked(state.additionalCharacteristics.moreCharacteristics, elem)}
+                  <input checked={isChecked(formState.additionalCharacteristics.moreCharacteristics, elem)}
                     datacontainer="additionalCharacteristics"
                     type="checkbox" name="moreCharacteristics" value={elem} />
                   <h6>{elem}</h6>
@@ -180,7 +180,7 @@ const IndustrialPropertyCharacteristics = ({ handleChange, state }) => {
               <h5>Amenajare strazi</h5>
               {configs.streetFacilities.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.additionalCharacteristics.streetFacilities, elem)}
+                  <input checked={isChecked(formState.additionalCharacteristics.streetFacilities, elem)}
                     datacontainer="additionalCharacteristics"
                     type="checkbox" name="streetFacilities" value={elem} />
                   <h6>{elem}</h6>
@@ -189,7 +189,7 @@ const IndustrialPropertyCharacteristics = ({ handleChange, state }) => {
               <h5>Utilitati teren</h5>
               {configs.landFacilities.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.additionalCharacteristics.landFacilities, elem)}
+                  <input checked={isChecked(formState.additionalCharacteristics.landFacilities, elem)}
                     datacontainer="additionalCharacteristics"
                     type="checkbox" name="landFacilities" value={elem} />
                   <h6>{elem}</h6>
@@ -202,7 +202,7 @@ const IndustrialPropertyCharacteristics = ({ handleChange, state }) => {
               <h5>Parcare</h5>
               {configs.parking.map((elem) => {
                 return <div key={elem} className="checkbox">
-                  <input checked={isChecked(state.additionalCharacteristics.parking, elem)}
+                  <input checked={isChecked(formState.additionalCharacteristics.parking, elem)}
                     datacontainer="additionalCharacteristics"
                     type="checkbox" name="parking" value={elem} />
                   <h6>{elem}</h6>
@@ -220,12 +220,12 @@ const IndustrialPropertyCharacteristics = ({ handleChange, state }) => {
       <div className="description-container">
         <div className="title">
           <h5>Title</h5>
-          <textarea defaultValue={state.title}
+          <textarea defaultValue={formState.title}
             name="title" rows="2"></textarea>
         </div>
         <div className="description">
           <h5>Description</h5>
-          <textarea defaultValue={state.description}
+          <textarea defaultValue={formState.description}
             name="description" rows="10"></textarea>
         </div>
       </div>

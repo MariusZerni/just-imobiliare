@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
-
+const address = new mongoose.Schema({
+  county: { type: String },
+  town: { type: String },
+  street: { type: String },
+  streetNumber: { type: Number }
+})
 
 
 const description = new mongoose.Schema({
@@ -89,10 +94,14 @@ const schema = new mongoose.Schema({
   POT: { type: Number },
   approvedPUZ: { type: Boolean },
   urbanCertificate: { type: Boolean },
+  date: { type: Date, default: Date.now },
+  images: { type: [String] },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
   description: description,
-  additionalFeatures: additionalFeatures
+  additionalFeatures: additionalFeatures,
+  address: address
 })
 
 

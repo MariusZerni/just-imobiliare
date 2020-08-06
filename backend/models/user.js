@@ -7,8 +7,8 @@ const schema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
   image: { type: String },
   name: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true, hide: true }
+  email: { type: String, required: [true, 'Email required'], unique: [true, 'Email has to be unique'] },
+  password: { type: String, required: true, hide: true, minLength: 9 }
 })
 
 schema.plugin(require('mongoose-unique-validator'))

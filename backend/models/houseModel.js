@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
-
+const address = new mongoose.Schema({
+  county: { type: String },
+  town: { type: String },
+  street: { type: String },
+  streetNumber: { type: Number }
+})
 
 
 const descriptionAndTitle = new mongoose.Schema({
@@ -83,6 +88,7 @@ const priceForRenting = new mongoose.Schema({
 })
 
 const schema = new mongoose.Schema({
+  propertyType: { type: String },
   transactionType: { type: String },
   useFor: { type: String },
   availability: { type: String },
@@ -115,10 +121,13 @@ const schema = new mongoose.Schema({
   garage: { type: Number },
   parkingSpace: { type: Number },
   images: { type: [String] },
+  date: { type: Date, default: Date.now },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   descriptionAndTitle: descriptionAndTitle,
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
-  facilities: facilities
+  facilities: facilities,
+  address: address
   
 })
 

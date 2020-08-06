@@ -1,5 +1,4 @@
 @import '../styles/colors.scss';
-@import '../styles/header.scss';
 
 * {
   margin: 0;
@@ -8,11 +7,19 @@
 }
 
 
+body {
+  background-color: $body-color;
+}
+
 
 h5 {
   font-size: 0.8em;
   font-weight: 300;
   padding-top: 1em;
+}
+
+.is-warning {
+  color: red;
 }
 
 .main-container {
@@ -40,6 +47,7 @@ h5 {
       
 
       .font-awesome {
+        background-color: $white-color;
         transform: scale(1);
         transition: all 0.4s ease-out;
         margin: 0.2em;

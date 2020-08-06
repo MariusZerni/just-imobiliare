@@ -31,7 +31,7 @@ function propertyType(req) {
 function index(req, res) {
   const Property = propertyType(req)
   Property.find()
-    // .populate('user')
+    .populate('user')
     .then(property => {
       res.send(property)
     })
@@ -40,8 +40,11 @@ function index(req, res) {
 
 
 function create(req, res) {
-  console.log(req.params.type)
-  const property = req.body
+
+  const user = req.currentUser
+
+
+  const property = { ...req.body, user: user }
   const PropertyModel = propertyType(req)
 
   // if (req.files && req.files.file) {
@@ -57,10 +60,12 @@ function create(req, res) {
   // }
   //console.log(file)
 
-  console.log('property', property)
+  console.log('req.body property', property)
   req.body.user = req.currentUser
+  console.log('currentUser', req.body)
   PropertyModel.create(property)
     .then(property => {
+      console.log('then', property)
       res.status(201).send(property)
     })
     .catch(error => {
@@ -83,12 +88,11 @@ function remove(req, res) {
   const currentUser = req.currentUser
   const id = req.params.id
   const Property = propertyType(req)
+  console.log('remove')
   Property.findById(id)
     .then(property => {
-      if (!event.user.equals(currentUser))
-        return res.status(401).send({
-          message: 'You are not authorized!'
-        })
+      console.log('user', property)
+      if (!property.user.equals(currentUser._id)) return res.status(401).send({ message: 'Unauthorized' })
       return property.remove()
     })
     .then(() => {
@@ -105,6 +109,10 @@ function edit(req, res) {
   for (const [key, value] of Object.entries(req.body)) {
     // console.log(`${key}: ${value}`)
     newBody[key] =  JSON.parse(value)
+  }
+  if (newBody.priceForSale.price) {
+    newBody.priceForSale.price = newBody.priceForSale.price.replace(/,/g, '')
+    
   }
   console.log('newBody',newBody)
   let editedProperty = { ...newBody, images: [] }

@@ -1,0 +1,188 @@
+@import './colors';
+
+.properties-container {
+  background-color: $body-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    width: 95vw;
+    background-color: $white-color;
+    border: 1px solid grey;
+    margin: 2em 0em;
+    position: relative;
+
+    form {
+      
+      select {
+        padding: 0.7em;
+        background-color: $secondary-color;
+      }
+
+      button {
+        position: absolute;
+        right: 1.3em;
+        bottom: 0.5em;
+      }
+
+    }
+
+  }
+
+  .property-hover:hover {
+    background-color: rgb(247, 244, 244);
+  }
+
+  .property {
+    background-color: $white-color;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    width: 95vw;
+
+    &:last-child {
+      margin-bottom: 3em;
+    }
+
+    
+    .images {
+
+      .property-image {
+        margin: 0 auto;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 90%;
+        height: 90%;
+      }
+    }
+    
+
+    .title {
+      background-color: rgb(222, 224, 222);
+      padding-left: 10px;
+      border-top: 1px solid grey;
+      border-left: 1px solid grey;
+      border-bottom: 1px solid grey;
+      line-height: 80px;
+
+    }
+
+
+
+    .square-meters, 
+    .price, .actions {
+      width: 9vw;
+      // background-color: red;
+
+      h5 {
+        padding: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    .date {
+      width: 10vw;
+
+      h5 {
+        padding: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    .bedrooms {
+      width: 9vw;
+
+      h5 {
+        padding: 0;
+        margin-bottom: 0;
+      }
+    }
+
+
+    .location {
+      width: 15vw;
+
+      h5 {
+        padding: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    .images, .landlord {
+      width: 12vw;
+
+      h5 {
+        padding: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    .agent-name {
+      width: 9vw;
+
+      h5 {
+        padding: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    .numbering {
+      width: 4vw;
+
+      h5 {
+        padding: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      border-right: 1px solid grey;
+      border-left: 1px solid grey;
+      border-bottom: 1px solid grey;
+      text-align: inherit;
+
+      button {
+        line-height: normal;
+        color: white;
+        margin: 0 15px;
+        padding: 0.3em 0em;
+      }
+
+      .delete-btn {
+        background-color: red;
+      }
+
+      .edit-btn {
+        background-color: yellow;
+        color: black;
+      }
+
+      .details-btn {
+        color: black;
+        // background-color: $register-input;
+      }
+    }
+
+    .details {
+      height: 120px;
+      // vertical-align: middle;
+      display: flex;
+      align-items: center;
+      padding-left: 5px;
+      border-left: 1px solid grey;
+      border-bottom: 1px solid grey;
+      text-align: inherit;
+    } 
+
+
+  }
+} 

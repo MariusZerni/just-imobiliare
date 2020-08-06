@@ -6,6 +6,8 @@ h4 {
   font-weight: 400;
   padding: 0.9em;
   margin-bottom: 0;
+
+
 }
 
 h5 {
@@ -25,6 +27,7 @@ textarea {
   flex-direction: row;
   border: 1px solid grey;
   border-top: none;
+  background-color: $white-color;
 }
 
 .content {
@@ -33,6 +36,8 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+
+
 }
 
   .button {
@@ -45,29 +50,45 @@ textarea {
     border-radius: 3px;
   }
 
+  .back-btn {
+    box-shadow: $buttons-shadow;
+    background: $register-input; 
+    display: table;
+    color: #fff;
+    padding: 0.3em 1em 0.3em 0.5em;
+    border: none;
+    border-radius: 3px;
+
+    .fa-arrow-left {
+      margin-right: 8px;
+    }
+  }
+
 
 
 .characteristics-container {
   margin: 0 auto;
-  width: 85vw;
+
+  width: 90vw;
   display: flex;
   flex-direction: column;
 
   
 
-  .left-container {
+  .inner-container {
     width: 100%;
     display: flex;
     flex-direction: row;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    // padding-bottom: 3em;
     
     
 
-    .characteristics {
+    .left-container {
       width: 60%;
       min-height: 80vh;
-      background-color: $containers-color;
-      padding: 0.75em;
+      background-color: $white-color;
+      padding: 1em 1em 3em 3em;
       border: 1px solid grey;
       border-top: none;
       
@@ -75,6 +96,9 @@ textarea {
       h4 {
         font-weight: 400;
         padding: 0.3em;
+
+
+        
       }
 
       .field {
@@ -116,11 +140,16 @@ textarea {
     }
 
     .right-container {
-      padding-top: 0.75em;
+      // padding-top: 0.75em;
       width: 100%;
-      background-color: $containers-color;
+      background-color: $white-color;
       border-right: 1px solid grey;
       border-bottom: 1px solid grey;
+      padding-right: 2em;
+
+      h4 {
+        padding-bottom: 0;
+      }
 
       .features-container {
         display: flex;
@@ -165,10 +194,26 @@ textarea {
   }
 
   .description-container {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
     margin-bottom: 50px;
     border: 1px solid grey;
-    padding: 1em;
-    background-color: $containers-color;
+    padding: 2em 0 ;
+    background-color: $white-color;
+
+    .title, .description {
+      width: 80%;
+    }
+
+    
+
+
+    textarea {
+      width  : 100%;
+      background-color: $secondary-color;
+    }
   }
 }
 
@@ -180,7 +225,7 @@ textarea {
   }
 
   .characteristics-container {
-    .left-container .characteristics {
+    .inner-container .left-container {
       .characteristics-content {
         .field {
           padding-right: 2.5em;
@@ -197,7 +242,7 @@ textarea {
   }          
     .fields-container {
       margin: 0 auto;
-      width: 85vw;
+      width: 90vw;
       display: flex;
       flex-direction: row;
       border: 1px solid grey;

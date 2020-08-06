@@ -14,13 +14,22 @@ import CommercialProperty from '../components/CommercialProperty'
 import IndustrialProperty from '../components/IndustrialProperty'
 import LoginRegister from '../components/LoginRegister'
 import EditProfile from '../components/EditProfile'
-import Header from '../components/Header'
-import { UserContext } from '../components/UserContext'
+import Nav from '../components/Nav'
+import Properties from '../components/Properties'
+import Clients from '../components/Clients'
+import { UserContext, PropertyTypeSelected, PropertyIdContext } from '../components/Context'
 
 
 const App = () => {
   const [user, setUser] = useState(null)
+  const [propertyTypeSelected, setPropertyTypeSelected] = useState(null)
+  const [propertyIdContext, setPropertyIdContext] = useState(null)
+
+
   const value = useMemo(() => ({ user, setUser }), [user, setUser])
+  const propertyTypeSelectedValue = useMemo(() => ({ propertyTypeSelected, setPropertyTypeSelected }), [propertyTypeSelected, setPropertyTypeSelected])
+  const propertyIdContextValue = useMemo(() => ({ propertyIdContext, setPropertyIdContext }), [propertyIdContext, setPropertyIdContext])
+
 
   useEffect(() => {
     if (value && value.user !== null) {
@@ -31,11 +40,11 @@ const App = () => {
     }
   }, [value])
 
-  const getLocalUser = () => {   
+  const getLocalUser = () => {
     if (localStorage.user && (!value || !value.user)) {
       const localUser = localStorage.getItem('user')
       return localUser ? (JSON.parse(localUser)).user : null
-    } 
+    }
     return null
   }
 
@@ -44,16 +53,22 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <UserContext.Provider value={value}>
-          <Route exact path="/" component={LoginRegister} />
-          <Route exact path="/home" component={Home} />
-          <Route path="/apartment" component={Apartment} />
-          <Route path="/house" component={House} />
-          <Route path="/land" component={Land} />
-          <Route path="/office" component={Office} />
-          <Route path="/industrial-property" component={IndustrialProperty} />
-          <Route path="/commercial-property" component={CommercialProperty} />
-          <Route exact path="/edit-profile" component={EditProfile} />
-          <Route path="/header" component={Header} />
+          <PropertyTypeSelected.Provider value={propertyTypeSelectedValue}>
+            <PropertyIdContext.Provider value={propertyIdContextValue}>
+              <Route exact path="/" component={LoginRegister} />
+              <Route exact path="/home" component={Home} />
+              <Route path="/apartment" component={Apartment} />
+              <Route path="/house" component={House} />
+              <Route path="/land" component={Land} />
+              <Route path="/office" component={Office} />
+              <Route path="/industrial-property" component={IndustrialProperty} />
+              <Route path="/commercial-property" component={CommercialProperty} />
+              <Route exact path="/edit-profile" component={EditProfile} />
+              <Route path="/properties" component={Properties} />
+              <Route path="/clients" component={Clients} />
+              <Route path="h" component={Nav} />
+            </PropertyIdContext.Provider>
+          </PropertyTypeSelected.Provider>
         </UserContext.Provider>
       </Switch>
     </BrowserRouter>

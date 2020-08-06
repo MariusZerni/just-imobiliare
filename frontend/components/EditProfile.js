@@ -1,16 +1,15 @@
 import React, { useState, useContext } from 'react'
 import Axios from 'axios'
-import Header from '../components/Header'
-import { UserContext } from '../components/UserContext'
+import Nav from './Nav'
+import { UserContext } from './Context'
 
 const EditProfile = (props) => {
-  const [editProfile, setEditProfile] = useState()
   const [editImage, setEditImage] = useState()
   const { user, setUser } = useContext(UserContext)
-  
-  if (editImage) {
-    console.log('image', editImage.image)
-  }
+  const [editProfile, setEditProfile] = useState()
+  // console.log('user name', user.name)
+
+
   
 
   const handleImageEdit = (event) => {
@@ -59,7 +58,7 @@ const EditProfile = (props) => {
   }
 
   return <>
-    <Header user={user} />
+    <Nav />
     <div className="container-edit-profile">
       <div className="container-edit">
         <form encType='multipart/form-data'

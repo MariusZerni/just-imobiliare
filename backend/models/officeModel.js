@@ -1,9 +1,11 @@
 const mongoose = require('mongoose')
 
-const images = new mongoose.Schema({
-  image: { type: String }
+const address = new mongoose.Schema({
+  county: { type: String },
+  town: { type: String },
+  street: { type: String },
+  streetNumber: { type: Number }
 })
-
 
 const description = new mongoose.Schema({
   title: { type: String, maxLength: 80 },
@@ -90,11 +92,14 @@ const schema = new mongoose.Schema({
   layout: { type: String },
   year: { type: Number },
   numberOfFloors: { type: Number },
+  images: { type: [String] },
+  date: { type: Date, default: Date.now },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   priceForSale: priceForSale,
   priceForRenting: priceForRenting,
   description: description,
   technicalParameters: technicalParameters,
-  images: images
+  address: address
 })
 
 
