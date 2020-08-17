@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { PropertyTypeSelected } from './Context'
 
 
+
 const PropertyLocationImages = ({ handlelocationChange, handleImageChange, formState }) => {
 
   const { propertyTypeSelected } = useContext(PropertyTypeSelected)
@@ -9,7 +10,7 @@ const PropertyLocationImages = ({ handlelocationChange, handleImageChange, formS
   useEffect(() => {
 
     console.log('prop loc', formState)
-  
+
   })
 
   // console.log('location', location)
@@ -21,8 +22,8 @@ const PropertyLocationImages = ({ handlelocationChange, handleImageChange, formS
           <h4>Adresa Proprietate</h4>
           <form onChange={(event) => handlelocationChange(event)}
           >
-            <div className="form-group col-md-10"> 
-              <input 
+            <div className="form-group col-md-10">
+              <input
                 value={formState.address && formState.address.county ? formState.address.county : null}
                 datacontainer="address"
                 name="county"
@@ -45,15 +46,15 @@ const PropertyLocationImages = ({ handlelocationChange, handleImageChange, formS
                 value={formState.address && formState.address.street ? formState.address.street : null}
                 name="streetNumber"
                 type="text" className="form-control" placeholder="Numar strada" />
-            </div> 
+            </div>
             {propertyTypeSelected === 'apartment' && <> <div className="form-group col-md-10">
               <input datacontainer="address"
                 type="text" className="form-control" placeholder="Scara" />
             </div>
-            <div className="form-group col-md-10">
-              <input datacontainer="address"
-                type="text" className="form-control" placeholder="Numar apartament" />
-            </div> </>}
+              <div className="form-group col-md-10">
+                <input datacontainer="address"
+                  type="text" className="form-control" placeholder="Numar apartament" />
+              </div> </>}
 
             <div className="form-group col-md-10">
               <textarea datacontainer="address"
@@ -64,9 +65,8 @@ const PropertyLocationImages = ({ handlelocationChange, handleImageChange, formS
         </div>
       </section>
       <section className="section-container">
-        {/* <h4>Adauga imagini</h4> */}
         <div className="image-container">
-          <form encType='multipart/form-data'>       
+          <form encType='multipart/form-data'>
             <label> Adauga imagini
               <input onChange={event => handleImageChange(event)}
                 name="file"

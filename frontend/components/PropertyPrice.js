@@ -1,23 +1,52 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { ContractSigningDate } from './Context'
 import { squareMeters, thousandsSeparators } from '../utilities/Utilities'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 
 const PropertyPrice = ({ handleChange, formState }) => {
 
   const [saleRent, setSaleRent] = useState('Sale')
-  
-  
+
   const [priceSqm, setPriceSqm] = useState()
   const [price, setPrice] = useState()
-  
+
   const { priceForSale, priceForRenting } = formState
 
-  const handleSale = () => {
-    setSaleRent('Sale')
+  const { formattedDate, setFormattedDate } = useContext(ContractSigningDate)
+  const [signingDate, setSigningDate] = useState(formattedDate && formattedDate.contractSigningDate ? new Date(formattedDate.contractSigningDate) : null)
+  const [expiringDate, setExpiringDate] = useState(formattedDate && formattedDate.contractExpiringDate ? new Date(formattedDate.contractExpiringDate) : null)
+
+  console.log('formattedDate', formattedDate)
+  console.log('signing date', signingDate)
+
+  const handleChangeDate = (event, name) => {
+    const date = event.toLocaleDateString('en-CA', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric'
+    })
+
+    console.log('handleChangeDate', date)
+    console.log('XXXXXXXX')
+
+
+    if (saleRent === 'Sale') {
+      if (formattedDate && formattedDate.priceForSale) {
+        setFormattedDate({ ...formattedDate, priceForSale: { ...formattedDate.priceForSale, [name]: date } })
+      } else {
+        setFormattedDate({ ...formattedDate, priceForSale: { [name]: date } })
+      }
+    } else if (saleRent === 'Rent')
+      if (formattedDate && formattedDate.priceForRent) {
+        setFormattedDate({ ...formattedDate, priceForRent: { ...formattedDate.priceForSale, [name]: date } })
+      } else {
+        setFormattedDate({ ...formattedDate, priceForRent: { [name]: date } })
+
+      }
   }
-  const handleRent = () => {
-    setSaleRent('Rent')
-  }
+
 
   useEffect(() => {
     const { price } = priceForSale
@@ -36,12 +65,12 @@ const PropertyPrice = ({ handleChange, formState }) => {
   return <div className="container-price">
     <form onChange={event => handleChange(event)}>
       <section className="sale-rent">
-        <div onClick={() => handleSale()}
+        <div onClick={() => setSaleRent('Sale')}
           className={`${saleRent === 'Sale' ? 'sale border-bottom' : 'sale'}`}>
           <h4>Vanzare</h4>
 
         </div>
-        <div onClick={() => handleRent()}
+        <div onClick={() => setSaleRent('Rent')}
           className={`${saleRent === 'Rent' ? 'rent border-bottom' : 'rent'}`}>
           <h4>Inchiriere</h4>
         </div>
@@ -117,15 +146,27 @@ const PropertyPrice = ({ handleChange, formState }) => {
               </div>
               <div className="field">
                 <h6>Data semnare contract</h6>
-                <input type="text" name="contractSigningDate"
-                  datacontainer="priceForSale"
-                  defaultValue={priceForSale.contractSigningDate} />
+                <DatePicker
+                  autoComplete="off"
+                  name="contractSigningDate"
+                  dateFormat='dd/MM/yyyy'
+                  onChange={event => {
+                    setSigningDate(event)
+                    handleChangeDate(event, 'contractSigningDate')
+                  }}
+                  selected={signingDate} />
               </div>
               <div className="field">
                 <h6>Data expirare contract</h6>
-                <input type="text" name="contractExpiringDate"
-                  datacontainer="priceForSale"
-                  defaultValue={priceForSale.contractExpiringDate} />
+                <DatePicker
+                  autoComplete="off"
+                  name="contractExpiringDate"
+                  dateFormat='dd/MM/yyyy'
+                  onChange={event => {
+                    setExpiringDate(event)
+                    handleChangeDate(event, 'contractExpiringDate')
+                  }}
+                  selected={expiringDate} />
               </div>
             </div>
             <div className="row-p-s">
@@ -144,13 +185,13 @@ const PropertyPrice = ({ handleChange, formState }) => {
             </div>
             <div className="row-p-s">
               <div className="field">
-                <input className="checkbox" type="checkbox" onChange={()=>{}} name="exclusive"
+                <input className="checkbox" type="checkbox" onChange={() => { }} name="exclusive"
                   datacontainer="priceForSale"
                   defaultChecked={priceForSale.exclusive} />
                 <h6>Reprezentare exclusiva</h6>
               </div>
               <div className="field">
-                <input className="checkbox" type="checkbox" onChange={()=>{}} name="intermediation"
+                <input className="checkbox" type="checkbox" onChange={() => { }} name="intermediation"
                   datacontainer="priceForSale"
                   defaultChecked={priceForSale.intermediation} />
                 <h6>Intermediere exclusiva</h6>
@@ -246,15 +287,30 @@ const PropertyPrice = ({ handleChange, formState }) => {
               </div>
               <div className="field">
                 <h6>Data semnare contract</h6>
-                <input type="text" name="contractSigningDate"
-                  datacontainer="priceForRenting"
-                  defaultValue={priceForRenting.contractSigningDate} />
+                <DatePicker
+                  autoComplete="off"
+                  name="contractSigningDate"
+                  dateFormat='dd/MM/yyyy'
+                  onChange={event => {
+                    setSigningDate(event)
+                    handleChangeDate(event, 'contractSigningDate')
+                  }}
+                  selected={signingDate} />
               </div>
               <div className="field">
                 <h6>Data expirare contract</h6>
-                <input type="text" name="contractExpiringDate"
+                <DatePicker
+                  autoComplete="off"
+                  name="contractExpiringDate"
+                  dateFormat='dd/MM/yyyy'
+                  onChange={event => {
+                    setExpiringDate(event)
+                    handleChangeDate(event, 'contractExpiringDate')
+                  }}
+                  selected={expiringDate} />
+                {/* <input type="text" name="contractExpiringDate"
                   datacontainer="priceForRenting"
-                  defaultValue={priceForRenting.contractExpiringDate} />
+                  defaultValue={priceForRenting.contractExpiringDate} /> */}
               </div>
             </div>
             <div className="row-p-s">
@@ -273,13 +329,13 @@ const PropertyPrice = ({ handleChange, formState }) => {
             </div>
             <div className="row-p-s">
               <div className="field">
-                <input className="checkbox" type="checkbox" onChange={()=>{}} name="exclusive"
+                <input className="checkbox" type="checkbox" onChange={() => { }} name="exclusive"
                   datacontainer="priceForRenting"
                   defaultChecked={priceForRenting.exclusive} />
                 <h6>Reprezentare exclusiva</h6>
               </div>
               <div className="field">
-                <input className="checkbox" type="checkbox" onChange={()=>{}} name="intermediation"
+                <input className="checkbox" type="checkbox" onChange={() => { }} name="intermediation"
                   datacontainer="priceForRenting"
                   defaultChecked={priceForRenting.intermediation} />
                 <h6>Intermediere exclusiva</h6>

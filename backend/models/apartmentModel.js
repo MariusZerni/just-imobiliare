@@ -1,5 +1,12 @@
 const mongoose = require('mongoose')
 
+const lanlordDetails = new mongoose.Schema({
+  fullName: { type: String },
+  email: { type: String },
+  phoneNumber: { type: Number },
+  moreDetails: { type: String }
+})
+
 const address = new mongoose.Schema({
   county: { type: String },
   town: { type: String },
@@ -60,8 +67,8 @@ const priceForSale = new mongoose.Schema({
   exclusive: { type: Boolean },
   intermediation: { type: Boolean },
   contractNumber: { type: Number },
-  contractSigningDate: { type: Date },
-  contractExpiringDate: { type: Date },
+  contractSigningDate: { type: String },
+  contractExpiringDate: { type: String },
   lanlordComssionPercentage: { type: Number },
   lanlordComission: { type: Number }
 })
@@ -113,7 +120,7 @@ const schema = new mongoose.Schema({
   parkingSpace: { type: Number },
   date: { type: Date, default: Date.now },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-  
+  lanlordDetails: lanlordDetails,
   characteristics: characteristics,
   facilities: facilities,
   priceForSale: priceForSale,

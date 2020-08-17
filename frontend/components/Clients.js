@@ -1,16 +1,11 @@
 import React from 'react'
-
-
-
-import Nav from './Nav'
+import Nav from '../components/Nav'
 
 const Clients = () => {
-  return <div className="clients-container">
-    <Nav />
-    <h2>Clienti</h2>
-  </div>
-  
+  return <>
+  <Nav />
+  <h2>Clients</h2>
+  </>
 }
-
 
 export default Clients

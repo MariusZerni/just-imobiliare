@@ -1,4 +1,4 @@
-import { PropertyTypeSelected, PropertyIdContext } from '../components/Context'
+import { PropertyTypeSelected, PropertyIdContext, ContractSigningDate } from '../components/Context'
 import { useContext } from 'react'
 import Axios from 'axios'
 import { useState } from 'react'
@@ -6,25 +6,52 @@ import { useState } from 'react'
 const useForm = (callback, state) => {
   const { propertyTypeSelected } = useContext(PropertyTypeSelected)
   const { propertyIdContext } = useContext(PropertyIdContext)
+  const { formattedDate } = useContext(ContractSigningDate)
 
+  console.log('---use form date---', formattedDate)
   const [formState, setState] = useState(state)
-  
+
+  console.log('---form state---', formState)
+
+
 
 
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log('submit form state', formState)
+    let newFormState = formState
+
+    console.log('formatted date', formattedDate)
+    console.log('object', Object.keys(formattedDate.priceForSale).length === 0)
+    if (formattedDate.priceForSale.contractExpiringDate || formattedDate.priceForSale.contractSigningDate) {    
+      console.log('sale')
+      newFormState = {
+        ...newFormState,
+        priceForSale: { ...newFormState.priceForSale,
+          contractExpiringDate: formattedDate.priceForSale.contractExpiringDate,
+          contractSigningDate: formattedDate.priceForSale.contractSigningDate
+        }
+      }
+    } else if (formattedDate.priceForRent.contractExpiringDate || formattedDate.priceForRent.contractSigningDate ) {
+      console.log('rent')
+      newFormState = {
+        ...newFormState,
+        priceForRent: { ...newFormState.priceForRent,
+          contractExpiringDate: formattedDate.priceForRent.contractExpiringDate,
+          contractSigningDate: formattedDate.priceForRent.contractSigningDate
+        }
+      }
+    }
 
     const formData = new FormData()
+
     for (let i = 0; i < formState.files.length; i++) {
       formData.append('file', formState.files[i])
     }
-    for (const [key, value] of Object.entries(formState)) {
+    for (const [key, value] of Object.entries(newFormState)) {
       formData.append(key, JSON.stringify(value))
     }
-    console.log('property id context', propertyIdContext)
-    console.log('submit form data', formData)
+
     const url = `/api/property/${propertyTypeSelected}/${propertyIdContext}`
     Axios.put(url, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
       .then(res => {
@@ -99,7 +126,7 @@ const useForm = (callback, state) => {
     const { value, name } = event.target
     console.log('handle location', name, value)
     const objKey = event.target.getAttribute('datacontainer')
-    
+
     console.log('changed newState', {
       ...state,
       [objKey]: { ...state[objKey], [name]: value }
@@ -110,7 +137,7 @@ const useForm = (callback, state) => {
       [objKey]: { ...prevState[objKey], [name]: value }
     }))
 
-   
+
   }
 
   const handleImageChange = (event) => {

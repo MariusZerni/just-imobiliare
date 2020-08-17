@@ -105,7 +105,7 @@ function edit(req, res) {
   // const currentUser = req.currentUser
   const id = req.params.id
   const newBody = {}
-  
+  console.log('--req.body', req.body)
   for (const [key, value] of Object.entries(req.body)) {
     // console.log(`${key}: ${value}`)
     newBody[key] =  JSON.parse(value)

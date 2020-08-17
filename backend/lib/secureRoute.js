@@ -14,7 +14,7 @@ function secureRoute(req, res, next) {
 
   const token = authToken.replace('Bearer ', '')
   jwt.verify(token, secret, (err, payload) => {
-    if (err) return res.status(402).send({ message: 'Login expired!' })
+    if (err) return res.status(402).send({ message: 'Autentificarea a expirat, va rugam sa va autentificati din nou' })
 
     User.findById(payload.sub)
       .then(user => {

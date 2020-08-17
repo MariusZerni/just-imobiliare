@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const userController = require('./controllers/userController')
+const clientController = require('./controllers/clientController')
 
 const propertyController = require('./controllers/propertyController')
 const propertyConfigController = require('./controllers/propertyConfigController')
@@ -12,11 +13,14 @@ router.route('/property/:type')
   .post(secureRoute, propertyController.create)
 
 
-
 router.route('/property/:type/:id')
   .get(propertyController.getSingle)
   .delete(secureRoute, propertyController.remove)
   .put(propertyController.edit)
+
+router.route('/add-clients')
+  .get(clientController.index)
+  .post(secureRoute, clientController.create)
 
 router.route('/property-config/:type')
   .get(propertyConfigController.index)

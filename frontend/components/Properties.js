@@ -86,7 +86,7 @@ const Properties = () => {
             className="button" >Cauta</button>
         </form>
       </div>
-      <div className="property">
+      <div className="property fixed">
         <div className="numbering title">Nr.</div>
         <div className="date title">Data</div>
         <div className="bedrooms title">Camere</div>
@@ -138,7 +138,8 @@ const Properties = () => {
             {!property.address && <h5>Nespecificat</h5>}
           </div>
           <div className="landlord details">
-            Amalia Hoszu
+            {property.lanlordDetails && <h5>{property.lanlordDetails.fullName}</h5>}
+            {!property.priceForSale && <h5>Nespecificat</h5>}
           </div>
           <div className="price details">
             {property.priceForSale && <h5>{property.priceForSale.price}</h5>}

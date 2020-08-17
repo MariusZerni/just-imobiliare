@@ -13,15 +13,15 @@ const Home = (props) => {
   const { setPropertyIdContext } = useContext(PropertyIdContext)
 
 
-  console.log('home state', state)
+  console.log('error', error)
   useEffect(() => {
     console.log('user', user)
     if (!props.location.state || !props.location.state.user) {
       return
     } else if (!user && props.location.state.user) {
       setUser(props.location.state.user)
-    } 
-    
+    }
+
   })
 
 
@@ -39,34 +39,39 @@ const Home = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log('propertyType', propertyType)
-    
+
     Axios.post(`/api/property/${propertyType}`, state,
       { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then((res) => {
         const propertyId = res.data._id
         console.log('propertyID', propertyId)
         // setState(propertyType)
-        setPropertyTypeSelected(propertyType) 
+        setPropertyTypeSelected(propertyType)
         setPropertyIdContext(propertyId)
         console.log('res', res.data)
-        props.history.push(`/${propertyType}/${propertyId}`, 
+        props.history.push(`/${propertyType}/${propertyId}`,
           { propertyType: propertyType, propertyId: propertyId, location: state }
         )
       })
       .catch((error) => {
-        setError(error)
-        console.log(error.response.data)
+        if (error.response.status === 404) {
+          console.log(error)
+          setError({ message: 'Selecteaza o proprietate' })
+        } else {
+          setError(error.response.data)
+          console.log(error.response.data)
+        }
       })
   }
 
 
   return (
     <div className="main-container">
-      <Nav user={user}/>
+      <Nav user={user} />
       <div className="section">
-      
+
         <h3 className="title">Alege tipul proprietatii</h3>
-        {error && <span className="is-warning">Selecteaza o proprietate!</span> }
+        {error && error.message && <span className="is-warning">{error.message}</span>}
         <div className="property-section">
           <div id="apartment"
             className={propertyType === 'apartment' ? 'font-awesome clicked' : 'font-awesome'}
@@ -84,7 +89,7 @@ const Home = (props) => {
               setState({ propertyType: event.target.id })
               setPropertyType(event.target.id)
             }}
- 
+
           >
             <i style={{ pointerEvents: 'none' }}
               className="fas fa-home fa-3x"></i>
@@ -131,9 +136,9 @@ const Home = (props) => {
           >
             <i style={{ pointerEvents: 'none' }} className="fas fa-warehouse fa-3x"></i>
             <h5 style={{ pointerEvents: 'none' }} >Spatiu industrial</h5>
-          </div>  
+          </div>
         </div>
-        
+
         <div className="property-address">
           <form onChange={(event) => handleChange(event)}
             onSubmit={(event) => handleSubmit(event)}>

@@ -1,5 +1,12 @@
 const mongoose = require('mongoose')
 
+const lanlordDetails = new mongoose.Schema({
+  fullName: { type: String },
+  email: { type: String },
+  phoneNumber: { type: Number },
+  moreDetails: { type: String }
+})
+
 const address = new mongoose.Schema({
   county: { type: String },
   town: { type: String },
@@ -96,6 +103,7 @@ const schema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   priceForSale: priceForSale,
+  lanlordDetails: lanlordDetails,
   priceForRenting: priceForRenting,
   description: description,
   technicalParameters: technicalParameters,

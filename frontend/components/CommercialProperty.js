@@ -6,6 +6,7 @@ import Nav from './Nav'
 import CommercialPropertyCharacteristics from './CommercialPropertyCharacteristics'
 import PropertyLocationImages from './PropertyLocationImages'
 import PropertyPrice from './PropertyPrice'
+import LanlordDetails from './LanlordDetails'
 
 const CommercialProperty = (props) => {
 
@@ -37,19 +38,9 @@ const CommercialProperty = (props) => {
     return props.history.push('/home')
   }
 
-  const handleLocation = () => {
-    setCurrentSelection('Location')
-  }
 
-  const handleCharacteristics = () => {
-    setCurrentSelection('Characteristics')
-  }
 
-  const handlePrice = () => {
-    setCurrentSelection('Price')
-  }
 
-  
   return <div className="property-container">
     <Nav />
     <div className="fields-container">
@@ -59,17 +50,21 @@ const CommercialProperty = (props) => {
           Inapoi
         </button>
       </div>
-      <div onClick={() => handleLocation()}
+      <div onClick={() => setCurrentSelection('Location')}
         className="content">
-        <h4>Localizare / Imagini</h4>
+        <h4 className={currentSelection === 'Location' ? 'underline' : ''} >Localizare / Imagini</h4>
       </div>
-      <div onClick={() => handleCharacteristics()}
+      <div onClick={() => setCurrentSelection('Characteristics')}
         className="content">
-        <h4>Caracteristici</h4>
+        <h4 className={currentSelection === 'Characteristics' ? 'underline' : ''} >Caracteristici</h4>
       </div>
-      <div onClick={() => handlePrice()}
+      <div onClick={() => setCurrentSelection('Price')}
         className="content">
-        <h4>Pret</h4>
+        <h4 className={currentSelection === 'Price' ? 'underline' : ''} >Pret</h4>
+      </div>
+      <div onClick={() => setCurrentSelection('LanlordDetails')}
+        className="content">
+        <h4 className={currentSelection === 'LanlordDetails' ? 'underline' : ''} >Detalii Proprietar</h4>
       </div>
       <div className="content">
         <button className="button"
@@ -89,6 +84,10 @@ const CommercialProperty = (props) => {
     />}
     {currentSelection === 'Price' && <PropertyPrice
       // checkboxHandler={event => checkboxHandler(event)}
+      handleChange={event => handleChange(event)}
+      formState={formState}
+    />}
+    {currentSelection === 'LanlordDetails' && <LanlordDetails
       handleChange={event => handleChange(event)}
       formState={formState}
     />}

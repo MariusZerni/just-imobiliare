@@ -14,21 +14,24 @@ import CommercialProperty from '../components/CommercialProperty'
 import IndustrialProperty from '../components/IndustrialProperty'
 import LoginRegister from '../components/LoginRegister'
 import EditProfile from '../components/EditProfile'
-import Nav from '../components/Nav'
+// import Nav from '../components/Nav'
 import Properties from '../components/Properties'
+import AddClients from '../components/AddClients'
 import Clients from '../components/Clients'
-import { UserContext, PropertyTypeSelected, PropertyIdContext } from '../components/Context'
+import { UserContext, PropertyTypeSelected, PropertyIdContext, ContractSigningDate } from '../components/Context'
 
 
 const App = () => {
   const [user, setUser] = useState(null)
   const [propertyTypeSelected, setPropertyTypeSelected] = useState(null)
   const [propertyIdContext, setPropertyIdContext] = useState(null)
+  const [formattedDate, setFormattedDate] = useState(null)
 
 
   const value = useMemo(() => ({ user, setUser }), [user, setUser])
   const propertyTypeSelectedValue = useMemo(() => ({ propertyTypeSelected, setPropertyTypeSelected }), [propertyTypeSelected, setPropertyTypeSelected])
   const propertyIdContextValue = useMemo(() => ({ propertyIdContext, setPropertyIdContext }), [propertyIdContext, setPropertyIdContext])
+  const signingDateVale = useMemo(() => ({ formattedDate, setFormattedDate }), [formattedDate, setFormattedDate])
 
 
   useEffect(() => {
@@ -55,18 +58,21 @@ const App = () => {
         <UserContext.Provider value={value}>
           <PropertyTypeSelected.Provider value={propertyTypeSelectedValue}>
             <PropertyIdContext.Provider value={propertyIdContextValue}>
-              <Route exact path="/" component={LoginRegister} />
-              <Route exact path="/home" component={Home} />
-              <Route path="/apartment" component={Apartment} />
-              <Route path="/house" component={House} />
-              <Route path="/land" component={Land} />
-              <Route path="/office" component={Office} />
-              <Route path="/industrial-property" component={IndustrialProperty} />
-              <Route path="/commercial-property" component={CommercialProperty} />
-              <Route exact path="/edit-profile" component={EditProfile} />
-              <Route path="/properties" component={Properties} />
-              <Route path="/clients" component={Clients} />
-              <Route path="h" component={Nav} />
+              <ContractSigningDate.Provider value={signingDateVale}>
+                <Route exact path="/" component={LoginRegister} />
+                <Route exact path="/home" component={Home} />
+                <Route path="/apartment" component={Apartment} />
+                <Route path="/house" component={House} />
+                <Route path="/land" component={Land} />
+                <Route path="/office" component={Office} />
+                <Route path="/industrial-property" component={IndustrialProperty} />
+                <Route path="/commercial-property" component={CommercialProperty} />
+                <Route exact path="/edit-profile" component={EditProfile} />
+                <Route path="/properties" component={Properties} />
+                <Route path="/add-clients" component={AddClients} />
+                <Route path="/clients" component={Clients} />
+                {/* <Nav path="h" component={Nav}/> */}
+              </ContractSigningDate.Provider>
             </PropertyIdContext.Provider>
           </PropertyTypeSelected.Provider>
         </UserContext.Provider>

@@ -249,30 +249,33 @@ const ApartmentCharacteristics = ({ handleChange, formState }) => {
               <input datacontainer="characteristics"
                 type="text" name="lowerGroundFloor" />
             </div>
-            <div className="checkbox">
-              <input checked={formState.characteristics.historicalMonument}
-                // checked={characteristics.historicalMonument ? true : false}
-                datacontainer="characteristics"
-                type="checkbox" name="historicalMonument" />
-              <h6>Monument istoric</h6>
-            </div>
-            <div className="checkbox">
-              <input checked={formState.characteristics.thermalRehabilitation}
-                datacontainer="characteristics"
-                type="checkbox" name="thermalRehabilitation" />
-              <h6>Reabilitare termic</h6>
-            </div>
-            <div className="checkbox">
-              <input checked={formState.characteristics.consolidatedBuilding}
-                datacontainer="characteristics"
-                type="checkbox" name="consolidatedBuilding" />
-              <h6>Imobil consolidatc</h6>
-            </div>
-            <div className="checkbox">
-              <input checked={formState.characteristics.attic}
-                datacontainer="characteristics"
-                type="checkbox" name="attic" value="attic" />
-              <h6>Pod</h6>
+
+            <div className="checkbox-container">
+              <div className="checkbox">
+                <input checked={formState.characteristics.historicalMonument}
+                  // checked={characteristics.historicalMonument ? true : false}
+                  datacontainer="characteristics"
+                  type="checkbox" name="historicalMonument" />
+                <h6>Monument istoric</h6>
+              </div>
+              <div className="checkbox">
+                <input checked={formState.characteristics.thermalRehabilitation}
+                  datacontainer="characteristics"
+                  type="checkbox" name="thermalRehabilitation" />
+                <h6>Reabilitat termic</h6>
+              </div>
+              <div className="checkbox">
+                <input checked={formState.characteristics.consolidatedBuilding}
+                  datacontainer="characteristics"
+                  type="checkbox" name="consolidatedBuilding" />
+                <h6>Imobil consolidat</h6>
+              </div>
+              <div className="checkbox">
+                <input checked={formState.characteristics.attic}
+                  datacontainer="characteristics"
+                  type="checkbox" name="attic" value="attic" />
+                <h6>Pod</h6>
+              </div>
             </div>
           </div>
         </div>

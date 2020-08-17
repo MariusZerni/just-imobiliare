@@ -10,22 +10,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100px;
+    min-height: 150px;
     width: 95vw;
-    background-color: $white-color;
-    border: 1px solid grey;
-    margin: 2em 0em;
-    position: relative;
+    // background-color: $white-color;
+    // border: 1px solid grey;
+    // margin-bottom: 6em ;
+    // position: relative;
 
     form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5em;
       
       select {
-        padding: 0.7em;
-        background-color: $secondary-color;
+        padding: 0.4em 0.6em;
+        background-color: $white-color;
+        border: none;
+
       }
 
       button {
-        position: absolute;
+        // position: absolute;
         right: 1.3em;
         bottom: 0.5em;
       }
@@ -35,12 +41,14 @@
   }
 
   .property-hover:hover {
-    background-color: rgb(247, 244, 244);
+    background-color: $body-color;
   }
+
+
 
   .property {
     background-color: $white-color;
-    margin: 0 auto;
+    margin: 0.4em auto;
     display: flex;
     justify-content: center;
     width: 95vw;
@@ -145,9 +153,9 @@
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
-      border-right: 1px solid grey;
-      border-left: 1px solid grey;
-      border-bottom: 1px solid grey;
+      // border-right: 1px solid grey;
+      // border-left: 1px solid grey;
+      // border-bottom: 1px solid grey;
       text-align: inherit;
 
       button {
@@ -178,11 +186,18 @@
       display: flex;
       align-items: center;
       padding-left: 5px;
-      border-left: 1px solid grey;
-      border-bottom: 1px solid grey;
+      // border-left: 1px solid grey;
+      // border-bottom: 1px solid grey;
       text-align: inherit;
     } 
 
 
   }
 } 
+
+
+.fixed {
+  position: sticky;
+  top: 0px;
+
+}

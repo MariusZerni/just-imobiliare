@@ -6,3 +6,5 @@ export const PropertyTypeSelected = createContext(null)
 
 export const PropertyIdContext = createContext(null)
 
+export const ContractSigningDate = createContext()
+

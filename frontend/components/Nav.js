@@ -101,9 +101,9 @@ const Nav = () => {
             <Link style={{ textDecoration: 'none' }} to="/home"><h6>Proprietate</h6></Link>
           </div>
           <div
-            onClick={() => handleLogout()}
+            // onClick={() => handleLogout()}
             className="link-container">
-            <Link style={{ textDecoration: 'none' }} to="/clients"><h6>Clienti</h6></Link>
+            <Link style={{ textDecoration: 'none' }} to="/add-clients"><h6>Clienti</h6></Link>
           </div>
         </div>}
 
@@ -120,7 +120,7 @@ const Nav = () => {
             <h5>Clienti</h5>
           </div>
         </Link>
-        <div onClick={() => {console.log('inverting user dropdown', userDropdown); setUserDropdown(!userDropdown)}}
+        <div onClick={() =>  setUserDropdown(!userDropdown) }
           className="profile" >
           {user && <div className="image" style={{ backgroundImage: `url(${'http://localhost:8000/images/' + (user.image)})` }} >
             {!user.image && <i className="far fa-user fa-2x"></i>}
