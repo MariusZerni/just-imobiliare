@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const mongooseHidden = require('mongoose-hidden')()
 
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 const schema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
